@@ -67,6 +67,25 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .byline b{color:var(--o2);font-weight:600}
 .views{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--mut);background:rgba(255,106,0,.06)}
 .views[hidden]{display:none}
+header.hero .wrap.hero-head{display:block;margin-bottom:28px}
+.hero-head h1{font-size:clamp(38px,5.6vw,68px)!important;margin:14px 0 10px!important}
+.hero-head .lead{max-width:720px!important;margin-bottom:20px!important}
+.hero-head .cta{align-items:center}.hero-head .views{margin:0!important}
+header.hero .hero-games .gwin{transform:none!important}header.hero .hero-games .gwin:hover{transform:translateY(-3px)!important}
+header.hero .wrap.hero-games{grid-template-columns:1.4fr .6fr;gap:22px;align-items:start}
+.pinpanel{background:#0e0e14;border:1px solid var(--line);border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 30px 80px -40px rgba(255,106,0,.5)}
+.pp-h{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 8px;font-size:13px;color:var(--mut)}.pp-h b{color:var(--txt)}
+.pp-h em{font-style:normal;font-size:11px;font-weight:700;color:var(--o2);display:flex;align-items:center;gap:6px;letter-spacing:.06em}
+.pp-h em b{width:7px;height:7px;border-radius:50%;background:var(--o);animation:pulse 1.8s infinite}
+.prow{display:flex;align-items:center;gap:12px;padding:7px;border-radius:14px;border:1px solid transparent;transition:.25s}
+.prow:hover{background:#15151d;border-color:rgba(255,106,0,.45);transform:translateX(-3px)}
+.prow canvas{width:118px;height:auto;aspect-ratio:16/10;border-radius:9px;flex:none;background:#0b0b10;border:1px solid var(--line)}
+.prow span{display:flex;flex-direction:column;min-width:0;flex:1}.prow b{font-size:14px;font-family:"Space Grotesk",Inter,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow small{font-size:12px;color:var(--mut)}.prow em{font-style:normal;font-size:9px;background:var(--o);color:#111;padding:2px 6px;border-radius:999px;vertical-align:middle}
+.prow>i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--o),var(--o2));color:#111;font-size:12px;flex:none}
+.prow.soon{border:1px dashed var(--line)}.prow.soon:hover{transform:none;background:none}.prow.soon>i{background:#23232e}
+.prow .soonart{width:118px;aspect-ratio:16/10;flex:none;border-radius:9px;font-size:0}
+@media(max-width:960px){header.hero .wrap.hero-games{grid-template-columns:1fr}.prow canvas,.prow .soonart{width:132px}}
 .ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:960px){.ngrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.ngrid{grid-template-columns:1fr}}
 .ncard{display:block;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
@@ -355,18 +374,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
 </nav>
 
 <header class="hero" id="top">
-  <div class="wrap">
-    <div>
-      <span class="tag">🎮 9 free games · No login · Stress relief</span>
-      <h1>Job hunt stress?<br><span class="o">Play it off.</span></h1>
-      <p class="lead">Stick-figure games about getting hired: race past rejections, surf the career tracks, smash SIXes off HR's questions. Then fix your real resume with AI.</p>
-      <div class="cta">
-        <a href="games.html" class="btn btn-o">🎮 Play all 9 free →</a>
-        <a href="#check" class="btn btn-g">Check my resume</a>
-      </div>
+  <div class="wrap hero-head">
+    <span class="tag">🎮 9 free games · No login · Stress relief</span>
+    <h1>Job hunt stress? <span class="o">Play it off.</span></h1>
+    <p class="lead">Stick-figure games about getting hired: race past rejections, surf the career tracks, smash SIXes off HR's questions. Then fix your real resume with AI.</p>
+    <div class="cta">
+      <a href="games.html" class="btn btn-o">🎮 Play all 9 free →</a>
+      <a href="#check" class="btn btn-g">Check my resume</a>
       <div class="views" id="views" hidden><span class="dot"></span><b id="viewsN">0</b> views so far</div>
-      <a href="#newgames" class="gamechip"><span>NEW</span> 5 new games just dropped ↓</a>
     </div>
+  </div>
+  <div class="wrap hero-games">
     <div class="stage live" id="stage">
       <div class="gwin">
         <div class="gwin-bar"><i></i><i></i><i></i><span>Hire Games</span><em><b></b>LIVE</em></div>
@@ -380,6 +398,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
         <div class="gwin-foot"><span id="liveName">Hire Racer</span><a href="games.html" class="btn btn-o">🎮 Play all 9 free →</a></div>
       </div>
     </div>
+    <aside class="pinpanel" id="newgames">
+      <div class="pp-h"><span>📌 Pinned · <b>New games</b></span><em><b></b>5 NEW</em></div>
+        <a class="prow" href="games.html#surfers"><canvas data-live="surfers" width="800" height="500"></canvas><span><b>🚆 Hire Surfers <em>NEW</em></b><small>Dodge the Layoff Express</small></span><i>▶</i></a>
+        <a class="prow" href="games.html#cricket"><canvas data-live="cricket" width="800" height="500"></canvas><span><b>🏏 Hire Cricket <em>NEW</em></b><small>Smash SIXes off HR</small></span><i>▶</i></a>
+        <a class="prow" href="games.html#flight"><canvas data-live="flight" width="800" height="500"></canvas><span><b>✈️ Hire Flight <em>NEW</em></b><small>Fly past rejection storms</small></span><i>▶</i></a>
+        <a class="prow" href="games.html#cart"><canvas data-live="cart" width="800" height="500"></canvas><span><b>⛳ Golf Cart Dash <em>NEW</em></b><small>Catch air to the job fair</small></span><i>▶</i></a>
+        <a class="prow" href="games.html#football"><canvas data-live="football" width="800" height="500"></canvas><span><b>🏈 Hire Touchdown <em>NEW</em></b><small>Spin past HR tacklers</small></span><i>▶</i></a>
+        <div class="prow soon"><div class="soonart"><i></i><i></i><i></i></div><span><b>More games loading soon…</b><small>New stress-relief games every week</small></span><i>⏳</i></div>
+    </aside>
   </div>
 </header>
 
@@ -390,23 +417,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
 <!-- AdSense banner slot (leave empty until approved) -->
 <div class="ad-slot"></div>
 
-<section id="newgames" style="background:var(--bg2)">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <span class="tag">New games window</span>
-      <h2>5 new games for <span class="o">stress relief</span></h2>
-      <p>Tap any game to play. Sound on 🔊 for the full experience.</p>
-    </div>
-    <div class="ngrid">
-      <a class="ncard" href="games.html#surfers"><canvas data-live="surfers" width="800" height="500"></canvas><div class="nc-b"><h3>🚆 Hire Surfers <em>NEW</em></h3><p>Dodge the Layoff Express. Swipe, jump, roll.</p></div></a>
-      <a class="ncard" href="games.html#cricket"><canvas data-live="cricket" width="800" height="500"></canvas><div class="nc-b"><h3>🏏 Hire Cricket <em>NEW</em></h3><p>Time your swing for FOURs and SIXes.</p></div></a>
-      <a class="ncard" href="games.html#flight"><canvas data-live="flight" width="800" height="500"></canvas><div class="nc-b"><h3>✈️ Hire Flight <em>NEW</em></h3><p>Fly past rejection storms. Hold to climb.</p></div></a>
-      <a class="ncard" href="games.html#cart"><canvas data-live="cart" width="800" height="500"></canvas><div class="nc-b"><h3>⛳ Golf Cart Dash <em>NEW</em></h3><p>Catch air over the hills, land on your wheels.</p></div></a>
-      <a class="ncard" href="games.html#football"><canvas data-live="football" width="800" height="500"></canvas><div class="nc-b"><h3>🏈 Hire Touchdown <em>NEW</em></h3><p>Spin past HR tacklers to the end zone.</p></div></a>
-      <div class="ncard soon"><div class="soonart"><span>🎮</span><i></i><i></i><i></i></div><div class="nc-b"><h3>More games loading soon…</h3><p>New stress-relief games every week. Ideas? DM @varclips.</p></div></div>
-    </div>
-  </div>
-</section>
 <section id="wallpapers">
   <div class="wrap">
     <div class="sec-h reveal">

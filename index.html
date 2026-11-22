@@ -75,7 +75,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .gwin-bar span{margin-left:8px;font-weight:600;color:var(--txt)}
 .gwin-bar em{margin-left:auto;font-style:normal;font-weight:700;color:#2bd46b;display:flex;align-items:center;gap:6px;letter-spacing:.08em;font-size:11px}
 .gwin-bar em b{width:7px;height:7px;border-radius:50%;background:#2bd46b;animation:pulse 1.8s infinite}
-.gwin-tabs{display:flex;gap:6px;padding:10px 12px 0;overflow-x:auto}
+.gwin-tabs{display:flex;gap:6px;padding:10px 12px 0;overflow-x:auto;scrollbar-width:none}
+.gwin-tabs::-webkit-scrollbar{display:none}
 .gwin-tabs button{flex:none;border:1px solid var(--line);background:transparent;color:var(--mut);font:600 12px Inter,sans-serif;padding:6px 11px;border-radius:999px;cursor:pointer;transition:.25s}
 .gwin-tabs button:hover{color:var(--txt);border-color:rgba(255,106,0,.5)}
 .gwin-tabs button.on{background:var(--o);border-color:var(--o);color:#111}

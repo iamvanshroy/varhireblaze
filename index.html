@@ -109,7 +109,7 @@ header.hero .wrap.hero-head{display:block;margin-bottom:28px}
 .hero-head .lead{max-width:720px!important;margin-bottom:20px!important}
 .hero-head .cta{align-items:center}.hero-head .views{margin:0!important}
 header.hero .hero-games .gwin{transform:none!important}header.hero .hero-games .gwin:hover{transform:translateY(-3px)!important}
-header.hero .wrap.hero-games{grid-template-columns:1.4fr .6fr;gap:22px;align-items:start}
+header.hero .wrap.hero-games{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:22px;align-items:start}
 .pinpanel{background:#0e0e14;border:1px solid var(--line);border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 30px 80px -40px rgba(255,106,0,.5)}
 .pp-h{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 8px;font-size:13px;color:var(--mut)}.pp-h b{color:var(--txt)}
 .pp-h em{font-style:normal;font-size:11px;font-weight:700;color:var(--o2);display:flex;align-items:center;gap:6px;letter-spacing:.06em}
@@ -122,7 +122,7 @@ header.hero .wrap.hero-games{grid-template-columns:1.4fr .6fr;gap:22px;align-ite
 .prow>i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--o),var(--o2));color:#111;font-size:12px;flex:none}
 .prow.soon{border:1px dashed var(--line)}.prow.soon:hover{transform:none;background:none}.prow.soon>i{background:#23232e}
 .prow .soonart{width:118px;aspect-ratio:16/10;flex:none;border-radius:9px;font-size:0}
-@media(max-width:960px){header.hero .wrap.hero-games{grid-template-columns:1fr}.prow canvas,.prow .soonart{width:132px}}
+@media(max-width:960px){header.hero .wrap.hero-games{grid-template-columns:minmax(0,1fr)}.prow canvas,.prow .soonart{width:132px}}
 .ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:960px){.ngrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.ngrid{grid-template-columns:1fr}}
 .ncard{display:block;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}

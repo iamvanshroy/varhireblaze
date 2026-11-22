@@ -1,6 +1,7 @@
 /* VarHireBlaze — Hire Games core (shared by games.html and the homepage live demo) */
 (function(){
 "use strict";
+var W=800,H=500;
 var O="#ff6a00",O2="#ff9a3c",TXT="#f4f4f6",MUT="#9a9aa8",LINE="#23232e",RED="#ff4d4d",GRN="#2bd46b";
 
 /* ---------- storage (safe) ---------- */

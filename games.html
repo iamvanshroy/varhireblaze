@@ -110,6 +110,7 @@ main{max-width:1100px;margin:0 auto;padding:34px 20px 60px}
 .fs{position:absolute;right:10px;top:10px;z-index:3;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(20,20,27,.8);color:var(--txt);font-size:16px;cursor:pointer}
 .screen:fullscreen{border-radius:0;border:0;display:flex;align-items:center;justify-content:center;background:#07070a}
 .screen:fullscreen #cv{width:auto;height:auto;max-width:100vw;max-height:100vh}
+.mute{cursor:pointer;color:var(--txt);font-size:14px;line-height:1}.mute:hover{border-color:var(--o)}
 footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;text-align:center;padding:26px 20px}
 footer a{color:var(--o)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -173,7 +174,7 @@ footer a{color:var(--o)}
       <div class="bar">
         <button class="btn btn-g" id="back">← All games</button>
         <h2 id="gTitle">Game</h2>
-        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span></div>
+        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span><button class="pill mute" id="mute" aria-label="Sound on/off">🔊</button></div>
       </div>
       <div class="screen" id="screen">
         <canvas id="cv"></canvas>
@@ -227,32 +228,42 @@ function toMenu(x,y){wipeTo(x||innerWidth/2,y||80,function(){
   state="menu";cur=null;gameV.classList.add("out","gone");menu.classList.remove("gone");requestAnimationFrame(function(){menu.classList.remove("out")});paintBest();
   try{history.replaceState(null,"",location.pathname)}catch(e){}
 })}
-function countdown(){state="count";count=3;hideOv();tick();
-  function tick(){if(state!=="count")return;if(count===0){hideOv();state="play";last=performance.now();return}
-    showOv('<div class="big">'+count+'</div>');count--;setTimeout(tick,650)}}
+function countdown(){HG.unlock();HG.FX.rings.length=0;HG.FX.shake=0;state="count";count=3;hideOv();tick();
+  function tick(){if(state!=="count")return;if(count===0){hideOv();state="play";last=performance.now();HG.sfx("go");return}
+    HG.sfx("tick");showOv('<div class="big">'+count+'</div>');count--;setTimeout(tick,650)}}
 function gameOver(){state="over";flash();var r=cur.over();
   var isNew=false;if(r.score!=null&&r.score>getBest(curKey)){setBest(curKey,r.score);isNew=true}
+  var won=curKey==="pong"?cur.ps>cur.as:isNew;setTimeout(function(){HG.sfx(won?"win":"lose")},350);
   hud();
   setTimeout(function(){showOv('<h3>'+r.title+'</h3><div class="big" style="font-size:clamp(44px,9vw,84px)">'+r.big+'</div>'+(isNew?'<p style="color:#2bd46b;margin:0 0 6px">★ New best!</p>':'')+
     '<p>'+r.text+'</p><div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>')},300)}
 
 document.addEventListener("click",function(e){
-  var card=e.target.closest(".gcard");if(card&&state==="menu"){openGame(card.dataset.game,e.clientX,e.clientY);return}
+  var card=e.target.closest(".gcard");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
   if(e.target.closest("[data-go]")){e.stopPropagation();cur.reset();hud();countdown();return}
   if(e.target.closest("#back")){toMenu(e.clientX,e.clientY)}
 });
 var screen=document.getElementById("screen");
 function localY(e){var r=cv.getBoundingClientRect();return (e.clientY-r.top)/r.height*H}
-screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go],a"))return;
-  if(state==="play"){if(cur.tap)cur.tap(localY(e));else cur.action();if(cur.pointer)cur.pointer(localY(e))}
-  else if(state==="ready"||state==="over"){/* buttons handle start */}});
+function localX(e){var r=cv.getBoundingClientRect();return (e.clientX-r.left)/r.width*W}
+var sw=null;
+screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go],a,button"))return;
+  if(state!=="play")return;HG.ring(localX(e),localY(e),"rgba(255,255,255,.7)");
+  if(cur.tap){sw={x:e.clientX,y:e.clientY,ly:localY(e),t:performance.now()};return}
+  cur.action();if(cur.pointer)cur.pointer(localY(e))});
+screen.addEventListener("pointerup",function(e){if(!sw||state!=="play"){sw=null;return}
+  var dy=e.clientY-sw.y,dx=e.clientX-sw.x;
+  if(Math.abs(dy)>24&&Math.abs(dy)>Math.abs(dx)){cur.move(dy<0?-1:1)}else cur.tap(sw.ly);sw=null});
+screen.addEventListener("pointercancel",function(){sw=null});
+var muteBtn=document.getElementById("mute");function paintMute(){muteBtn.textContent=HG.isMuted()?"🔇":"🔊"}paintMute();
+muteBtn.addEventListener("click",function(e){e.stopPropagation();HG.setMuted(!HG.isMuted());paintMute();if(!HG.isMuted()){HG.unlock();HG.sfx("coin")}});
 screen.addEventListener("pointermove",function(e){if(state==="play"&&cur.pointer&&(e.pointerType==="mouse"||e.buttons))cur.pointer(localY(e))});
 document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;
   if(state==="play"&&cur.key&&cur.key(k)){e.preventDefault();return}
   if(k==="ArrowDown")e.preventDefault();
   if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){e.preventDefault();if(state==="play")cur.action();else if(state==="ready"||state==="over"){cur.reset();hud();countdown()}}
   if(curKey==="pong"&&state==="play"){if(k==="ArrowUp"||k==="w"||k==="W")cur.keyDir=-1;if(k==="ArrowDown"||k==="s"||k==="S"){e.preventDefault();cur.keyDir=1}}
-  if(k==="Escape")toMenu()});
+  if(k==="Escape")toMenu();if(k==="m"||k==="M"){muteBtn.click()}});
 document.addEventListener("keyup",function(e){if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
 var fsBtn=document.getElementById("fs");
 if(!(screen.requestFullscreen||screen.webkitRequestFullscreen))fsBtn.style.display="none";
@@ -267,8 +278,10 @@ ov.addEventListener("click",function(e){if(e.target.id==="resume"){e.stopPropaga
 function loop(now){
   if(state==="menu"){var t=now/1000;previews.forEach(function(p,i){p.g.preview(p.c,t+i*1.3)})}
   else if(cur){
-    if(state==="play"){var dt=Math.min((now-last)/1000,1/30);last=now;var r=cur.update(dt);hud();if(r==="over")gameOver()}
-    cur.draw(ctx);
+    var fdt=1/60;if(state==="play"){var dt=Math.min((now-last)/1000,1/30);last=now;fdt=dt;var r=cur.update(dt);hud();if(r==="over")gameOver()}
+    var so=HG.shakeOffset();ctx.fillStyle="#0b0b10";ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(so[0],so[1]);
+    cur.draw(ctx);HG.stepFX(ctx,fdt);ctx.restore();
+    var shk=HG.FX.shake;screen.style.transform=shk>6?"translate("+((Math.random()*2-1)*shk*0.25)+"px,"+((Math.random()*2-1)*shk*0.25)+"px)":"";
   }
   requestAnimationFrame(loop);
 }

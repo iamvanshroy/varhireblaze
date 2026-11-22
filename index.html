@@ -67,9 +67,23 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .byline b{color:var(--o2);font-weight:600}
 .views{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--mut);background:rgba(255,106,0,.06)}
 .views[hidden]{display:none}
+.ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:960px){.ngrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.ngrid{grid-template-columns:1fr}}
+.ncard{display:block;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.ncard:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.6);box-shadow:0 20px 60px -20px rgba(255,106,0,.55)}
+.ncard canvas{display:block;width:100%;height:auto;background:#0b0b10}
+.nc-b{padding:14px 16px 16px}.nc-b h3{font-size:19px;margin-bottom:4px}.nc-b p{color:var(--mut);font-size:14px}
+.nc-b em{font-style:normal;font-size:10px;background:var(--o);color:#111;padding:3px 7px;border-radius:999px;vertical-align:middle;letter-spacing:.06em;margin-left:4px}
+.ncard.soon{border-style:dashed}.ncard.soon:hover{transform:none;box-shadow:none}
+.soonart{aspect-ratio:16/10;background:linear-gradient(110deg,#101016 30%,#1c1c26 50%,#101016 70%);background-size:250% 100%;animation:shim 1.8s linear infinite;display:flex;align-items:center;justify-content:center;gap:10px;font-size:40px}
+.soonart i{width:10px;height:10px;border-radius:50%;background:var(--o);animation:bob 1s ease-in-out infinite}.soonart i:nth-child(3){animation-delay:.15s}.soonart i:nth-child(4){animation-delay:.3s}
+@keyframes shim{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.big-h{font-size:clamp(36px,5.5vw,64px)!important;line-height:1.04}
 .stage.live{perspective:none;height:auto}
 header.hero .wrap{grid-template-columns:.88fr 1.12fr}
-.hero .stage.live{order:-1}
+.hero .stage.live{order:-1;min-width:0}
+.hero .wrap>div{min-width:0}
+.gwin{max-width:100%}
 .hero .stage.live .gwin{transform:rotate(-1.2deg)}
 .hero .stage.live .gwin:hover{transform:rotate(0) translateY(-4px)}
 @media(max-width:960px){header.hero .wrap{grid-template-columns:1fr}.hero .stage.live .gwin{transform:none}}
@@ -329,10 +343,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
     </div>
     <div class="links">
       <a href="games.html" class="navgame">🎮 Games</a>
-      <a href="#check">Resume check</a>
-      <a href="#templates">Templates</a>
+      <a href="#newgames">New games</a>
       <a href="#wallpapers">Wallpapers</a>
       <a href="#mobile">Phone walls</a>
+      <a href="#check">Resume check</a>
+      <a href="#templates">Templates</a>
       <a href="blog/index.html">Blog</a>
     </div>
     <a href="#check" class="btn btn-o">Check my resume</a>
@@ -342,32 +357,27 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <span class="tag">Free · No login · 10 seconds</span>
-      <h1>Your resume,<br><span class="o">scored &amp; fixed</span><br>by AI.</h1>
-      <p class="lead">Drop your PDF. Get an ATS score, the skills you're missing for the job, and exact fixes — before a recruiter ever sees it.</p>
+      <span class="tag">🎮 9 free games · No login · Stress relief</span>
+      <h1>Job hunt stress?<br><span class="o">Play it off.</span></h1>
+      <p class="lead">Stick-figure games about getting hired: race past rejections, surf the career tracks, smash SIXes off HR's questions. Then fix your real resume with AI.</p>
       <div class="cta">
-        <a href="#check" class="btn btn-o">Check my resume — free →</a>
-        <a href="#templates" class="btn btn-g">Browse templates</a>
-      </div>
-      <div class="trust">
-        <div><b>100% free</b> check</div>
-        <div><b>No sign-up</b> ever</div>
-        <div>Files <b>never stored</b></div>
+        <a href="games.html" class="btn btn-o">🎮 Play all 9 free →</a>
+        <a href="#check" class="btn btn-g">Check my resume</a>
       </div>
       <div class="views" id="views" hidden><span class="dot"></span><b id="viewsN">0</b> views so far</div>
-      <a href="games.html" class="gamechip"><span>NEW</span> 🎮 Play 4 Hire Games free →</a>
+      <a href="#newgames" class="gamechip"><span>NEW</span> 5 new games just dropped ↓</a>
     </div>
     <div class="stage live" id="stage">
       <div class="gwin">
         <div class="gwin-bar"><i></i><i></i><i></i><span>Hire Games</span><em><b></b>LIVE</em></div>
         <div class="gwin-tabs" id="liveTabs">
-          <button data-k="racer" class="on">🏎️ Racer</button><button data-k="flappy">🕴️ Flappy</button><button data-k="rush">🏃 Rush</button><button data-k="pong">🏓 Pong</button>
+          <button data-k="racer" class="on">🏎️ Racer</button><button data-k="surfers">🚆 Surfers</button><button data-k="cricket">🏏 Cricket</button><button data-k="flight">✈️ Flight</button><button data-k="cart">⛳ Golf Cart</button><button data-k="football">🏈 Touchdown</button><button data-k="flappy">🕴️ Flappy</button><button data-k="rush">🏃 Rush</button><button data-k="pong">🏓 Pong</button>
         </div>
         <a class="gwin-screen" id="liveLink" href="games.html#racer" aria-label="Play Hire Games">
           <canvas id="liveCv" width="800" height="500"></canvas>
           <span class="gwin-play">▶ Tap to play</span>
         </a>
-        <div class="gwin-foot"><span id="liveName">Hire Racer</span><a href="games.html" class="btn btn-o">🎮 Play all 4 free →</a></div>
+        <div class="gwin-foot"><span id="liveName">Hire Racer</span><a href="games.html" class="btn btn-o">🎮 Play all 9 free →</a></div>
       </div>
     </div>
   </div>
@@ -376,23 +386,58 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
 <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 <p class="credit">Designed by <b>Vansh Roy</b></p>
 
-<a href="games.html" class="gstrip reveal">
-  <div class="wrap gs-in">
-    <div class="gs-txt"><span class="gs-tag">Take a break</span><h3>Hire Games 🎮</h3><p>Dodge rejections in <b>Flappy Hire</b>, beat the recruiter in <b>Resume Pong</b>, sprint to the offer in <b>Hire Rush</b>, race past rejections in <b>Hire Racer</b>.</p></div>
-    <div class="gs-figs" aria-hidden="true"><span>🕴️</span><span>🏓</span><span>🏃</span></div>
-    <span class="btn btn-o">Play free →</span>
-  </div>
-</a>
 
 <!-- AdSense banner slot (leave empty until approved) -->
 <div class="ad-slot"></div>
 
+<section id="newgames" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="tag">New games window</span>
+      <h2>5 new games for <span class="o">stress relief</span></h2>
+      <p>Tap any game to play. Sound on 🔊 for the full experience.</p>
+    </div>
+    <div class="ngrid">
+      <a class="ncard" href="games.html#surfers"><canvas data-live="surfers" width="800" height="500"></canvas><div class="nc-b"><h3>🚆 Hire Surfers <em>NEW</em></h3><p>Dodge the Layoff Express. Swipe, jump, roll.</p></div></a>
+      <a class="ncard" href="games.html#cricket"><canvas data-live="cricket" width="800" height="500"></canvas><div class="nc-b"><h3>🏏 Hire Cricket <em>NEW</em></h3><p>Time your swing for FOURs and SIXes.</p></div></a>
+      <a class="ncard" href="games.html#flight"><canvas data-live="flight" width="800" height="500"></canvas><div class="nc-b"><h3>✈️ Hire Flight <em>NEW</em></h3><p>Fly past rejection storms. Hold to climb.</p></div></a>
+      <a class="ncard" href="games.html#cart"><canvas data-live="cart" width="800" height="500"></canvas><div class="nc-b"><h3>⛳ Golf Cart Dash <em>NEW</em></h3><p>Catch air over the hills, land on your wheels.</p></div></a>
+      <a class="ncard" href="games.html#football"><canvas data-live="football" width="800" height="500"></canvas><div class="nc-b"><h3>🏈 Hire Touchdown <em>NEW</em></h3><p>Spin past HR tacklers to the end zone.</p></div></a>
+      <div class="ncard soon"><div class="soonart"><span>🎮</span><i></i><i></i><i></i></div><div class="nc-b"><h3>More games loading soon…</h3><p>New stress-relief games every week. Ideas? DM @varclips.</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="wallpapers">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="tag">Desktop wallpapers</span>
+      <h2>4K <span class="o">3D wallpapers</span> for your laptop</h2>
+      <p>Orange-black grind aesthetic. Free — share once to unlock.</p>
+    </div>
+    <div class="grid" id="wpGrid"></div>
+  </div>
+</section>
+<section id="mobile" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="tag">Phone wallpapers</span>
+      <h2>Lock screens that <span class="o">hit different</span></h2>
+      <p>Full-res for any phone. Tap one, share, set it.</p>
+    </div>
+    <div class="grid grid-m" id="mobGrid"></div>
+  </div>
+</section>
 <section id="check">
   <div class="wrap">
     <div class="sec-h reveal">
-      <span class="tag">Resume checker</span>
-      <h2>See what recruiters <span class="o">actually</span> see</h2>
-      <p>Your file is read inside your browser. Nothing is saved.</p>
+      <span class="tag">Free AI resume checker · 10 seconds</span>
+      <h2 class="big-h">Your resume,<br><span class="o">scored &amp; fixed</span> by AI.</h2>
+      <p>Drop your PDF. Get an ATS score, the skills you're missing for the job, and exact fixes — before a recruiter ever sees it. Your file is read inside your browser. Nothing is saved.</p>
+      <div class="trust" style="justify-content:center;margin-top:16px">
+        <div><b>100% free</b> check</div>
+        <div><b>No sign-up</b> ever</div>
+        <div>Files <b>never stored</b></div>
+      </div>
     </div>
 
     <div class="tool reveal">
@@ -454,27 +499,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
   </div>
 </section>
 
-<section id="wallpapers">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <span class="tag">Desktop wallpapers</span>
-      <h2>4K <span class="o">3D wallpapers</span> for your laptop</h2>
-      <p>Orange-black grind aesthetic. Free — share once to unlock.</p>
-    </div>
-    <div class="grid" id="wpGrid"></div>
-  </div>
-</section>
 
-<section id="mobile" style="background:var(--bg2)">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <span class="tag">Phone wallpapers</span>
-      <h2>Lock screens that <span class="o">hit different</span></h2>
-      <p>Full-res for any phone. Tap one, share, set it.</p>
-    </div>
-    <div class="grid grid-m" id="mobGrid"></div>
-  </div>
-</section>
 
 <section id="how">
   <div class="wrap">
@@ -956,7 +981,7 @@ document.getElementById("aiBtn").onclick = async ()=>{
 (function(){
   var HG=window.HireGames;if(!HG)return;
   var cv=document.getElementById("liveCv"),c=cv.getContext("2d"),tabs=document.getElementById("liveTabs"),link=document.getElementById("liveLink"),nm=document.getElementById("liveName");
-  var NAMES={racer:"Hire Racer",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong"},ORDER=["racer","flappy","rush","pong"];
+  var NAMES={racer:"Hire Racer",surfers:"Hire Surfers",cricket:"Hire Cricket",flight:"Hire Flight",cart:"Golf Cart Dash",football:"Hire Touchdown",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong"},ORDER=["racer","surfers","cricket","flight","cart","football","flappy","rush","pong"];
   var inst={};ORDER.forEach(function(k){inst[k]=HG.GAMES[k]()});
   var cur="racer",t0=performance.now(),visible=true,auto=true,switchAt=7000;
   function fit(){var d=Math.min(window.devicePixelRatio||1,2);cv.width=HG.W*d;cv.height=HG.H*d;c.setTransform(d,0,0,d,0,0)}fit();
@@ -969,6 +994,11 @@ document.getElementById("aiBtn").onclick = async ()=>{
     var t=(now-t0)/1000;try{inst[cur].preview(c,t)}catch(e){}
     if(auto&&now-last>switchAt){if(last)show(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]);last=now}}
   requestAnimationFrame(loop);
+  // new games window: live bot-played previews
+  var cards=[].map.call(document.querySelectorAll("canvas[data-live]"),function(cv){var x=cv.getContext("2d"),d=Math.min(window.devicePixelRatio||1,2);cv.width=HG.W*d;cv.height=HG.H*d;x.setTransform(d,0,0,d,0,0);
+    var o={cv:cv,c:x,g:HG.GAMES[cv.dataset.live](),vis:false};if("IntersectionObserver" in window)new IntersectionObserver(function(es){o.vis=es[0].isIntersecting}).observe(cv);else o.vis=true;return o});
+  var t1=performance.now();
+  (function lp(now){requestAnimationFrame(lp);if(document.hidden)return;var t=(now-t1)/1000;cards.forEach(function(o){if(o.vis){try{o.g.preview(o.c,t)}catch(e){}}})})(t1);
 })();
 </script>
 </body>

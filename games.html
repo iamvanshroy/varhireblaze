@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Hire Games — Flappy Hire, Resume Pong, Hire Rush &amp; Hire Racer | VarHireBlaze</title>
+<title>Hire Games — 9 free stress-relief games: Racer, Surfers, Cricket, Flight &amp; more | VarHireBlaze</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#07070a">
-<meta name="description" content="Take a break from job hunting. Play four free stick-figure hiring games: Flappy Hire, Resume Pong, Hire Rush and Hire Racer. No login, works on phone.">
+<meta name="description" content="Take a break from job hunting. Play 9 free stick-figure stress-relief games: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight, Golf Cart Dash, Hire Touchdown, Flappy Hire, Hire Rush and Resume Pong. No login, works on phone.">
 <link rel="canonical" href="https://varhireblaze.com/games.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VarHireBlaze">
@@ -58,10 +58,14 @@ main{max-width:1100px;margin:0 auto;padding:34px 20px 60px}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 @media(max-width:1040px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.cards{grid-template-columns:1fr}}
+.gcard.soon{cursor:default;border-style:dashed}.gcard.soon:hover{transform:none}
+.soonart{aspect-ratio:16/10;border-radius:14px;background:linear-gradient(110deg,#101016 30%,#1c1c26 50%,#101016 70%);background-size:250% 100%;animation:shim 1.8s linear infinite;display:flex;align-items:center;justify-content:center;gap:10px;font-size:40px}
+.soonart i{width:10px;height:10px;border-radius:50%;background:var(--o);animation:bob 1s ease-in-out infinite}.soonart i:nth-child(3){animation-delay:.15s}.soonart i:nth-child(4){animation-delay:.3s}
+@keyframes shim{0%{background-position:100% 0}100%{background-position:-100% 0}}@keyframes bob{50%{transform:translateY(-8px)}}
 .newb{font-size:10px;vertical-align:middle;background:var(--o);color:#111;padding:3px 7px;border-radius:999px;letter-spacing:.06em;margin-left:4px}
 .gcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;cursor:pointer;overflow:hidden;
  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
-.gcard:nth-child(2){animation-delay:.08s}.gcard:nth-child(3){animation-delay:.16s}.gcard:nth-child(4){animation-delay:.24s}
+.gcard:nth-child(2){animation-delay:.08s}.gcard:nth-child(3){animation-delay:.16s}.gcard:nth-child(4){animation-delay:.24s}.gcard:nth-child(n+5){animation-delay:.3s}
 @keyframes rise{from{opacity:0;transform:translateY(30px)}}
 .gcard:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.6);box-shadow:0 20px 60px -20px rgba(255,106,0,.55)}
 .gcard::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(135deg,transparent 40%,rgba(255,106,0,.7),transparent 60%);
@@ -133,20 +137,50 @@ footer a{color:var(--o)}
     <div class="hero">
       <span class="tag">🎮 Hire Games · free · no login</span>
       <h1>Job hunt stress?<br><span class="o">Play it off.</span></h1>
-      <p>Four quick stick-figure games about getting hired. Beat your best score, then go fix your resume.</p>
+      <p>Nine quick stick-figure games about getting hired, made for stress relief. Beat your best score, then go fix your resume.</p>
     </div>
     <div class="cards">
+      <div class="gcard" data-game="racer">
+        <canvas data-prev="racer" width="480" height="300"></canvas>
+        <h3>Hire Racer</h3>
+        <p>Floor it to your dream job. Switch lanes past rejection traffic, grab offers for nitro.</p>
+        <div class="row"><span class="best">Best: <b data-best="racer">0</b> km</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="surfers">
+        <canvas data-prev="surfers" width="480" height="300"></canvas>
+        <h3>Hire Surfers <span class="newb">NEW</span></h3>
+        <p>Run the career tracks. Dodge the Layoff Express, jump deadlines, roll under the boss bar.</p>
+        <div class="row"><span class="best">Best: <b data-best="surfers">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="cricket">
+        <canvas data-prev="cricket" width="480" height="300"></canvas>
+        <h3>Hire Cricket <span class="newb">NEW</span></h3>
+        <p>HR bowls tricky questions. Time your swing for FOURs and SIXes. 3 wickets and you're out.</p>
+        <div class="row"><span class="best">Best: <b data-best="cricket">0</b> runs</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="flight">
+        <canvas data-prev="flight" width="480" height="300"></canvas>
+        <h3>Hire Flight <span class="newb">NEW</span></h3>
+        <p>Fly your career jet past rejection storms and layoff towers. Hold to climb.</p>
+        <div class="row"><span class="best">Best: <b data-best="flight">0</b> km</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="cart">
+        <canvas data-prev="cart" width="480" height="300"></canvas>
+        <h3>Golf Cart Dash <span class="newb">NEW</span></h3>
+        <p>Drive over the hills to the job fair. Land flat, catch air, grab offer flags.</p>
+        <div class="row"><span class="best">Best: <b data-best="cart">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="football">
+        <canvas data-prev="football" width="480" height="300"></canvas>
+        <h3>Hire Touchdown <span class="newb">NEW</span></h3>
+        <p>Carry your resume to the end zone. Dodge HR tacklers, spin past them.</p>
+        <div class="row"><span class="best">Best: <b data-best="football">0</b> pts</span><span class="play">▶</span></div>
+      </div>
       <div class="gcard" data-game="flappy">
         <canvas data-prev="flappy" width="480" height="300"></canvas>
         <h3>Flappy Hire</h3>
         <p>Flap through the gaps between rejection letters. One touch and you're ghosted.</p>
         <div class="row"><span class="best">Best: <b data-best="flappy">0</b> interviews</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="pong">
-        <canvas data-prev="pong" width="480" height="300"></canvas>
-        <h3>Resume Pong</h3>
-        <p>You vs the Recruiter. Smash your resume past their desk. First to 7 wins.</p>
-        <div class="row"><span class="best">Best: <b data-best="pong">0</b> wins</span><span class="play">▶</span></div>
       </div>
       <div class="gcard" data-game="rush">
         <canvas data-prev="rush" width="480" height="300"></canvas>
@@ -154,11 +188,17 @@ footer a{color:var(--o)}
         <p>Sprint to the offer. Jump deadlines, bugs and layoffs, grab skills for a bigger package.</p>
         <div class="row"><span class="best">Best: <b data-best="rush">0</b> LPA</span><span class="play">▶</span></div>
       </div>
-      <div class="gcard" data-game="racer">
-        <canvas data-prev="racer" width="480" height="300"></canvas>
-        <h3>Hire Racer <span class="newb">NEW</span></h3>
-        <p>Floor it to your dream job. Switch lanes past rejection traffic, grab offer letters for nitro.</p>
-        <div class="row"><span class="best">Best: <b data-best="racer">0</b> km</span><span class="play">▶</span></div>
+      <div class="gcard" data-game="pong">
+        <canvas data-prev="pong" width="480" height="300"></canvas>
+        <h3>Resume Pong</h3>
+        <p>You vs the Recruiter. Smash your resume past their desk. First to 7 wins.</p>
+        <div class="row"><span class="best">Best: <b data-best="pong">0</b> wins</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard soon">
+        <div class="soonart"><span>🎮</span><i></i><i></i><i></i></div>
+        <h3>More games loading soon…</h3>
+        <p>New stress-relief games drop every week. Chess, carrom, kabaddi and more. Got an idea? Tell us on Instagram @varclips.</p>
+        <div class="row"><span class="best">Coming soon</span><span class="play" style="opacity:.4">⏳</span></div>
       </div>
     </div>
     <div class="cta">
@@ -239,7 +279,7 @@ function gameOver(){state="over";flash();var r=cur.over();
     '<p>'+r.text+'</p><div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>')},300)}
 
 document.addEventListener("click",function(e){
-  var card=e.target.closest(".gcard");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
+  var card=e.target.closest(".gcard[data-game]");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
   if(e.target.closest("[data-go]")){e.stopPropagation();cur.reset();hud();countdown();return}
   if(e.target.closest("#back")){toMenu(e.clientX,e.clientY)}
 });
@@ -249,22 +289,28 @@ function localX(e){var r=cv.getBoundingClientRect();return (e.clientX-r.left)/r.
 var sw=null;
 screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go],a,button"))return;
   if(state!=="play")return;HG.ring(localX(e),localY(e),"rgba(255,255,255,.7)");
-  if(cur.tap){sw={x:e.clientX,y:e.clientY,ly:localY(e),t:performance.now()};return}
+  try{screen.setPointerCapture(e.pointerId)}catch(err){}
+  if(cur.press){cur.press(true);return}
+  if(cur.tap||cur.swipe||cur.tapXY){sw={x:e.clientX,y:e.clientY,lx:localX(e),ly:localY(e)};return}
   cur.action();if(cur.pointer)cur.pointer(localY(e))});
-screen.addEventListener("pointerup",function(e){if(!sw||state!=="play"){sw=null;return}
-  var dy=e.clientY-sw.y,dx=e.clientX-sw.x;
-  if(Math.abs(dy)>24&&Math.abs(dy)>Math.abs(dx)){cur.move(dy<0?-1:1)}else cur.tap(sw.ly);sw=null});
-screen.addEventListener("pointercancel",function(){sw=null});
+function endPointer(e){if(cur&&cur.press)cur.press(false);if(!sw||state!=="play"){sw=null;return}
+  var dy=e.clientY-sw.y,dx=e.clientX-sw.x,far=Math.max(Math.abs(dx),Math.abs(dy))>24;
+  if(far){var dir=Math.abs(dx)>Math.abs(dy)?(dx<0?"left":"right"):(dy<0?"up":"down");
+    if(cur.swipe)cur.swipe(dir);else if((dir==="up"||dir==="down")&&cur.move)cur.move(dir==="up"?-1:1);else if(cur.tap)cur.tap(sw.ly)}
+  else if(cur.tapXY)cur.tapXY(sw.lx,sw.ly);else if(cur.tap)cur.tap(sw.ly);else cur.action();sw=null}
+screen.addEventListener("pointerup",endPointer);
+screen.addEventListener("pointercancel",function(){if(cur&&cur.press)cur.press(false);sw=null});
 var muteBtn=document.getElementById("mute");function paintMute(){muteBtn.textContent=HG.isMuted()?"🔇":"🔊"}paintMute();
 muteBtn.addEventListener("click",function(e){e.stopPropagation();HG.setMuted(!HG.isMuted());paintMute();if(!HG.isMuted()){HG.unlock();HG.sfx("coin")}});
 screen.addEventListener("pointermove",function(e){if(state==="play"&&cur.pointer&&(e.pointerType==="mouse"||e.buttons))cur.pointer(localY(e))});
 document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;
+  if(state==="play"&&cur.press&&(k===" "||k==="ArrowUp"||k==="w"||k==="W")){e.preventDefault();if(!e.repeat)cur.press(true);return}
   if(state==="play"&&cur.key&&cur.key(k)){e.preventDefault();return}
-  if(k==="ArrowDown")e.preventDefault();
+  if(k==="ArrowDown"||k==="ArrowLeft"||k==="ArrowRight")e.preventDefault();
   if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){e.preventDefault();if(state==="play")cur.action();else if(state==="ready"||state==="over"){cur.reset();hud();countdown()}}
   if(curKey==="pong"&&state==="play"){if(k==="ArrowUp"||k==="w"||k==="W")cur.keyDir=-1;if(k==="ArrowDown"||k==="s"||k==="S"){e.preventDefault();cur.keyDir=1}}
   if(k==="Escape")toMenu();if(k==="m"||k==="M"){muteBtn.click()}});
-document.addEventListener("keyup",function(e){if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
+document.addEventListener("keyup",function(e){if(cur&&cur.press&&/^( |ArrowUp|w|W)$/.test(e.key))cur.press(false);if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
 var fsBtn=document.getElementById("fs");
 if(!(screen.requestFullscreen||screen.webkitRequestFullscreen))fsBtn.style.display="none";
 fsBtn.addEventListener("pointerdown",function(e){e.stopPropagation()});

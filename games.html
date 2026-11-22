@@ -218,18 +218,18 @@ function Flappy(){
   var S={};
   S.title="Flappy Hire";S.keys="Tap / click / <kbd>Space</kbd> to flap";
   S.intro="Flap between the rejection letters. Every gap you clear is another interview.";
-  S.reset=function(){S.y=H/2;S.vy=0;S.pipes=[];S.next=0.6;S.score=0;S.t=0;S.parts=[];S.dead=false;S.scroll=0};
+  S.reset=function(){S.y=H/2;S.vy=-320;S.pipes=[];S.next=0.6;S.score=0;S.t=0;S.parts=[];S.dead=false;S.scroll=0};
   S.action=function(){if(!S.dead){S.vy=-420}};
   S.hud=function(){return["Interviews <b>"+S.score+"</b>","Best <b>"+Math.max(getBest("flappy"),S.score)+"</b>"]};
   var WORDS=["REJECTED","GHOSTED","NO REPLY","ON HOLD","OVERQUALIFIED"];
   S.update=function(dt){
     S.t+=dt;S.scroll+=180*dt;var sp=200+Math.min(S.score*4,120);
     S.vy+=1350*dt;S.y+=S.vy*dt;
-    S.next-=dt;if(S.next<=0){S.next=1.35-Math.min(S.score*0.01,0.3);var gap=Math.max(150,190-S.score*2);var top=70+Math.random()*(H-140-gap);
+    S.next-=dt;if(S.next<=0){S.next=1.35-Math.min(S.score*0.01,0.3);var gap=Math.max(165,215-S.score*2);var top=70+Math.random()*(H-140-gap);
       S.pipes.push({x:W+40,top:top,gap:gap,w:74,passed:false,word:WORDS[(Math.random()*WORDS.length)|0]})}
     for(var i=S.pipes.length-1;i>=0;i--){var p=S.pipes[i];p.x-=sp*dt;if(p.x<-120)S.pipes.splice(i,1);
       if(!p.passed&&p.x+p.w<170){p.passed=true;S.score++;particles(S.parts,170,S.y-30,O2,10)}
-      var px=170,top=S.y-72,bot=S.y; // figure box
+      var px=170,top=S.y-50,bot=S.y-4; // figure box (forgiving)
       if(px+12>p.x&&px-12<p.x+p.w&&(top<p.top||bot>p.top+p.gap))return "over"}
     if(S.y>H-20||S.y<40)return "over";
   };
@@ -240,15 +240,15 @@ function Flappy(){
         c.strokeStyle="rgba(255,77,77,.65)";c.lineWidth=2;c.stroke();
         c.save();c.translate(p.x+p.w/2,i?y+h/2:y/2);c.rotate(-Math.PI/2);label(c,p.word,0,0,15,RED);c.restore()})});
     var tilt=Math.max(-0.5,Math.min(0.9,S.vy/700));
-    c.save();c.translate(170,S.y-36);c.rotate(tilt);stick(c,0,36,1,{flap:S.vy<0?-1.2+Math.sin(S.t*30)*0.6:0.6,t:S.t});
+    c.save();c.translate(170,S.y-29);c.rotate(tilt);stick(c,0,29,0.8,{flap:S.vy<0?-1.2+Math.sin(S.t*30)*0.6:0.6,t:S.t});
     // briefcase
-    c.fillStyle=O2;c.fillRect(10,4,16,11);c.restore();
+    c.fillStyle=O2;c.fillRect(8,2,13,9);c.restore();
     stepParts(c,S.parts,1/60);
     c.fillStyle="rgba(255,106,0,.12)";c.fillRect(0,H-14,W,14);
   };
   S.over=function(){return{title:"Ghosted! 👻",big:S.score,text:S.score+" interview"+(S.score==1?"":"s")+" cleared. Recruiters love persistence.",score:S.score}};
   S.preview=function(c,t){var s=S;s.y=H/2+Math.sin(t*3)*50;s.vy=Math.cos(t*3)*-150;s.t=t;s.scroll=t*180;
-    s.pipes=[0,1,2].map(function(i){var x=((W+300)-((t*200+i*300)%(W+300)));return{x:x-100,top:110+((i*97)%140),gap:190,w:74,word:WORDS[i]}});s.parts=[];s.draw(c)};
+    s.pipes=[0,1,2].map(function(i){var x=((W+300)-((t*200+i*300)%(W+300)));return{x:x-100,top:110+((i*97)%140),gap:215,w:74,word:WORDS[i]}});s.parts=[];s.draw(c)};
   return S;
 }
 
@@ -258,7 +258,7 @@ function Pong(){
   S.intro="You (left) vs the Recruiter (right). Get your resume past their desk. First to 7 wins.";
   var PH=96,PW=14;
   S.reset=function(){S.py=H/2;S.ay=H/2;S.ps=0;S.as=0;S.t=0;S.parts=[];S.serve(1);S.target=null;S.keyDir=0};
-  S.serve=function(dir){S.bx=W/2;S.by=H/2;var a=(Math.random()*0.8-0.4);S.sp=360;S.vx=Math.cos(a)*S.sp*dir;S.vy=Math.sin(a)*S.sp;S.wait=0.7};
+  S.serve=function(dir){S.err=(Math.random()*2-1)*40;S.bx=W/2;S.by=H/2;var a=(Math.random()*0.8-0.4);S.sp=360;S.vx=Math.cos(a)*S.sp*dir;S.vy=Math.sin(a)*S.sp;S.wait=0.7};
   S.action=function(){};
   S.pointer=function(y){S.target=y};
   S.hud=function(){return["You <b>"+S.ps+"</b> : <b>"+S.as+"</b> Recruiter","Wins <b>"+getBest("pong")+"</b>"]};
@@ -266,11 +266,11 @@ function Pong(){
     if(S.keyDir){S.target=null;S.py+=S.keyDir*520*dt}
     if(S.target!=null)S.py+=(S.target-S.py)*Math.min(1,dt*14);
     S.py=Math.max(PH/2+10,Math.min(H-PH/2-10,S.py));
-    var aiSp=300+S.ps*18,lead=S.vx>0?S.by:H/2;S.ay+=Math.max(-aiSp*dt,Math.min(aiSp*dt,(lead-S.ay)*0.9));S.ay=Math.max(PH/2+10,Math.min(H-PH/2-10,S.ay));
+    var aiSp=290+S.ps*12,lead=(S.vx>0&&S.bx>W*0.35)?S.by+S.err:H/2;S.ay+=Math.max(-aiSp*dt,Math.min(aiSp*dt,(lead-S.ay)*0.9));S.ay=Math.max(PH/2+10,Math.min(H-PH/2-10,S.ay));
     if(S.wait>0){S.wait-=dt;return}
     S.bx+=S.vx*dt;S.by+=S.vy*dt;
     if(S.by<20){S.by=20;S.vy=Math.abs(S.vy)}if(S.by>H-20){S.by=H-20;S.vy=-Math.abs(S.vy)}
-    function hit(px,py,dir){var off=(S.by-py)/(PH/2);off=Math.max(-1,Math.min(1,off));S.sp=Math.min(S.sp*1.06,820);var a=off*1.0;
+    function hit(px,py,dir){var off=(S.by-py)/(PH/2);off=Math.max(-1,Math.min(1,off));S.sp=Math.min(S.sp*1.06,820);var a=off*1.0+(Math.random()-0.5)*0.3;if(dir>0)S.err=(Math.random()*2-1)*(78-S.ps*3);else S.err=0;
       S.vx=Math.cos(a)*S.sp*dir;S.vy=Math.sin(a)*S.sp;particles(S.parts,px,S.by,O2,12);flash(0.25)}
     if(S.vx<0&&S.bx-12<60+PW&&S.bx>40&&Math.abs(S.by-S.py)<PH/2+12){S.bx=60+PW+12;hit(60+PW,S.py,1)}
     if(S.vx>0&&S.bx+12>W-60-PW&&S.bx<W-40&&Math.abs(S.by-S.ay)<PH/2+12){S.bx=W-60-PW-12;hit(W-60-PW,S.ay,-1)}

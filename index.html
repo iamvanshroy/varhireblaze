@@ -156,8 +156,10 @@ header.hero .wrap{grid-template-columns:.88fr 1.12fr}
 .gwin-tabs button:hover{color:var(--txt);border-color:rgba(255,106,0,.5)}
 .gwin-tabs button.on{background:var(--o);border-color:var(--o);color:#111}
 .gwin-screen{position:relative;display:block;margin:10px 12px 0;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
-.gwin-screen canvas{display:block;width:100%;height:auto;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
-.gwin-screen canvas.swap{opacity:0;transform:scale(1.04)}
+.gwin-screen canvas{display:block;width:100%;height:auto;transition:opacity .35s ease}
+.gwin-screen canvas.swap{opacity:0}
+/* touch devices (iPad/iPhone): blur filters over animated canvases make Safari's compositor flash */
+@media(hover:none){nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,7,10,.97)}.gwin-play,.modal{backdrop-filter:none;-webkit-backdrop-filter:none}.hero .stage.live .gwin,.gwin{transform:none!important}}
 .gwin-play{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(7,7,10,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,106,0,.5);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;transition:.25s}
 .gwin-screen:hover .gwin-play{background:var(--o);color:#111;transform:translateX(-50%) scale(1.06)}
 .gwin-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px 14px;font-size:13px;color:var(--mut)}
@@ -1086,7 +1088,10 @@ document.addEventListener("click",function(e){var a=e.target.closest('a[href^="#
   var NAMES={racer:"Hire Racer",surfers:"Hire Surfers",cricket:"Hire Cricket",flight:"Hire Flight",cart:"Golf Cart Dash",football:"Hire Touchdown",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong",snake:"Resume Snake",invaders:"Spam Invaders",breakout:"Glass Ceiling",salary:"Salary 2048"},ORDER=["racer","surfers","snake","cricket","invaders","flight","breakout","cart","salary","football","flappy","rush","pong"];
   var inst={};ORDER.forEach(function(k){inst[k]=HG.GAMES[k]()});
   var cur="racer",t0=performance.now(),visible=true,auto=true,switchAt=7000;
-  function fit(){var d=Math.min(window.devicePixelRatio||1,2);cv.width=HG.W*d;cv.height=HG.H*d;c.setTransform(d,0,0,d,0,0)}fit();
+  // size each canvas to its on-screen width (not a fixed 1600x1000), so iPad/iPhone Safari doesn't run out of canvas memory
+  function fitCv(el,x){var w=el.clientWidth||400,d=Math.min(window.devicePixelRatio||1,2),pw=Math.min(1200,Math.max(160,Math.round(w*d))),k=pw/HG.W;
+    if(el.width!==pw){el.width=pw;el.height=Math.round(HG.H*k)}x.setTransform(k,0,0,k,0,0)}
+  function fit(){fitCv(cv,c)}fit();
   function show(k){if(k===cur)return;cv.classList.add("swap");setTimeout(function(){cur=k;link.href="games.html#"+k;nm.textContent=NAMES[k];
     [].forEach.call(tabs.children,function(b){b.classList.toggle("on",b.dataset.k===k)});cv.classList.remove("swap")},300)}
   tabs.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;auto=false;show(b.dataset.k)});
@@ -1097,8 +1102,9 @@ document.addEventListener("click",function(e){var a=e.target.closest('a[href^="#
     if(auto&&now-last>switchAt){if(last)show(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]);last=now}}
   requestAnimationFrame(loop);
   // new games window: live bot-played previews
-  var cards=[].map.call(document.querySelectorAll("canvas[data-live]"),function(cv){var x=cv.getContext("2d"),d=Math.min(window.devicePixelRatio||1,2);cv.width=HG.W*d;cv.height=HG.H*d;x.setTransform(d,0,0,d,0,0);
+  var cards=[].map.call(document.querySelectorAll("canvas[data-live]"),function(cv){var x=cv.getContext("2d");fitCv(cv,x);
     var o={cv:cv,c:x,g:HG.GAMES[cv.dataset.live](),vis:false};if("IntersectionObserver" in window)new IntersectionObserver(function(es){o.vis=es[0].isIntersecting}).observe(cv);else o.vis=true;return o});
+  var rz;window.addEventListener("resize",function(){clearTimeout(rz);rz=setTimeout(function(){fit();cards.forEach(function(o){fitCv(o.cv,o.c)})},200)});
   var t1=performance.now();
   (function lp(now){requestAnimationFrame(lp);if(document.hidden)return;var t=(now-t1)/1000;cards.forEach(function(o){if(o.vis){try{o.g.preview(o.c,t)}catch(e){}}})})(t1);
 })();

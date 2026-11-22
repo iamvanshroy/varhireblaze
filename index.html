@@ -67,6 +67,27 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .byline b{color:var(--o2);font-weight:600}
 .views{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--mut);background:rgba(255,106,0,.06)}
 .views[hidden]{display:none}
+.stage.live{perspective:none;height:auto}
+.gwin{background:#0e0e14;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(255,106,0,.55),0 0 0 1px rgba(255,106,0,.08);transform:rotate(1.2deg);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.gwin:hover{transform:rotate(0) translateY(-4px)}
+.gwin-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#15151d;border-bottom:1px solid var(--line);font-size:12px;color:var(--mut)}
+.gwin-bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.gwin-bar i:nth-child(2){background:#febc2e}.gwin-bar i:nth-child(3){background:#28c840}
+.gwin-bar span{margin-left:8px;font-weight:600;color:var(--txt)}
+.gwin-bar em{margin-left:auto;font-style:normal;font-weight:700;color:#2bd46b;display:flex;align-items:center;gap:6px;letter-spacing:.08em;font-size:11px}
+.gwin-bar em b{width:7px;height:7px;border-radius:50%;background:#2bd46b;animation:pulse 1.8s infinite}
+.gwin-tabs{display:flex;gap:6px;padding:10px 12px 0;overflow-x:auto}
+.gwin-tabs button{flex:none;border:1px solid var(--line);background:transparent;color:var(--mut);font:600 12px Inter,sans-serif;padding:6px 11px;border-radius:999px;cursor:pointer;transition:.25s}
+.gwin-tabs button:hover{color:var(--txt);border-color:rgba(255,106,0,.5)}
+.gwin-tabs button.on{background:var(--o);border-color:var(--o);color:#111}
+.gwin-screen{position:relative;display:block;margin:10px 12px 0;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.gwin-screen canvas{display:block;width:100%;height:auto;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+.gwin-screen canvas.swap{opacity:0;transform:scale(1.04)}
+.gwin-play{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(7,7,10,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,106,0,.5);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;transition:.25s}
+.gwin-screen:hover .gwin-play{background:var(--o);color:#111;transform:translateX(-50%) scale(1.06)}
+.gwin-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px 14px;font-size:13px;color:var(--mut)}
+.gwin-foot span{font-weight:600;color:var(--txt)}
+.gwin-foot .btn{padding:9px 14px;font-size:13px}
+@media(max-width:960px){.gwin{transform:none}}
 .gamechip{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0 0;padding:7px 14px 7px 7px;border-radius:999px;font-size:13px;font-weight:600;color:var(--txt);
  border:1px solid rgba(255,106,0,.45);background:linear-gradient(90deg,rgba(255,106,0,.16),rgba(255,106,0,.03));transition:.25s}
 .gamechip span{background:var(--o);color:#111;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.06em}
@@ -301,12 +322,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
       <div class="byline">designed by <b>Vansh</b></div>
     </div>
     <div class="links">
+      <a href="games.html" class="navgame">🎮 Games</a>
       <a href="#check">Resume check</a>
       <a href="#templates">Templates</a>
       <a href="#wallpapers">Wallpapers</a>
       <a href="#mobile">Phone walls</a>
       <a href="blog/index.html">Blog</a>
-      <a href="games.html" class="navgame">🎮 Games</a>
     </div>
     <a href="#check" class="btn btn-o">Check my resume</a>
   </div>
@@ -328,20 +349,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
         <div>Files <b>never stored</b></div>
       </div>
       <div class="views" id="views" hidden><span class="dot"></span><b id="viewsN">0</b> views so far</div>
-      <a href="games.html" class="gamechip"><span>NEW</span> 🎮 Play Hire Games — Flappy, Pong &amp; Rush →</a>
+      <a href="games.html" class="gamechip"><span>NEW</span> 🎮 Play Hire Games — Racer, Flappy, Rush &amp; Pong →</a>
     </div>
-    <div class="stage" id="stage">
-      <div class="stack">
-        <div class="paper p1"></div>
-        <div class="paper p2"></div>
-        <div class="paper p3">
-          <div class="mr-name"></div><div class="mr-sub"></div>
-          <div class="mr-h"></div><div class="mr-l w90"></div><div class="mr-l w80"></div><div class="mr-l w60"></div>
-          <div class="mr-h"></div><div class="mr-l w90"></div><div class="mr-l w70"></div><div class="mr-l w80"></div><div class="mr-l w50"></div>
-          <div class="mr-h"></div><div class="mr-l w80"></div><div class="mr-l w60"></div>
+    <div class="stage live" id="stage">
+      <div class="gwin">
+        <div class="gwin-bar"><i></i><i></i><i></i><span>Hire Games</span><em><b></b>LIVE</em></div>
+        <div class="gwin-tabs" id="liveTabs">
+          <button data-k="racer" class="on">🏎️ Racer</button><button data-k="flappy">🕴️ Flappy</button><button data-k="rush">🏃 Rush</button><button data-k="pong">🏓 Pong</button>
         </div>
-        <div class="score-chip"><b>87</b><small>ATS score</small></div>
-        <div class="fix-chip"><i>+</i> Add numbers to 3 bullet points</div>
+        <a class="gwin-screen" id="liveLink" href="games.html#racer" aria-label="Play Hire Games">
+          <canvas id="liveCv" width="800" height="500"></canvas>
+          <span class="gwin-play">▶ Tap to play</span>
+        </a>
+        <div class="gwin-foot"><span id="liveName">Hire Racer</span><a href="games.html" class="btn btn-o">🎮 Play all 4 free →</a></div>
       </div>
     </div>
   </div>
@@ -352,7 +372,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
 
 <a href="games.html" class="gstrip reveal">
   <div class="wrap gs-in">
-    <div class="gs-txt"><span class="gs-tag">Take a break</span><h3>Hire Games 🎮</h3><p>Dodge rejections in <b>Flappy Hire</b>, beat the recruiter in <b>Resume Pong</b>, sprint to the offer in <b>Hire Rush</b>.</p></div>
+    <div class="gs-txt"><span class="gs-tag">Take a break</span><h3>Hire Games 🎮</h3><p>Dodge rejections in <b>Flappy Hire</b>, beat the recruiter in <b>Resume Pong</b>, sprint to the offer in <b>Hire Rush</b>, race past rejections in <b>Hire Racer</b>.</p></div>
     <div class="gs-figs" aria-hidden="true"><span>🕴️</span><span>🏓</span><span>🏃</span></div>
     <span class="btn btn-o">Play free →</span>
   </div>
@@ -923,6 +943,26 @@ document.getElementById("aiBtn").onclick = async ()=>{
     try{sessionStorage.setItem('vhb_counted','1')}catch(e){}
     n.textContent=d.views.toLocaleString('en-IN');el.hidden=false;
   }).catch(function(){});
+})();
+</script>
+<script src="/games-core.js"></script>
+<script>
+(function(){
+  var HG=window.HireGames;if(!HG)return;
+  var cv=document.getElementById("liveCv"),c=cv.getContext("2d"),tabs=document.getElementById("liveTabs"),link=document.getElementById("liveLink"),nm=document.getElementById("liveName");
+  var NAMES={racer:"Hire Racer",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong"},ORDER=["racer","flappy","rush","pong"];
+  var inst={};ORDER.forEach(function(k){inst[k]=HG.GAMES[k]()});
+  var cur="racer",t0=performance.now(),visible=true,auto=true,switchAt=7000;
+  function fit(){var d=Math.min(window.devicePixelRatio||1,2);cv.width=HG.W*d;cv.height=HG.H*d;c.setTransform(d,0,0,d,0,0)}fit();
+  function show(k){if(k===cur)return;cv.classList.add("swap");setTimeout(function(){cur=k;link.href="games.html#"+k;nm.textContent=NAMES[k];
+    [].forEach.call(tabs.children,function(b){b.classList.toggle("on",b.dataset.k===k)});cv.classList.remove("swap")},300)}
+  tabs.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;auto=false;show(b.dataset.k)});
+  if("IntersectionObserver" in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(cv);
+  var last=0;
+  function loop(now){requestAnimationFrame(loop);if(!visible||document.hidden)return;
+    var t=(now-t0)/1000;try{inst[cur].preview(c,t)}catch(e){}
+    if(auto&&now-last>switchAt){if(last)show(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]);last=now}}
+  requestAnimationFrame(loop);
 })();
 </script>
 </body>

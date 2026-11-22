@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Hire Games — 9 free stress-relief games: Racer, Surfers, Cricket, Flight &amp; more | VarHireBlaze</title>
+<title>VarHireBlaze Games — 16 free stress-relief games for job seekers + 90s Arcade</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#07070a">
-<meta name="description" content="Take a break from job hunting. Play 9 free stick-figure stress-relief games: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight, Golf Cart Dash, Hire Touchdown, Flappy Hire, Hire Rush and Resume Pong. No login, works on phone.">
+<meta name="description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Space Invaders and 2048. No login, works on phone.">
 <link rel="canonical" href="https://varhireblaze.com/games.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VarHireBlaze">
-<meta property="og:title" content="Hire Games — Flappy Hire, Resume Pong &amp; Hire Rush">
-<meta property="og:description" content="Dodge rejections, smash resumes and run for the offer. Free stick-figure hiring games on VarHireBlaze.">
+<meta property="og:title" content="VarHireBlaze Games — play while you job hunt">
+<meta property="og:description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Space Invaders and 2048. No login, works on phone.">
 <meta property="og:url" content="https://varhireblaze.com/games.html">
 <meta property="og:image" content="https://varhireblaze.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hire Games — Flappy Hire, Resume Pong &amp; Hire Rush">
-<meta name="twitter:description" content="Dodge rejections, smash resumes and run for the offer. Free stick-figure hiring games on VarHireBlaze.">
+<meta name="twitter:title" content="VarHireBlaze Games — play while you job hunt">
+<meta name="twitter:description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Space Invaders and 2048. No login, works on phone.">
 <meta name="twitter:image" content="https://varhireblaze.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <meta name="google-adsense-account" content="ca-pub-2294548111828867">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2294548111828867" crossorigin="anonymous"></script>
 <style>
@@ -115,6 +115,44 @@ main{max-width:1100px;margin:0 auto;padding:34px 20px 60px}
 .screen:fullscreen{border-radius:0;border:0;display:flex;align-items:center;justify-content:center;background:#07070a}
 .screen:fullscreen #cv{width:auto;height:auto;max-width:100vw;max-height:100vh}
 .mute{cursor:pointer;color:var(--txt);font-size:14px;line-height:1}.mute:hover{border-color:var(--o)}
+.win95{margin:40px auto 0;max-width:1060px;background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;box-shadow:0 0 0 1px #000,0 30px 80px -30px rgba(255,106,0,.55);font-family:"Press Start 2P",monospace;color:#000}
+.w95-bar{display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;padding:6px 8px;font-size:10px}
+.w95-bar span{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w95-bar i{font-style:normal;width:20px;height:18px;display:grid;place-items:center;background:#c0c0c0;color:#000;border:2px solid;border-color:#fff #404040 #404040 #fff;font-size:10px}
+.w95-menu{padding:6px 10px;font-size:9px;border-bottom:1px solid #808080;display:flex;gap:16px}
+.w95-body{margin:8px;background:#000;border:2px solid;border-color:#404040 #fff #fff #404040;padding:18px;position:relative;overflow:hidden}
+.w95-body::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 3px)}
+.w95-title{color:#ffd60a;font-size:clamp(12px,2.4vw,20px);text-align:center;margin-bottom:16px;animation:blink95 1.2s steps(2) infinite;text-shadow:0 0 8px #ff6a00}
+.w95-title span{display:block;color:#64d2ff;font-size:9px;margin-top:10px;animation:none;text-shadow:none}
+@keyframes blink95{50%{opacity:.55}}
+.agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.agrid{grid-template-columns:repeat(2,1fr)}}
+.acard{background:#0b0b14;border:2px solid #30d158;padding:8px;cursor:pointer;color:#fff;display:flex;flex-direction:column;gap:6px;transition:transform .15s,box-shadow .15s;position:relative;z-index:1}
+.acard:nth-child(2n){border-color:#64d2ff}.acard:nth-child(3n){border-color:#ff2d55}.acard:nth-child(4n){border-color:#ffd60a}
+.acard:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 #ff6a00}
+.acard canvas{width:100%;aspect-ratio:16/10;image-rendering:pixelated;background:#000}
+.acard b{font-size:9px;line-height:1.5}.acard small{font-family:Inter,sans-serif;font-size:12px;color:#aaa}
+.acard .best{font-size:7px;color:#ffd60a}.acard .best i{font-style:normal}
+.acard.locked{border-style:dashed;border-color:#bf5af2}
+.lockart{aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#14101e 0 10px,#1c1630 10px 20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.lockart span{font-size:34px;animation:bob 1.2s ease-in-out infinite}.lockart em{font-style:normal;font-size:8px;color:#bf5af2;animation:blink95 1s steps(2) infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.w95-status{display:flex;gap:4px;padding:4px;font-size:8px}.w95-status span{flex:1;border:1px solid;border-color:#808080 #fff #fff #808080;padding:4px 6px}.w95-status span:last-child{flex:none}
+/* retro game frame */
+#game.retro .screen{border-radius:0;border:2px solid;border-color:#fff #404040 #404040 #fff;background:#c0c0c0;padding:26px 6px 6px;box-shadow:0 0 0 1px #000,0 30px 80px -30px rgba(255,106,0,.45)}
+#game.retro .screen::before{content:attr(data-title);position:absolute;left:6px;right:6px;top:4px;height:18px;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;font:9px "Press Start 2P",monospace;display:flex;align-items:center;padding-left:8px;z-index:2}
+#game.retro #cv{image-rendering:pixelated}
+#game.retro .ov{top:26px;left:6px;right:6px;bottom:6px}
+#game.retro .ov h3,#game.retro .ov .big{font-family:"Press Start 2P",monospace;letter-spacing:0}
+#game.retro .ov h3{font-size:clamp(14px,3vw,24px);line-height:1.5}
+/* unlock modal */
+.umodal{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px}
+.umodal.hide{display:none}
+.ubox{max-width:420px;width:100%}.ubox .w95-body{color:#fff;font-family:Inter,sans-serif;text-align:center}
+.ubox h4{font:12px "Press Start 2P",monospace;color:#ffd60a;margin-bottom:10px;line-height:1.6}.ubox p{color:#bbb;font-size:14px;margin-bottom:14px}
+.ushare{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1}
+.ushare button{font:9px "Press Start 2P",monospace;padding:12px 6px;cursor:pointer;background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;color:#000}
+.ushare button:active{border-color:#404040 #fff #fff #404040}
 footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;text-align:center;padding:26px 20px}
 footer a{color:var(--o)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -128,16 +166,16 @@ footer a{color:var(--o)}
 
 <nav><div class="in">
   <div><a href="/" class="brand">VarHire<span>Blaze</span></a><div class="byline">designed by <b>Vansh</b></div></div>
-  <a href="/#check" class="btn btn-o">Check my resume</a>
+  <a href="/#check" class="btn btn-g">📄 Resume tracker</a>
 </div></nav>
 
 <main>
   <!-- MENU -->
   <section class="view" id="menu">
     <div class="hero">
-      <span class="tag">🎮 Hire Games · free · no login</span>
-      <h1>Job hunt stress?<br><span class="o">Play it off.</span></h1>
-      <p>Nine quick stick-figure games about getting hired, made for stress relief. Beat your best score, then go fix your resume.</p>
+      <span class="tag">🎮 16 free games · no login · no download</span>
+      <h1>Looking for a job?<br><span class="o">Play while you wait.</span></h1>
+      <p>Stress-relief games for job seekers. 9 hire-themed action games and a 90s arcade. Beat your best score, then check your resume when you're ready.</p>
     </div>
     <div class="cards">
       <div class="gcard" data-game="racer">
@@ -201,6 +239,23 @@ footer a{color:var(--o)}
         <div class="row"><span class="best">Coming soon</span><span class="play" style="opacity:.4">⏳</span></div>
       </div>
     </div>
+    <div class="win95" id="arcade">
+      <div class="w95-bar"><span>🕹️ ARCADE.EXE — VarHireBlaze 90s Arcade</span><i>_</i><i>□</i><i>×</i></div>
+      <div class="w95-menu"><u>F</u>ile <u>G</u>ame <u>H</u>i-scores <u>H</u>elp</div>
+      <div class="w95-body">
+        <div class="w95-title">INSERT COIN ▸ PRESS START<span>7 classic games · pixel graphics · chiptune sound</span></div>
+        <div class="agrid">
+        <div class="acard" data-game="snake"><canvas data-prev="snake" width="480" height="300"></canvas><b>🐍 RESUME SNAKE</b><small>Eat skills, grow your resume</small><span class="best">HI-SCORE <i data-best="snake">0</i></span></div>
+        <div class="acard" data-game="breakout"><canvas data-prev="breakout" width="480" height="300"></canvas><b>🧱 GLASS CEILING</b><small>Smash bias, gaps & red tape</small><span class="best">HI-SCORE <i data-best="breakout">0</i></span></div>
+        <div class="acard" data-game="invaders"><canvas data-prev="invaders" width="480" height="300"></canvas><b>👾 SPAM INVADERS</b><small>Blast spam out of your inbox</small><span class="best">HI-SCORE <i data-best="invaders">0</i></span></div>
+        <div class="acard" data-game="salary"><canvas data-prev="salary" width="480" height="300"></canvas><b>💰 SALARY 2048</b><small>Merge to the 2M dream offer</small><span class="best">HI-SCORE <i data-best="salary">0</i></span></div>
+        <div class="acard" data-game="memory"><canvas data-prev="memory" width="480" height="300"></canvas><b>🃏 SKILL MATCH</b><small>Match skill pairs vs the clock</small><span class="best">HI-SCORE <i data-best="memory">0</i></span></div>
+        <div class="acard" data-game="catch"><canvas data-prev="catch" width="480" height="300"></canvas><b>💼 CATCH THE OFFER</b><small>Catch offers, dodge rejections</small><span class="best">HI-SCORE <i data-best="catch">0</i></span></div>
+        <div class="acard locked" data-game="tetris" data-lock="tetris"><div class="lockart"><span>🔒</span><em>SHARE TO UNLOCK</em></div><b>🟦 HIRE BLOCKS</b><small>Stack job blocks, clear lines. Unlock by sharing!</small><span class="best">HI-SCORE <i data-best="tetris">0</i></span></div>
+        </div>
+      </div>
+      <div class="w95-status"><span>Ready</span><span>7 games loaded</span><span id="clock95">12:00</span></div>
+    </div>
     <div class="cta">
       <h3>Is your real resume getting rejected?</h3>
       <p>Get your free ATS score, missing skills and instant fixes in 10 seconds.</p>
@@ -226,6 +281,9 @@ footer a{color:var(--o)}
     </div>
   </section>
 </main>
+<div class="umodal hide" id="umodal"><div class="win95 ubox"><div class="w95-bar"><span>🔒 UNLOCK.EXE</span><i id="uclose" style="cursor:pointer">×</i></div>
+  <div class="w95-body"><h4>HIRE BLOCKS IS LOCKED</h4><p id="utext">Share VarHireBlaze with one friend who's job hunting to unlock it forever.</p>
+  <div class="ushare"><button data-sh="wa">WhatsApp</button><button data-sh="x">X / Twitter</button><button data-sh="tg">Telegram</button><button data-sh="copy">Copy link</button></div></div></div></div>
 
 <footer>© <span id="yr"></span> VarHireBlaze · <a href="/">Resume checker</a> · <a href="/blog/index.html">Blog</a> · <a href="/privacy.html">Privacy</a></footer>
 
@@ -235,6 +293,7 @@ footer a{color:var(--o)}
 "use strict";
 var HG=window.HireGames,W=HG.W,H=HG.H,GAMES=HG.GAMES,getBest=HG.getBest,setBest=HG.setBest,paintBest=HG.paintBest;
 document.getElementById("yr").textContent=new Date().getFullYear();
+(function(){var c=document.getElementById("clock95");function t(){var d=new Date();c.textContent=d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}if(c){t();setInterval(t,15000)}})();
 
 /* ---------- menu previews ---------- */
 var previews=[].map.call(document.querySelectorAll("canvas[data-prev]"),function(cv){var g=GAMES[cv.dataset.prev]();return{cv:cv,c:cv.getContext("2d"),g:g}});
@@ -256,8 +315,21 @@ function wipeTo(x,y,mid){var w=document.getElementById("wipe");w.style.setProper
   w.className="wipe";void w.offsetWidth;w.className="wipe in";
   setTimeout(function(){mid();window.scrollTo(0,0);w.className="wipe out"},470);setTimeout(function(){w.className="wipe"},960)}
 
-function openGame(key,x,y){wipeTo(x,y,function(){
-  curKey=key;cur=GAMES[key]();cur.reset();
+function unlocked(k){try{return localStorage.getItem("vhb_unlock_"+k)==="1"}catch(e){return false}}
+var pendingLock=null,umodal=document.getElementById("umodal");
+function askUnlock(k){pendingLock=k;umodal.classList.remove("hide");HG.sfx("select")}
+document.getElementById("uclose").onclick=function(){umodal.classList.add("hide")};
+umodal.addEventListener("click",function(e){var b=e.target.closest("[data-sh]");if(!b)return;var url="https://varhireblaze.com/games.html",txt="Job hunting? I'm playing free stress-relief games on VarHireBlaze 🎮 Try it: "+url;
+  var m=b.dataset.sh;if(m==="wa")window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank");else if(m==="x")window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(txt),"_blank");
+  else if(m==="tg")window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("Free stress-relief games for job seekers 🎮"),"_blank");
+  else{try{navigator.clipboard.writeText(txt)}catch(err){}}
+  try{localStorage.setItem("vhb_unlock_"+pendingLock,"1")}catch(err){}
+  document.getElementById("utext").innerHTML="<b style='color:#30d158'>UNLOCKED! Thanks for sharing 🎉</b>";HG.sfx("power");
+  document.querySelectorAll('[data-lock="'+pendingLock+'"]').forEach(function(c){c.classList.remove("locked")});
+  var k=pendingLock;setTimeout(function(){umodal.classList.add("hide");document.getElementById("utext").textContent="Share VarHireBlaze with one friend who's job hunting to unlock it forever.";openGame(k,innerWidth/2,innerHeight/2)},1100)});
+document.querySelectorAll("[data-lock]").forEach(function(c){if(unlocked(c.dataset.lock)){c.classList.remove("locked");var la=c.querySelector(".lockart");if(la){var cv2=document.createElement("canvas");cv2.width=480;cv2.height=300;cv2.dataset.prev=c.dataset.lock;la.replaceWith(cv2);var c2=cv2.getContext("2d");c2.setTransform(cv2.width/W,0,0,cv2.height/H,0,0);previews.push({cv:cv2,c:c2,g:GAMES[c.dataset.lock]()})}}});
+function openGame(key,x,y){var G0=GAMES[key]();if(G0.locked&&!unlocked(key)){askUnlock(key);return}wipeTo(x,y,function(){
+  curKey=key;cur=GAMES[key]();cur.reset();gameV.classList.toggle("retro",!!cur.retro);screen.setAttribute("data-title",(cur.title||"").toUpperCase()+".EXE");
   document.getElementById("gTitle").textContent=cur.title;document.getElementById("keys").innerHTML=cur.keys;
   menu.classList.add("out","gone");gameV.classList.remove("gone");requestAnimationFrame(function(){gameV.classList.remove("out")});
   state="ready";hud();
@@ -279,7 +351,7 @@ function gameOver(){state="over";flash();var r=cur.over();
     '<p>'+r.text+'</p><div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>')},300)}
 
 document.addEventListener("click",function(e){
-  var card=e.target.closest(".gcard[data-game]");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
+  var card=e.target.closest(".gcard[data-game],.acard[data-game]");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
   if(e.target.closest("[data-go]")){e.stopPropagation();cur.reset();hud();countdown();return}
   if(e.target.closest("#back")){toMenu(e.clientX,e.clientY)}
 });
@@ -291,6 +363,7 @@ screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go]
   if(state!=="play")return;HG.ring(localX(e),localY(e),"rgba(255,255,255,.7)");
   try{screen.setPointerCapture(e.pointerId)}catch(err){}
   if(cur.press){cur.press(true);return}
+  if(cur.pointerXY){cur.pointerXY(localX(e),localY(e));cur.action();return}
   if(cur.tap||cur.swipe||cur.tapXY){sw={x:e.clientX,y:e.clientY,lx:localX(e),ly:localY(e)};return}
   cur.action();if(cur.pointer)cur.pointer(localY(e))});
 function endPointer(e){if(cur&&cur.press)cur.press(false);if(!sw||state!=="play"){sw=null;return}
@@ -302,7 +375,7 @@ screen.addEventListener("pointerup",endPointer);
 screen.addEventListener("pointercancel",function(){if(cur&&cur.press)cur.press(false);sw=null});
 var muteBtn=document.getElementById("mute");function paintMute(){muteBtn.textContent=HG.isMuted()?"🔇":"🔊"}paintMute();
 muteBtn.addEventListener("click",function(e){e.stopPropagation();HG.setMuted(!HG.isMuted());paintMute();if(!HG.isMuted()){HG.unlock();HG.sfx("coin")}});
-screen.addEventListener("pointermove",function(e){if(state==="play"&&cur.pointer&&(e.pointerType==="mouse"||e.buttons))cur.pointer(localY(e))});
+screen.addEventListener("pointermove",function(e){if(state!=="play")return;var act=e.pointerType==="mouse"||e.buttons;if(!act)return;if(cur.pointer)cur.pointer(localY(e));if(cur.pointerXY)cur.pointerXY(localX(e),localY(e))});
 document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;
   if(state==="play"&&cur.press&&(k===" "||k==="ArrowUp"||k==="w"||k==="W")){e.preventDefault();if(!e.repeat)cur.press(true);return}
   if(state==="play"&&cur.key&&cur.key(k)){e.preventDefault();return}
@@ -310,7 +383,7 @@ document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;
   if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){e.preventDefault();if(state==="play")cur.action();else if(state==="ready"||state==="over"){cur.reset();hud();countdown()}}
   if(curKey==="pong"&&state==="play"){if(k==="ArrowUp"||k==="w"||k==="W")cur.keyDir=-1;if(k==="ArrowDown"||k==="s"||k==="S"){e.preventDefault();cur.keyDir=1}}
   if(k==="Escape")toMenu();if(k==="m"||k==="M"){muteBtn.click()}});
-document.addEventListener("keyup",function(e){if(cur&&cur.press&&/^( |ArrowUp|w|W)$/.test(e.key))cur.press(false);if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
+document.addEventListener("keyup",function(e){if(cur&&cur.keyUp)cur.keyUp(e.key);if(cur&&cur.press&&/^( |ArrowUp|w|W)$/.test(e.key))cur.press(false);if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
 var fsBtn=document.getElementById("fs");
 if(!(screen.requestFullscreen||screen.webkitRequestFullscreen))fsBtn.style.display="none";
 fsBtn.addEventListener("pointerdown",function(e){e.stopPropagation()});

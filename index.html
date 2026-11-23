@@ -77,7 +77,7 @@ nav .btn{padding:8px 16px;font-size:13px}
 @media(hover:none){nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,0,0,.96)}}
 
 /* hero */
-.hero{padding:76px 0 40px;text-align:center;overflow:hidden}
+.hero{padding:76px 0 40px;text-align:center;overflow:hidden;position:relative}
 .hero::before{content:"";position:absolute;left:50%;top:-260px;width:1100px;height:700px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,106,0,.20),transparent);pointer-events:none}
 .views{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--mut);background:rgba(255,255,255,.03);margin-bottom:26px}
 .views[hidden]{display:none}.views b{color:var(--txt);font-variant-numeric:tabular-nums}
@@ -275,6 +275,28 @@ footer .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;
   .rail{grid-auto-columns:82%}
   .final{padding:110px 0}
 }
+
+/* v3: game-first hero, floating views, Neon train */
+.h-hero{font-size:clamp(36px,5.2vw,66px);line-height:1;letter-spacing:-.035em}.hero .h-hero span{display:inline}
+.h-hero span{display:inline}
+.hero{padding:40px 0 30px}
+.hero .sub{margin-top:16px}
+.hero .cta{margin-top:24px}
+.stagewrap{margin-top:30px}
+.views{position:absolute;top:16px;right:22px;margin:0;padding:4px 10px;font-size:11px;gap:6px;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:.85;z-index:2}
+.views .dot{width:6px;height:6px}
+.hero>.wrap:first-child{position:static}
+.gwin{transform:rotateX(calc(8deg - 8deg*var(--p))) scale(calc(.96 + .04*var(--p)))}
+.games2{padding:70px 0 110px}
+.train{overflow:hidden;margin:0 -22px;padding:6px 0 16px;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.train-track{display:flex;gap:18px;width:max-content;animation:train 48s linear infinite;will-change:transform}
+.train:hover .train-track,.train:focus-within .train-track{animation-play-state:paused}
+.train .ncard{width:300px;flex:none}
+@keyframes train{to{transform:translateX(calc(-50% - 9px))}}
+body{animation:pagein .7s var(--ease) both}@keyframes pagein{from{opacity:0}}
+a,button{-webkit-tap-highlight-color:transparent}
+@media(max-width:560px){.train .ncard{width:250px}.views{top:10px;right:12px}.hero{padding-top:44px}.stagewrap{margin-top:30px}}
+@media(prefers-reduced-motion:reduce){.train-track{animation:none}.train{overflow-x:auto}body{animation:none}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -297,9 +319,9 @@ footer .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="views" id="views" hidden><span class="dot"></span><b id="viewsN">0</b> views so far</div>
-    <h1 class="h-xl"><span>Play. Fix.</span><span class="o">Get hired.</span></h1>
-    <p class="sub">The break room for job seekers. 23 free games when you need a breather, an AI resume tracker when you're ready to apply, and wallpapers to keep you going.</p>
+    <div class="views" id="views" hidden><span class="dot"></span><b id="viewsN">0</b> views</div>
+    <h1 class="h-hero"><span>Play. Fix.</span> <span class="o">Get hired.</span></h1>
+    <p class="sub">23 free games for the job hunt. Plus an AI resume tracker and wallpapers when you need them.</p>
     <div class="cta">
       <a href="games.html" class="btn btn-o">Play free games</a>
       <a href="#check" class="btn btn-g">Check my resume</a>
@@ -321,6 +343,47 @@ footer .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;
   </div>
 </header>
 
+<section id="games" class="games2">
+  <div class="wrap">
+    <div class="sec-top reveal">
+      <span class="eyebrow">New · The Neon Series</span>
+      <h2 class="h-lg">Eight originals.<br><span class="o">Built for speed.</span></h2>
+      <p class="sub" style="margin-top:18px">Every game here is designed and coded from scratch for VarHireBlaze. Each one speeds up the longer you last.</p>
+    </div>
+    <div class="train" aria-label="Neon Series games"><div class="train-track">
+
+      <a class="ncard" href="games.html#photon"><canvas data-live="photon" width="800" height="500"></canvas><div class="nc-b"><small>Endless speed</small><h3>Photon Dash</h3><p>Thread a light-ship through a neon void.</p></div></a>
+      <a class="ncard" href="games.html#apex"><canvas data-live="apex" width="800" height="500"></canvas><div class="nc-b"><small>Highway racing</small><h3>Apex Highway</h3><p>Weave through sunset traffic on the coast road.</p></div></a>
+      <a class="ncard" href="games.html#pulse"><canvas data-live="pulse" width="800" height="500"></canvas><div class="nc-b"><small>Arena shooter</small><h3>Pulse Defender</h3><p>Protect the core from geometric drones.</p></div></a>
+      <a class="ncard" href="games.html#rope"><canvas data-live="rope" width="800" height="500"></canvas><div class="nc-b"><small>Swing physics</small><h3>Rope Rally</h3><p>Hold to grab, release to fly.</p></div></a>
+      <a class="ncard" href="games.html#gradient"><canvas data-live="gradient" width="800" height="500"></canvas><div class="nc-b"><small>Reflex run</small><h3>Gradient Drop</h3><p>Slide down an endless neon slope.</p></div></a>
+      <a class="ncard" href="games.html#horde"><canvas data-live="horde" width="800" height="500"></canvas><div class="nc-b"><small>Survival</small><h3>Glitch Horde</h3><p>Survive the night shift against rogue office bots.</p></div></a>
+      <a class="ncard" href="games.html#drift"><canvas data-live="drift" width="800" height="500"></canvas><div class="nc-b"><small>Drifting</small><h3>Drift Circuit</h3><p>Slide through the gates before time runs out.</p></div></a>
+      <a class="ncard" href="games.html#flip"><canvas data-live="flip" width="800" height="500"></canvas><div class="nc-b"><small>Gravity skill</small><h3>Flipside</h3><p>Run on the floor, run on the ceiling.</p></div></a>
+
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#photon"><canvas data-mirror="photon" width="800" height="500"></canvas><div class="nc-b"><small>Endless speed</small><h3>Photon Dash</h3><p>Thread a light-ship through a neon void.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#apex"><canvas data-mirror="apex" width="800" height="500"></canvas><div class="nc-b"><small>Highway racing</small><h3>Apex Highway</h3><p>Weave through sunset traffic on the coast road.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#pulse"><canvas data-mirror="pulse" width="800" height="500"></canvas><div class="nc-b"><small>Arena shooter</small><h3>Pulse Defender</h3><p>Protect the core from geometric drones.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#rope"><canvas data-mirror="rope" width="800" height="500"></canvas><div class="nc-b"><small>Swing physics</small><h3>Rope Rally</h3><p>Hold to grab, release to fly.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#gradient"><canvas data-mirror="gradient" width="800" height="500"></canvas><div class="nc-b"><small>Reflex run</small><h3>Gradient Drop</h3><p>Slide down an endless neon slope.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#horde"><canvas data-mirror="horde" width="800" height="500"></canvas><div class="nc-b"><small>Survival</small><h3>Glitch Horde</h3><p>Survive the night shift against rogue office bots.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#drift"><canvas data-mirror="drift" width="800" height="500"></canvas><div class="nc-b"><small>Drifting</small><h3>Drift Circuit</h3><p>Slide through the gates before time runs out.</p></div></a>
+      <a class="ncard" aria-hidden="true" tabindex="-1" href="games.html#flip"><canvas data-mirror="flip" width="800" height="500"></canvas><div class="nc-b"><small>Gravity skill</small><h3>Flipside</h3><p>Run on the floor, run on the ceiling.</p></div></a>
+    </div></div>
+    <div class="stats reveal">
+      <div><b>23</b><span>free games</span></div>
+      <div><b>8</b><span>unlockable skins</span></div>
+      <div><b>16</b><span>achievements</span></div>
+      <div><b>Top 10</b><span>global leaderboards</span></div>
+    </div>
+    <div class="more reveal">
+      <span class="lab">Also playing:</span>
+      <a class="pillg" href="games.html#racer">Hire Racer</a><a class="pillg" href="games.html#surfers">Hire Surfers</a><a class="pillg" href="games.html#cricket">Hire Cricket</a><a class="pillg" href="games.html#flight">Hire Flight</a><a class="pillg" href="games.html#football">Hire Touchdown</a><a class="pillg" href="games.html#arcade">90s Arcade</a>
+      <a class="lnk" href="games.html" style="margin-left:6px">See all</a>
+    </div>
+  </div>
+</section>
+
 <section class="statement">
   <div class="wrap">
     <p id="statement">Job hunting is mostly waiting. Waiting for replies, for interviews, for that one email. VarHireBlaze turns the wait into something better: a quick game to reset, a sharper resume to send next, and a screen that keeps you going.</p>
@@ -337,36 +400,7 @@ footer .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;
   </div>
 </section>
 
-<section id="games" style="padding-top:40px">
-  <div class="wrap">
-    <div class="sec-top reveal">
-      <span class="eyebrow">New · The Neon Series</span>
-      <h2 class="h-lg">Eight originals.<br><span class="o">Built for speed.</span></h2>
-      <p class="sub" style="margin-top:18px">Every game here is designed and coded from scratch for VarHireBlaze. Each one speeds up the longer you last.</p>
-    </div>
-    <div class="rail">
-      <a class="ncard" href="games.html#photon"><canvas data-live="photon" width="800" height="500"></canvas><div class="nc-b"><small>Endless speed</small><h3>Photon Dash</h3><p>Thread a light-ship through a neon void.</p></div></a>
-      <a class="ncard" href="games.html#apex"><canvas data-live="apex" width="800" height="500"></canvas><div class="nc-b"><small>Highway racing</small><h3>Apex Highway</h3><p>Weave through sunset traffic on the coast road.</p></div></a>
-      <a class="ncard" href="games.html#pulse"><canvas data-live="pulse" width="800" height="500"></canvas><div class="nc-b"><small>Arena shooter</small><h3>Pulse Defender</h3><p>Protect the core from geometric drones.</p></div></a>
-      <a class="ncard" href="games.html#rope"><canvas data-live="rope" width="800" height="500"></canvas><div class="nc-b"><small>Swing physics</small><h3>Rope Rally</h3><p>Hold to grab, release to fly.</p></div></a>
-      <a class="ncard" href="games.html#gradient"><canvas data-live="gradient" width="800" height="500"></canvas><div class="nc-b"><small>Reflex run</small><h3>Gradient Drop</h3><p>Slide down an endless neon slope.</p></div></a>
-      <a class="ncard" href="games.html#horde"><canvas data-live="horde" width="800" height="500"></canvas><div class="nc-b"><small>Survival</small><h3>Glitch Horde</h3><p>Survive the night shift against rogue office bots.</p></div></a>
-      <a class="ncard" href="games.html#drift"><canvas data-live="drift" width="800" height="500"></canvas><div class="nc-b"><small>Drifting</small><h3>Drift Circuit</h3><p>Slide through the gates before time runs out.</p></div></a>
-      <a class="ncard" href="games.html#flip"><canvas data-live="flip" width="800" height="500"></canvas><div class="nc-b"><small>Gravity skill</small><h3>Flipside</h3><p>Run on the floor, run on the ceiling.</p></div></a>
-    </div>
-    <div class="stats reveal">
-      <div><b>23</b><span>free games</span></div>
-      <div><b>8</b><span>unlockable skins</span></div>
-      <div><b>16</b><span>achievements</span></div>
-      <div><b>Top 10</b><span>global leaderboards</span></div>
-    </div>
-    <div class="more reveal">
-      <span class="lab">Also playing:</span>
-      <a class="pillg" href="games.html#racer">Hire Racer</a><a class="pillg" href="games.html#surfers">Hire Surfers</a><a class="pillg" href="games.html#cricket">Hire Cricket</a><a class="pillg" href="games.html#flight">Hire Flight</a><a class="pillg" href="games.html#football">Hire Touchdown</a><a class="pillg" href="games.html#arcade">90s Arcade</a>
-      <a class="lnk" href="games.html" style="margin-left:6px">See all</a>
-    </div>
-  </div>
-</section>
+
 
 <!-- AdSense auto ads can place a unit here -->
 <div class="ad-slot"></div>
@@ -467,6 +501,7 @@ footer .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;
   <div class="wrap">
     <div class="sec-top reveal"><span class="eyebrow">What's new</span><h2 class="h-md">Updates</h2></div>
     <ul class="log reveal">
+      <li><time datetime="2026-11">November 2026</time><h4>Retro wallpapers and a games-first homepage</h4><p>Six new wallpapers: Night Drive, Showroom, Retro Terminal, Interview Mix, Save Progress and Pocket Player. The Neon Series now rolls across the homepage right under the live game window.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>The Neon Series is here</h4><p>Eight new original games: Photon Dash, Apex Highway, Pulse Defender, Rope Rally, Gradient Drop, Glitch Horde, Drift Circuit and Flipside. Plus coins, skins, achievements, global leaderboards, pause and quick restart in every game.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>Blog categories and new guides</h4><p>Guides are now grouped by topic, with a new Games &amp; job hunting section.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>Smoother on iPhone and iPad</h4><p>Game previews now use a fraction of the memory, so pages load fast and stay smooth on phones.</p></li>
@@ -616,8 +651,82 @@ const DRAW = {
   nebula(c,w,h,r){ c.fillStyle="#020203"; c.fillRect(0,0,w,h); c.save(); c.globalCompositeOperation="lighter";
     for(let i=0;i<14;i++){ const x=w*(.2+r()*.6), y=h*(.2+r()*.6), R=Math.max(w,h)*(.12+r()*.25), g=c.createRadialGradient(x,y,0,x,y,R);
       g.addColorStop(0,`rgba(255,${60+r()*90|0},0,${.12+r()*.15})`); g.addColorStop(1,"rgba(0,0,0,0)"); c.fillStyle=g; c.fillRect(0,0,w,h); }
-    c.restore(); stars(c,w,h,700,r); sphere(c,w*.68,h*.3,Math.min(w,h)*.06,2); }
+    c.restore(); stars(c,w,h,700,r); sphere(c,w*.68,h*.3,Math.min(w,h)*.06,2); },
+  /* ----- retro cars + retro tech (original, generic designs) ----- */
+  drive(c,w,h,r){ const g=c.createLinearGradient(0,0,0,h); g.addColorStop(0,"#07030f"); g.addColorStop(.5,"#3a0d22"); g.addColorStop(.62,"#ff6a2a"); g.addColorStop(.63,"#000"); g.addColorStop(1,"#000"); c.fillStyle=g; c.fillRect(0,0,w,h);
+    stars(c,w,h*.45,220,r); const s=Math.min(w,h), hy=h*.62;
+    c.save(); c.shadowColor=O; c.shadowBlur=s*.12; c.fillStyle="#ffb070"; c.beginPath(); c.arc(w*.5,hy,s*.16,Math.PI,0); c.fill(); c.restore();
+    c.fillStyle="#12040c"; for(let i=0;i<14;i++){ const bw=w*(.04+r()*.05), bh=s*(.05+r()*.18), bx=r()*w; c.fillRect(bx,hy-bh,bw,bh); }
+    floorGrid(c,w,h,hy,.7); car(c,w*.5,h*.86,Math.min(w*.8,s*1.05),r); },
+  garage(c,w,h,r){ c.fillStyle="#040405"; c.fillRect(0,0,w,h); const s=Math.min(w,h);
+    const sp=c.createRadialGradient(w/2,0,0,w/2,h*.4,Math.max(w,h)*.7); sp.addColorStop(0,"rgba(255,200,150,.35)"); sp.addColorStop(.5,"rgba(255,106,0,.08)"); sp.addColorStop(1,"rgba(0,0,0,0)"); c.fillStyle=sp; c.fillRect(0,0,w,h);
+    c.strokeStyle="rgba(255,255,255,.05)"; c.lineWidth=1; for(let x=0;x<w;x+=s*.08){ c.beginPath(); c.moveTo(x,h*.66); c.lineTo(w/2+(x-w/2)*2.4,h); c.stroke(); }
+    c.fillStyle="rgba(255,106,0,.9)"; c.save(); c.shadowColor=O; c.shadowBlur=s*.05; c.fillRect(w*.12,h*.22,w*.76,s*.008); c.restore();
+    const L=Math.min(w*.78,s*1.05); car(c,w/2,h*.72,L,r);
+    c.save(); c.globalAlpha=.18; c.translate(0,h*.72*2+s*.01); c.scale(1,-1); car(c,w/2,h*.72,L,r); c.restore();
+    const fade=c.createLinearGradient(0,h*.72,0,h); fade.addColorStop(0,"rgba(4,4,5,0)"); fade.addColorStop(1,"rgba(4,4,5,1)"); c.fillStyle=fade; c.fillRect(0,h*.72,w,h*.28); },
+  tape(c,w,h,r){ base(c,w,h,.5,.45); stars(c,w,h,120,r); const s=Math.min(w,h), W2=Math.min(w*.86,s*1.25), H2=W2*.62, x=w/2-W2/2, y=h*.45-H2/2;
+    c.save(); c.translate(w/2,h*.45); c.rotate(-.06); c.translate(-w/2,-h*.45);
+    c.save(); c.shadowColor="#000"; c.shadowBlur=s*.08; c.fillStyle="#17171c"; rrect(c,x,y,W2,H2,W2*.04); c.fill(); c.restore();
+    c.strokeStyle="rgba(255,255,255,.08)"; c.lineWidth=s*.004; rrect(c,x+W2*.02,y+W2*.02,W2*.96,H2-W2*.04,W2*.03); c.stroke();
+    const lg=c.createLinearGradient(x,0,x+W2,0); lg.addColorStop(0,O); lg.addColorStop(1,"#ff3d00"); c.fillStyle=lg; rrect(c,x+W2*.07,y+H2*.1,W2*.86,H2*.5,W2*.02); c.fill();
+    c.fillStyle="#0b0b0e"; rrect(c,x+W2*.22,y+H2*.26,W2*.56,H2*.22,H2*.11); c.fill();
+    [x+W2*.33,x+W2*.67].forEach((cx,i)=>{ const cy=y+H2*.37, R=H2*.085; c.fillStyle="#f4f4f6"; c.beginPath(); c.arc(cx,cy,R,0,7); c.fill(); c.fillStyle="#0b0b0e"; for(let k=0;k<6;k++){ const a=k/6*Math.PI*2; c.fillRect(cx+Math.cos(a)*R*.55-R*.08,cy+Math.sin(a)*R*.55-R*.08,R*.16,R*.16); }
+      c.fillStyle="#3a1a0a"; c.beginPath(); c.arc(cx,cy,R*(i?1.5:2.1),0,7); c.globalAlpha=.35; c.fill(); c.globalAlpha=1; });
+    c.fillStyle="#0b0b0e"; c.font=`700 ${H2*.09}px "Space Grotesk",sans-serif`; c.textAlign="left"; c.fillText("SIDE A · INTERVIEW MIX",x+W2*.1,y+H2*.2);
+    c.fillStyle="#26262d"; c.beginPath(); c.moveTo(x+W2*.2,y+H2); c.lineTo(x+W2*.26,y+H2*.74); c.lineTo(x+W2*.74,y+H2*.74); c.lineTo(x+W2*.8,y+H2); c.closePath(); c.fill();
+    c.fillStyle="#0b0b0e"; [.35,.5,.65].forEach(k=>{c.beginPath(); c.arc(x+W2*k,y+H2*.87,H2*.035,0,7); c.fill();});
+    c.restore(); },
+  computer(c,w,h,r){ base(c,w,h,.5,.4); const s=Math.min(w,h), M=Math.min(w*.7,s*.68), x=w/2-M/2, y=h*.48-M*.55;
+    c.save(); c.shadowColor="#000"; c.shadowBlur=s*.08; const bg=c.createLinearGradient(x,y,x,y+M*.8); bg.addColorStop(0,"#3a3a44"); bg.addColorStop(1,"#1d1d24"); c.fillStyle=bg; rrect(c,x,y,M,M*.78,M*.05); c.fill(); c.restore();
+    const sx=x+M*.09, sy=y+M*.08, sw=M*.82, sh=M*.56; c.fillStyle="#050805"; rrect(c,sx,sy,sw,sh,M*.06); c.fill();
+    const glowS=c.createRadialGradient(sx+sw/2,sy+sh/2,0,sx+sw/2,sy+sh/2,sw*.7); glowS.addColorStop(0,"rgba(255,140,40,.25)"); glowS.addColorStop(1,"rgba(0,0,0,0)"); c.fillStyle=glowS; c.fillRect(sx,sy,sw,sh);
+    c.fillStyle="rgba(255,154,60,.08)"; for(let yy=sy;yy<sy+sh;yy+=Math.max(2,sh*.012)) c.fillRect(sx,yy,sw,Math.max(1,sh*.004));
+    c.save(); c.shadowColor=O; c.shadowBlur=s*.02; c.fillStyle=O2; c.font=`600 ${sh*.085}px "Space Grotesk",monospace`; c.textAlign="left";
+    ["> boot varhireblaze","> load resume.pdf ... OK","> ats score: 92/100","> status: HIRED_"].forEach((t,i)=>c.fillText(t,sx+sw*.07,sy+sh*(.22+i*.19))); c.restore();
+    c.fillStyle="#0e0e12"; c.fillRect(x+M*.12,y+M*.7,M*.3,M*.02); c.fillStyle=O; c.beginPath(); c.arc(x+M*.86,y+M*.71,M*.012,0,7); c.fill();
+    c.fillStyle="#26262e"; c.beginPath(); c.moveTo(x+M*.36,y+M*.78); c.lineTo(x+M*.64,y+M*.78); c.lineTo(x+M*.7,y+M*.86); c.lineTo(x+M*.3,y+M*.86); c.closePath(); c.fill();
+    const ky=y+M*.9; c.fillStyle="#2c2c35"; rrect(c,x-M*.04,ky,M*1.08,M*.16,M*.02); c.fill();
+    c.fillStyle="#1a1a20"; for(let row=0;row<3;row++) for(let k=0;k<14;k++) { rrect(c,x+k*M*.073+row*M*.015,ky+M*.02+row*M*.045,M*.058,M*.036,M*.006); c.fill(); }
+    c.fillStyle=O; rrect(c,x+M*.88,ky+M*.065,M*.12,M*.036,M*.006); c.fill(); },
+  pocket(c,w,h,r){ base(c,w,h,.5,.35); stars(c,w,h,120,r); const s=Math.min(w,h), PW=Math.min(w*.62,s*.75), PH=PW*1.55, x=w/2-PW/2, y=h*.48-PH/2;
+    c.save(); c.translate(w/2,h*.48); c.rotate(.08); c.translate(-w/2,-h*.48);
+    c.save(); c.shadowColor=O; c.shadowBlur=s*.1; const bg=c.createLinearGradient(x,y,x+PW,y+PH); bg.addColorStop(0,"#ff9a3c"); bg.addColorStop(1,"#c23f00"); c.fillStyle=bg; rrect(c,x,y,PW,PH,PW*.08); c.fill(); c.restore();
+    c.fillStyle="#0a0a0d"; rrect(c,x+PW*.1,y+PW*.1,PW*.8,PW*.62,PW*.04); c.fill();
+    c.fillStyle="#ff9a3c"; c.font=`700 ${PW*.07}px "Space Grotesk",sans-serif`; c.textAlign="left"; c.fillText("NOW PLAYING",x+PW*.16,y+PW*.24);
+    c.fillStyle="#f4f4f6"; c.font=`700 ${PW*.1}px "Space Grotesk",sans-serif`; c.fillText("Keep Going",x+PW*.16,y+PW*.4);
+    c.fillStyle="#9a9aa8"; c.font=`500 ${PW*.06}px Inter,sans-serif`; c.fillText("VarHireBlaze FM",x+PW*.16,y+PW*.5);
+    c.fillStyle="#26262d"; c.fillRect(x+PW*.16,y+PW*.6,PW*.68,PW*.025); c.fillStyle=O; c.fillRect(x+PW*.16,y+PW*.6,PW*.68*(.3+r()*.4),PW*.025);
+    const by=y+PW*.86; const bw=PW*.36, bh=PW*.16; [[0,0],[1,0],[0,1],[1,1]].forEach(([i,j],k)=>{ const bx=x+PW*.1+i*(bw+PW*.08), byy=by+j*(bh+PW*.06);
+      c.fillStyle="rgba(0,0,0,.28)"; rrect(c,bx,byy,bw,bh,PW*.03); c.fill(); c.fillStyle="#fff"; const cx=bx+bw/2, cy=byy+bh/2, z=bh*.22; c.beginPath();
+      if(k===0){ c.moveTo(cx-z,cy-z); c.lineTo(cx+z,cy); c.lineTo(cx-z,cy+z); } else if(k===1){ c.rect(cx-z,cy-z,z*.7,z*2); c.rect(cx+z*.3,cy-z,z*.7,z*2); } else if(k===2){ c.moveTo(cx+z,cy-z); c.lineTo(cx-z*.2,cy); c.lineTo(cx+z,cy+z); c.rect(cx-z,cy-z,z*.4,z*2); } else { c.moveTo(cx-z,cy-z); c.lineTo(cx+z*.2,cy); c.lineTo(cx-z,cy+z); c.rect(cx+z*.6,cy-z,z*.4,z*2); }
+      c.fill(); });
+    c.strokeStyle="#f4f4f6"; c.lineWidth=s*.006; c.beginPath(); c.moveTo(x+PW*.5,y); c.bezierCurveTo(x+PW*.5,y-PW*.4,x+PW*1.3,y-PW*.2,x+PW*1.4,y-PW*.7); c.stroke();
+    c.restore(); },
+  floppy(c,w,h,r){ c.fillStyle="#060607"; c.fillRect(0,0,w,h); const s=Math.min(w,h), n=w>h?6:3, m=Math.ceil(n*h/w)+1, D=w/n;
+    for(let j=-1;j<m;j++) for(let i=-1;i<=n;i++){ const x=i*D+(j%2?D*.5:0), y=j*D*1.05, hot=r()<.18, z=D*.78, cx=x+D*.11, cy=y+D*.11;
+      c.save(); c.translate(cx+z/2,cy+z/2); c.rotate((r()-.5)*.25); c.translate(-z/2,-z/2);
+      c.fillStyle=hot?O:"#18181d"; if(hot){ c.shadowColor=O; c.shadowBlur=s*.05; } rrect(c,0,0,z,z,z*.04); c.fill(); c.shadowBlur=0;
+      c.fillStyle=hot?"#ffd0a0":"#2a2a32"; c.fillRect(z*.25,0,z*.5,z*.3); c.fillStyle=hot?O:"#18181d"; c.fillRect(z*.55,z*.05,z*.1,z*.2);
+      c.fillStyle=hot?"#fff4e8":"#f2f2f4"; c.fillRect(z*.14,z*.45,z*.72,z*.48); c.fillStyle=hot?O:"#9a9aa8"; c.font=`700 ${z*.08}px "Space Grotesk",sans-serif`; c.textAlign="left";
+      c.fillText(hot?"SAVE PROGRESS":"resume_v"+(1+(r()*9|0)),z*.2,z*.6); c.fillStyle="rgba(0,0,0,.12)"; for(let l=0;l<3;l++) c.fillRect(z*.2,z*.68+l*z*.07,z*.6,z*.012);
+      c.restore(); } }
 };
+function rrect(c,x,y,w,h,rad){ c.beginPath(); c.moveTo(x+rad,y); c.arcTo(x+w,y,x+w,y+h,rad); c.arcTo(x+w,y+h,x,y+h,rad); c.arcTo(x,y+h,x,y,rad); c.arcTo(x,y,x+w,y,rad); c.closePath(); }
+function car(c,cx,by,L,r){ /* generic 80s wedge coupe, side view; by = ground line */
+  const H=L*.27, x=cx-L/2, y=by-H; c.save();
+  c.fillStyle="rgba(0,0,0,.55)"; c.beginPath(); c.ellipse(cx,by,L*.52,L*.035,0,0,7); c.fill();
+  c.shadowColor=O; c.shadowBlur=L*.06; const bg=c.createLinearGradient(0,y,0,by); bg.addColorStop(0,"#ffb070"); bg.addColorStop(.45,O); bg.addColorStop(1,"#7a2400"); c.fillStyle=bg;
+  c.beginPath(); c.moveTo(x,y+H*.62); c.lineTo(x+L*.02,y+H*.42); c.lineTo(x+L*.3,y+H*.3); c.lineTo(x+L*.46,y); c.lineTo(x+L*.72,y+H*.04); c.lineTo(x+L*.9,y+H*.3); c.lineTo(x+L,y+H*.38); c.lineTo(x+L,y+H*.78); c.lineTo(x+L*.97,y+H*.86); c.lineTo(x+L*.03,y+H*.86); c.closePath(); c.fill(); c.shadowBlur=0;
+  c.fillStyle="rgba(10,8,20,.9)"; c.beginPath(); c.moveTo(x+L*.35,y+H*.3); c.lineTo(x+L*.48,y+H*.08); c.lineTo(x+L*.7,y+H*.11); c.lineTo(x+L*.82,y+H*.3); c.closePath(); c.fill();
+  c.strokeStyle="rgba(255,220,180,.55)"; c.lineWidth=Math.max(1,L*.004); c.beginPath(); c.moveTo(x+L*.58,y+H*.09); c.lineTo(x+L*.58,y+H*.3); c.stroke();
+  c.beginPath(); c.moveTo(x+L*.04,y+H*.56); c.lineTo(x+L*.97,y+H*.56); c.stroke();
+  c.fillStyle="#fff6e0"; c.fillRect(x+L*.005,y+H*.46,L*.03,H*.07); c.fillStyle="#ff2d3d"; c.shadowColor="#ff2d3d"; c.shadowBlur=L*.03; c.fillRect(x+L*.975,y+H*.44,L*.02,H*.12); c.shadowBlur=0;
+  [x+L*.2,x+L*.8].forEach(wx=>{ const R=H*.27; c.fillStyle="#0a0a0c"; c.beginPath(); c.arc(wx,by-R*.95,R,0,7); c.fill(); c.strokeStyle="#3a3a44"; c.lineWidth=R*.25; c.beginPath(); c.arc(wx,by-R*.95,R*.55,0,7); c.stroke();
+    c.fillStyle=O2; c.beginPath(); c.arc(wx,by-R*.95,R*.15,0,7); c.fill(); });
+  c.fillStyle="rgba(255,255,255,.18)"; c.fillRect(x+L*.06,y+H*.68,L*.88,H*.03);
+  c.restore();
+}
 
 function paint(cv, key, W, H, seed){
   cv.width=W; cv.height=H; const c=cv.getContext("2d"); DRAW[key](c,W,H,rng(seed)); mark(c,W,H);
@@ -634,8 +743,8 @@ const TEMPLATES = [
   {id:"t_slate", name:"Slate", desc:"Minimal, recruiter-loved", cls:""},
   {id:"t_pulse", name:"Pulse", desc:"Timeline layout", cls:"tl"},
 ];
-const DESK = [["orb","Orb",true],["sunset","Synthwave"],["halo","Halo"],["blackhole","Event Horizon"],["shards","Shards"],["monolith","Monolith"]];
-const MOB  = [["grind","Stay Hungry",true],["aurora","Aurora"],["blackhole","Event Horizon"],["topo","Contour"],["nebula","Nebula"],["sunset","Synthwave"],["shards","Shards"],["halo","Halo"]];
+const DESK = [["drive","Night Drive",true],["orb","Orb",true],["garage","Showroom"],["computer","Retro Terminal"],["tape","Interview Mix"],["sunset","Synthwave"],["floppy","Save Progress"],["halo","Halo"],["blackhole","Event Horizon"],["shards","Shards"],["monolith","Monolith"]];
+const MOB  = [["grind","Stay Hungry",true],["drive","Night Drive"],["pocket","Pocket Player"],["tape","Interview Mix"],["computer","Retro Terminal"],["garage","Showroom"],["floppy","Save Progress"],["aurora","Aurora"],["blackhole","Event Horizon"],["topo","Contour"],["nebula","Nebula"],["sunset","Synthwave"],["shards","Shards"],["halo","Halo"]];
 
 const isOpen = (id,free)=> free || UNLOCKED.has(id);
 function cardHTML({id,name,desc,inner,tall,free}){
@@ -656,7 +765,7 @@ document.getElementById("wpGrid").innerHTML = DESK.map(([k,n,f],i)=>{ const id="
 document.getElementById("mobGrid").innerHTML = MOB.map(([k,n,f],i)=>{ const id="m_"+k; ITEMS[id]={type:"mob",key:k,name:n,seed:31+i}; return cardHTML({id,name:n,desc:"Phone · 1290×2796",tall:true,free:f,inner:`<canvas data-k="${k}" data-s="${31+i}" data-w="360" data-h="780"></canvas>`}); }).join("");
 
 /* ---------- continuous home strip ---------- */
-(function(){ const keys=["grind","aurora","blackhole","topo","nebula","sunset","shards","halo","orb","monolith"], tr=document.getElementById("track");
+(function(){ const keys=["grind","drive","pocket","aurora","tape","blackhole","computer","topo","garage","nebula","floppy","sunset","shards","halo","orb","monolith"], tr=document.getElementById("track");
   const make=()=>keys.forEach((k,i)=>{ const cv=document.createElement("canvas"); cv.dataset.k=k; cv.dataset.s=70+i; cv.dataset.w=220; cv.dataset.h=476; tr.appendChild(cv); });
   make(); make(); })();
 const paintPreviews = ()=>document.querySelectorAll("canvas[data-k]").forEach(cv=>paint(cv,cv.dataset.k,+cv.dataset.w,+cv.dataset.h,+cv.dataset.s));
@@ -958,11 +1067,15 @@ document.getElementById("aiBtn").onclick = async ()=>{
     if(auto&&now-last>switchAt){if(last)show(ORDER[(ORDER.indexOf(cur)+1)%ORDER.length]);last=now}}
   requestAnimationFrame(loop);
   // rail cards: bot-played previews, only while on screen, ~30 fps
+  function watch(o){if("IntersectionObserver" in window)new IntersectionObserver(function(es){o.vis=es[0].isIntersecting}).observe(o.cv);else o.vis=true}
   var cards=[].map.call(document.querySelectorAll("canvas[data-live]"),function(el){var x=el.getContext("2d");fitCv(el,x);
-    var o={cv:el,c:x,g:HG.GAMES[el.dataset.live](),vis:false};if("IntersectionObserver" in window)new IntersectionObserver(function(es){o.vis=es[0].isIntersecting}).observe(el);else o.vis=true;return o});
-  var rz;window.addEventListener("resize",function(){clearTimeout(rz);rz=setTimeout(function(){fit();cards.forEach(function(o){fitCv(o.cv,o.c)})},200)});
+    var o={cv:el,c:x,g:HG.GAMES[el.dataset.live](),vis:false,mirrors:[]};watch(o);return o});
+  [].forEach.call(document.querySelectorAll("canvas[data-mirror]"),function(el){var src=cards.filter(function(o){return o.cv.dataset.live===el.dataset.mirror})[0];if(!src)return;
+    var m={cv:el,c:el.getContext("2d"),vis:false};watch(m);src.mirrors.push(m)});
+  function sizeMirrors(){cards.forEach(function(o){o.mirrors.forEach(function(m){if(m.cv.width!==o.cv.width||m.cv.height!==o.cv.height){m.cv.width=o.cv.width;m.cv.height=o.cv.height}})})}sizeMirrors();
+  var rz;window.addEventListener("resize",function(){clearTimeout(rz);rz=setTimeout(function(){fit();cards.forEach(function(o){fitCv(o.cv,o.c)});sizeMirrors()},200)});
   var t1=performance.now(),acc=0,pl=t1;
-  (function lp(now){requestAnimationFrame(lp);if(document.hidden)return;acc+=now-pl;pl=now;if(acc<32)return;acc=0;var t=(now-t1)/1000;cards.forEach(function(o){if(o.vis){try{o.g.preview(o.c,t)}catch(e){}}})})(t1);
+  (function lp(now){requestAnimationFrame(lp);if(document.hidden)return;acc+=now-pl;pl=now;if(acc<32)return;acc=0;var t=(now-t1)/1000;cards.forEach(function(o){var mv=o.mirrors.some(function(m){return m.vis});if(o.vis||mv){try{o.g.preview(o.c,t)}catch(e){}o.mirrors.forEach(function(m){if(m.vis){m.c.setTransform(1,0,0,1,0,0);m.c.drawImage(o.cv,0,0)}})}})})(t1);
 })();
 </script>
 <script>

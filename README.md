@@ -1,6 +1,6 @@
 # VarHireBlaze — Free AI Resume Checker
 
-Free ATS resume checker + resume templates + 3D desktop & phone wallpapers. No login, no payment — share to unlock.
+Free browser games for job seekers (incl. the original Neon Series with coins, skins, achievements and global leaderboards), an ATS resume checker, resume templates and 3D desktop & phone wallpapers. No login, no payment — share to unlock wallpapers and templates.
 
 - `index.html` — the whole site (scoring runs in the browser)
 - `api/analyze.js` — AI feedback (Groq), runs on Vercel so the key stays secret

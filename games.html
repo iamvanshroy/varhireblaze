@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>VarHireBlaze Games — 16 free stress-relief games for job seekers + 90s Arcade</title>
+<title>VarHireBlaze Games — 23 free browser games with leaderboards · Neon Series</title>
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#07070a">
-<meta name="description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Spam Invaders and 2048. No login, works on phone.">
+<meta name="description" content="23 free browser games for job seekers: the Neon Series (Photon Dash, Apex Highway, Pulse Defender, Rope Rally, Glitch Horde, Drift Circuit, Flipside) plus hire-themed games and a 90s arcade. Coins, skins, global leaderboards. No login.">
 <link rel="canonical" href="https://varhireblaze.com/games.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VarHireBlaze">
 <meta property="og:title" content="VarHireBlaze Games — play while you job hunt">
-<meta property="og:description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Spam Invaders and 2048. No login, works on phone.">
+<meta property="og:description" content="23 free browser games for job seekers: the Neon Series (Photon Dash, Apex Highway, Pulse Defender, Rope Rally, Glitch Horde, Drift Circuit, Flipside) plus hire-themed games and a 90s arcade. Coins, skins, global leaderboards. No login.">
 <meta property="og:url" content="https://varhireblaze.com/games.html">
 <meta property="og:image" content="https://varhireblaze.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="VarHireBlaze Games — play while you job hunt">
-<meta name="twitter:description" content="16 free stress-relief games for job seekers: Hire Racer, Hire Surfers, Hire Cricket, Hire Flight and a 90s arcade with Snake, Brick Breaker, Spam Invaders and 2048. No login, works on phone.">
+<meta name="twitter:description" content="23 free browser games for job seekers: the Neon Series (Photon Dash, Apex Highway, Pulse Defender, Rope Rally, Glitch Horde, Drift Circuit, Flipside) plus hire-themed games and a 90s arcade. Coins, skins, global leaderboards. No login.">
 <meta name="twitter:image" content="https://varhireblaze.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,16 +148,53 @@ main{max-width:1100px;margin:0 auto;padding:34px 20px 60px}
 #game.retro .ov{top:26px;left:6px;right:6px;bottom:6px}
 #game.retro .ov h3,#game.retro .ov .big{font-family:"Press Start 2P",monospace;letter-spacing:0}
 #game.retro .ov h3{font-size:clamp(14px,3vw,24px);line-height:1.5}
-/* unlock modal */
-.umodal{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px}
-.umodal.hide{display:none}
-.ubox{max-width:420px;width:100%}.ubox .w95-body{color:#fff;font-family:Inter,sans-serif;text-align:center}
-.ubox h4{font:12px "Press Start 2P",monospace;color:#ffd60a;margin-bottom:10px;line-height:1.6}.ubox p{color:#bbb;font-size:14px;margin-bottom:14px}
-.ushare{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;z-index:1}
-.ushare button{font:9px "Press Start 2P",monospace;padding:12px 6px;cursor:pointer;background:#c0c0c0;border:2px solid;border-color:#fff #404040 #404040 #fff;color:#000}
-.ushare button:active{border-color:#404040 #fff #fff #404040}
 footer{border-top:1px solid var(--line);color:var(--mut);font-size:13px;text-align:center;padding:26px 20px}
 footer a{color:var(--o)}
+
+/* ---------- hub bar, neon section, modals ---------- */
+.hubbar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 38px}
+.hubbar .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 16px;font:600 14px Inter,sans-serif;color:var(--txt);cursor:pointer;transition:.2s}
+.hubbar .chip:hover{border-color:var(--o);transform:translateY(-2px)}.hubbar .chip b{color:var(--o2);font-variant-numeric:tabular-nums}
+.sechead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:8px 0 18px;flex-wrap:wrap}
+.sechead h2{font-size:clamp(26px,4vw,40px);line-height:1.05}.sechead h2 span{color:var(--o)}.sechead p{color:var(--mut);max-width:440px;font-size:15px}
+.kicker{display:block;font:600 12px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--o2);margin-bottom:8px}
+.neon .gcard{background:linear-gradient(180deg,#14141d,#0e0e15)}
+.neon .gcard .tagl{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:12px}
+.neon .gcard h3{margin-top:4px}
+.hire-h{margin-top:56px}
+.bar .tools{display:flex;gap:8px}.bar .tools .pill{cursor:pointer;color:var(--txt);font:inherit;font-size:13px}.bar .tools .pill:hover{border-color:var(--o)}
+.hub-modal{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:16px}
+.hub-modal.on{display:flex}
+.hub-box{width:100%;max-width:560px;max-height:88vh;overflow:auto;background:#111118;border:1px solid var(--line);border-radius:22px;box-shadow:0 40px 120px -30px rgba(255,106,0,.45);animation:pop .35s cubic-bezier(.2,1.2,.4,1)}
+.hub-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#111118}
+.hub-head h3{font-size:20px}.hub-x{border:0;background:var(--card);color:var(--txt);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:14px}
+.hub-body{padding:18px 20px 22px}.hub-sub{color:var(--mut);font-size:14px;margin-bottom:16px}.hub-sub b{color:var(--o2)}
+.skin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:520px){.skin-grid{grid-template-columns:repeat(2,1fr)}}
+.skin{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--txt);cursor:pointer;font:inherit;transition:.2s}
+.skin:hover{border-color:var(--o)}.skin.eq{border-color:var(--o);box-shadow:0 0 0 2px rgba(255,106,0,.35) inset}.skin.no{animation:shake .4s}
+.skin b{font-size:13px}.skin small{font-size:12px;color:var(--mut)}
+.sw{width:46px;height:46px;border-radius:50%;box-shadow:0 0 22px rgba(255,255,255,.08)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.ach-grid{grid-template-columns:1fr}}
+.ach{display:flex;gap:12px;align-items:center;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--card);opacity:.55}
+.ach.on{opacity:1;border-color:rgba(255,106,0,.5)}.ach span{font-size:22px}.ach b{display:block;font-size:14px}.ach small{font-size:12px;color:var(--mut)}
+.lb{width:100%;max-width:360px;margin:12px auto 0;text-align:left}
+.lb-form{display:flex;gap:8px}.lb-form input{flex:1;min-width:0;background:#0b0b10;border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--txt);font:500 14px Inter,sans-serif}
+.lb-form input:focus{outline:none;border-color:var(--o)}.lb-form .btn{padding:9px 14px;font-size:13px;white-space:nowrap}
+.lb-msg{font-size:13px;color:var(--mut);margin:6px 0 0!important;min-height:16px;text-align:center}.lb-msg b{color:var(--o2)}
+.lb-list{list-style:none;margin-top:8px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(11,11,16,.8)}
+.lb-list li{display:flex;gap:10px;padding:7px 12px;font-size:13px;border-top:1px solid rgba(255,255,255,.04)}.lb-list li:first-child{border-top:0}
+.lb-list .r{width:20px;color:var(--mut);font-variant-numeric:tabular-nums}.lb-list .n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lb-list .s{font-weight:600;font-variant-numeric:tabular-nums}
+.lb-list li:nth-child(1) .r{color:#ffd23f}.lb-list li.me{background:rgba(255,106,0,.14)}
+.lb-empty{color:var(--mut);font-size:13px;text-align:center;padding:10px}
+.lb-sel{width:100%;background:#0b0b10;color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:500 14px Inter,sans-serif;margin-bottom:6px}
+.hub-toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;z-index:99;background:#15151d;border:1px solid rgba(255,106,0,.5);color:var(--txt);padding:11px 18px;border-radius:999px;font-size:14px;box-shadow:0 18px 50px -12px rgba(0,0,0,.8);transition:.35s;pointer-events:none;max-width:92vw;text-align:center}
+.hub-toast.on{opacity:1;transform:translate(-50%,0)}.hub-toast b{color:var(--o2)}
+.earn{color:#ffd23f;font-weight:600;margin:0 0 4px!important}
+.ov{overflow:auto;justify-content:safe center}.bar .tools .pill{display:inline-flex;align-items:center;justify-content:center;min-width:34px}
+.ov .lbtoggle{background:none;border:0;color:var(--o2);font:600 13px Inter,sans-serif;cursor:pointer;margin-top:8px;text-decoration:underline}
+@media(max-width:600px){.ov .lb{display:none}.ov .lb.show{display:block}.ov .txt{display:none}.ov h3{margin-bottom:0}.ov .acts .btn-g[href]{display:none}}
+@media(min-width:601px){.ov .lbtoggle{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
@@ -176,10 +213,78 @@ footer a{color:var(--o)}
   <!-- MENU -->
   <section class="view" id="menu">
     <div class="hero">
-      <span class="tag">🎮 16 free games · no login · no download</span>
+      <span class="tag">🎮 23 free games · no login · no download</span>
       <h1>Looking for a job?<br><span class="o">Play while you wait.</span></h1>
-      <p>Stress-relief games for job seekers. 9 hire-themed action games and a 90s arcade. Beat your best score, then check your resume when you're ready.</p>
+      <p>Short games for long job hunts. Earn coins, unlock skins, chase achievements and put your name on the global leaderboards.</p>
     </div>
+    <div class="hubbar">
+      <button class="chip" data-hub="skins">🪙 <b data-coins>0</b> coins · 🎨 Skins</button>
+      <button class="chip" data-hub="ach">🏆 Achievements <b data-achn>0</b></button>
+      <button class="chip" data-hub="boards">🌍 Leaderboards</button>
+    </div>
+    <section class="neon" id="neon" aria-labelledby="neonH">
+      <div class="sechead"><div><span class="kicker">New · Neon Series</span><h2 id="neonH">Eight originals. <span>Built for speed.</span></h2></div>
+        <p>Every Neon game has coins, skins, achievements and a global top 10. They get harder the longer you last.</p></div>
+      <div class="cards">
+      <div class="gcard" data-game="photon">
+        <canvas data-prev="photon" width="480" height="300"></canvas>
+        <span class="tagl">Endless speed</span>
+        <h3>Photon Dash</h3>
+        <p>Thread a light-ship through a neon void that keeps getting faster.</p>
+        <div class="row"><span class="best">Best: <b data-best="photon">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="apex">
+        <canvas data-prev="apex" width="480" height="300"></canvas>
+        <span class="tagl">Highway racing</span>
+        <h3>Apex Highway</h3>
+        <p>Weave through sunset traffic on a winding coast road. Overtakes score.</p>
+        <div class="row"><span class="best">Best: <b data-best="apex">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="pulse">
+        <canvas data-prev="pulse" width="480" height="300"></canvas>
+        <span class="tagl">Arena shooter</span>
+        <h3>Pulse Defender</h3>
+        <p>Aim the pulse cannon and protect the core from geometric drones.</p>
+        <div class="row"><span class="best">Best: <b data-best="pulse">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="rope">
+        <canvas data-prev="rope" width="480" height="300"></canvas>
+        <span class="tagl">Swing physics</span>
+        <h3>Rope Rally</h3>
+        <p>Hold to grab, release to fly. Never touch the neon floor.</p>
+        <div class="row"><span class="best">Best: <b data-best="rope">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="gradient">
+        <canvas data-prev="gradient" width="480" height="300"></canvas>
+        <span class="tagl">Reflex run</span>
+        <h3>Gradient Drop</h3>
+        <p>Kubo slides down an endless slope. Jump gaps, spikes and walls.</p>
+        <div class="row"><span class="best">Best: <b data-best="gradient">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="horde">
+        <canvas data-prev="horde" width="480" height="300"></canvas>
+        <span class="tagl">Survival</span>
+        <h3>Glitch Horde</h3>
+        <p>Survive the night shift against corrupted office bots.</p>
+        <div class="row"><span class="best">Best: <b data-best="horde">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="drift">
+        <canvas data-prev="drift" width="480" height="300"></canvas>
+        <span class="tagl">Drifting</span>
+        <h3>Drift Circuit</h3>
+        <p>Slide through gates before the clock runs out. Long drifts, big combos.</p>
+        <div class="row"><span class="best">Best: <b data-best="drift">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="flip">
+        <canvas data-prev="flip" width="480" height="300"></canvas>
+        <span class="tagl">Gravity skill</span>
+        <h3>Flipside</h3>
+        <p>Flip between floor and ceiling to dodge spikes, gaps and zappers.</p>
+        <div class="row"><span class="best">Best: <b data-best="flip">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      </div>
+    </section>
+    <div class="sechead hire-h" id="hire"><div><span class="kicker">Hire Games</span><h2>Made for the <span>job hunt.</span></h2></div><p>Race past rejections, smash SIXes off HR and carry your resume to the end zone.</p></div>
     <div class="cards">
       <div class="gcard" data-game="racer">
         <canvas data-prev="racer" width="480" height="300"></canvas>
@@ -246,7 +351,7 @@ footer a{color:var(--o)}
       <div class="w95-bar"><span>🕹️ ARCADE.EXE — VarHireBlaze 90s Arcade</span><i>_</i><i>□</i><i>×</i></div>
       <div class="w95-menu"><u>F</u>ile <u>G</u>ame <u>H</u>i-scores <u>H</u>elp</div>
       <div class="w95-body">
-        <div class="w95-title">INSERT COIN ▸ PRESS START<span>7 classic games · pixel graphics · chiptune sound</span></div>
+        <div class="w95-title">INSERT COIN ▸ PRESS START<span>6 classic games · pixel graphics · chiptune sound</span></div>
         <div class="agrid">
         <div class="acard" data-game="snake"><canvas data-prev="snake" width="480" height="300"></canvas><b>🐍 RESUME SNAKE</b><small>Eat skills, grow your resume</small><span class="best">HI-SCORE <i data-best="snake">0</i></span></div>
         <div class="acard" data-game="breakout"><canvas data-prev="breakout" width="480" height="300"></canvas><b>🧱 GLASS CEILING</b><small>Smash bias, gaps & red tape</small><span class="best">HI-SCORE <i data-best="breakout">0</i></span></div>
@@ -254,10 +359,10 @@ footer a{color:var(--o)}
         <div class="acard" data-game="salary"><canvas data-prev="salary" width="480" height="300"></canvas><b>💰 SALARY 2048</b><small>Merge to the 2M dream offer</small><span class="best">HI-SCORE <i data-best="salary">0</i></span></div>
         <div class="acard" data-game="memory"><canvas data-prev="memory" width="480" height="300"></canvas><b>🃏 SKILL MATCH</b><small>Match skill pairs vs the clock</small><span class="best">HI-SCORE <i data-best="memory">0</i></span></div>
         <div class="acard" data-game="catch"><canvas data-prev="catch" width="480" height="300"></canvas><b>💼 CATCH THE OFFER</b><small>Catch offers, dodge rejections</small><span class="best">HI-SCORE <i data-best="catch">0</i></span></div>
-        <div class="acard locked" data-game="tetris" data-lock="tetris"><div class="lockart"><span>🔒</span><em>SHARE TO UNLOCK</em></div><b>🟦 HIRE BLOCKS</b><small>Stack job blocks, clear lines. Unlock by sharing!</small><span class="best">HI-SCORE <i data-best="tetris">0</i></span></div>
+        
         </div>
       </div>
-      <div class="w95-status"><span>Ready</span><span>7 games loaded</span><span id="clock95">12:00</span></div>
+      <div class="w95-status"><span>Ready</span><span>6 games loaded</span><span id="clock95">12:00</span></div>
     </div>
     <div class="cta">
       <h3>Is your real resume getting rejected?</h3>
@@ -272,7 +377,7 @@ footer a{color:var(--o)}
       <div class="bar">
         <button class="btn btn-g" id="back">← All games</button>
         <h2 id="gTitle">Game</h2>
-        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span><button class="pill mute" id="mute" aria-label="Sound on/off">🔊</button></div>
+        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span><span class="tools"><button class="pill" id="pauseBtn" aria-label="Pause (P)" title="Pause (P)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/><rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"/></svg></button><button class="pill" id="restartBtn" aria-label="Quick restart (R)" title="Quick restart (R)"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8A5.5 5.5 0 1 1 11.9 4.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12.5 1v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="pill mute" id="mute" aria-label="Sound on/off (M)">🔊</button></span></div>
       </div>
       <div class="screen" id="screen">
         <canvas id="cv"></canvas>
@@ -284,91 +389,92 @@ footer a{color:var(--o)}
     </div>
   </section>
 </main>
-<div class="umodal hide" id="umodal"><div class="win95 ubox"><div class="w95-bar"><span>🔒 UNLOCK.EXE</span><i id="uclose" style="cursor:pointer">×</i></div>
-  <div class="w95-body"><h4>HIRE BLOCKS IS LOCKED</h4><p id="utext">Share VarHireBlaze with one friend who's job hunting to unlock it forever.</p>
-  <div class="ushare"><button data-sh="wa">WhatsApp</button><button data-sh="x">X / Twitter</button><button data-sh="tg">Telegram</button><button data-sh="copy">Copy link</button></div></div></div></div>
+
 
 <footer>© <span id="yr"></span> VarHireBlaze · <a href="/">Resume checker</a> · <a href="/blog/index.html">Blog</a> · <a href="/privacy.html">Privacy</a></footer>
 
 <script src="/games-core.js"></script>
+<script src="/neon-games.js"></script>
+<script src="/games-hub.js"></script>
 <script>
 (function(){
 "use strict";
-var HG=window.HireGames,W=HG.W,H=HG.H,GAMES=HG.GAMES,getBest=HG.getBest,setBest=HG.setBest,paintBest=HG.paintBest;
+var HG=window.HireGames,W=HG.W,H=HG.H,GAMES=HG.GAMES,getBest=HG.getBest,setBest=HG.setBest,paintBest=HG.paintBest,HUB=window.VHBHub;
 document.getElementById("yr").textContent=new Date().getFullYear();
 (function(){var c=document.getElementById("clock95");function t(){var d=new Date();c.textContent=d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}if(c){t();setInterval(t,15000)}})();
 
-/* ---------- menu previews ---------- */
-var previews=[].map.call(document.querySelectorAll("canvas[data-prev]"),function(cv){var g=GAMES[cv.dataset.prev]();return{cv:cv,c:cv.getContext("2d"),g:g}});
-previews.forEach(function(p){p.c.setTransform(p.cv.width/W,0,0,p.cv.height/H,0,0)});
+/* ---------- menu previews (only the ones on screen are animated) ---------- */
+var previews=[].map.call(document.querySelectorAll("canvas[data-prev]"),function(cv){var g=GAMES[cv.dataset.prev]();var p={cv:cv,c:cv.getContext("2d"),g:g,vis:false};p.c.setTransform(cv.width/W,0,0,cv.height/H,0,0);return p});
+if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){previews.forEach(function(p){if(p.cv===e.target)p.vis=e.isIntersecting})})},{rootMargin:"80px"});previews.forEach(function(p){io.observe(p.cv)})}
+else previews.forEach(function(p){p.vis=true});
 
 /* ---------- main stage ---------- */
 var menu=document.getElementById("menu"),gameV=document.getElementById("game"),cv=document.getElementById("cv"),ctx=cv.getContext("2d");
-var ov=document.getElementById("ov"),hudA=document.getElementById("hudA"),hudB=document.getElementById("hudB"),flashEl=document.getElementById("flash");
-var cur=null,curKey=null,state="menu",last=0,count=0;
+var ov=document.getElementById("ov"),hudA=document.getElementById("hudA"),hudB=document.getElementById("hudB"),flashEl=document.getElementById("flash"),screen=document.getElementById("screen");
+var cur=null,curKey=null,state="menu",last=0,count=0,pauseBtn=document.getElementById("pauseBtn");
 function fit(){var d=Math.min(window.devicePixelRatio||1,2);cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
 fit();
-function flash(a){flashEl.classList.remove("go");void flashEl.offsetWidth;flashEl.classList.add("go")}
+function flash(){flashEl.classList.remove("go");void flashEl.offsetWidth;flashEl.classList.add("go")}
 HG.onFlash=flash;
 function hud(){var h=cur.hud();hudA.innerHTML=h[0];hudB.innerHTML=h[1]}
-function showOv(html){ov.innerHTML=html;ov.classList.remove("hide")}
+function showOv(html){ov.innerHTML=html;ov.classList.remove("hide");ov.scrollTop=0}
 function hideOv(){ov.classList.add("hide")}
+var IC_PA='<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/><rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"/></svg>',IC_PL='<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>';function paintPause(){pauseBtn.innerHTML=state==="paused"?IC_PL:IC_PA}
 
 function wipeTo(x,y,mid){var w=document.getElementById("wipe");w.style.setProperty("--x",x+"px");w.style.setProperty("--y",y+"px");
   w.className="wipe";void w.offsetWidth;w.className="wipe in";
   setTimeout(function(){mid();window.scrollTo(0,0);w.className="wipe out"},470);setTimeout(function(){w.className="wipe"},960)}
 
-function unlocked(k){try{return localStorage.getItem("vhb_unlock_"+k)==="1"}catch(e){return false}}
-var pendingLock=null,umodal=document.getElementById("umodal");
-function askUnlock(k){pendingLock=k;umodal.classList.remove("hide");HG.sfx("select")}
-document.getElementById("uclose").onclick=function(){umodal.classList.add("hide")};
-umodal.addEventListener("click",function(e){var b=e.target.closest("[data-sh]");if(!b)return;var url="https://varhireblaze.com/games.html",txt="Job hunting? I'm playing free stress-relief games on VarHireBlaze 🎮 Try it: "+url;
-  var m=b.dataset.sh;if(m==="wa")window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank");else if(m==="x")window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(txt),"_blank");
-  else if(m==="tg")window.open("https://t.me/share/url?url="+encodeURIComponent(url)+"&text="+encodeURIComponent("Free stress-relief games for job seekers 🎮"),"_blank");
-  else{try{navigator.clipboard.writeText(txt)}catch(err){}}
-  try{localStorage.setItem("vhb_unlock_"+pendingLock,"1")}catch(err){}
-  document.getElementById("utext").innerHTML="<b style='color:#30d158'>UNLOCKED! Thanks for sharing 🎉</b>";HG.sfx("power");
-  document.querySelectorAll('[data-lock="'+pendingLock+'"]').forEach(function(c){c.classList.remove("locked")});
-  var k=pendingLock;setTimeout(function(){umodal.classList.add("hide");document.getElementById("utext").textContent="Share VarHireBlaze with one friend who's job hunting to unlock it forever.";openGame(k,innerWidth/2,innerHeight/2)},1100)});
-document.querySelectorAll("[data-lock]").forEach(function(c){if(unlocked(c.dataset.lock)){c.classList.remove("locked");var la=c.querySelector(".lockart");if(la){var cv2=document.createElement("canvas");cv2.width=480;cv2.height=300;cv2.dataset.prev=c.dataset.lock;la.replaceWith(cv2);var c2=cv2.getContext("2d");c2.setTransform(cv2.width/W,0,0,cv2.height/H,0,0);previews.push({cv:cv2,c:c2,g:GAMES[c.dataset.lock]()})}}});
-function openGame(key,x,y){var G0=GAMES[key]();if(G0.locked&&!unlocked(key)){askUnlock(key);return}wipeTo(x,y,function(){
+function openGame(key,x,y){if(!GAMES[key])return;wipeTo(x,y,function(){
   curKey=key;cur=GAMES[key]();cur.reset();gameV.classList.toggle("retro",!!cur.retro);screen.setAttribute("data-title",(cur.title||"").toUpperCase()+".EXE");
-  document.getElementById("gTitle").textContent=cur.title;document.getElementById("keys").innerHTML=cur.keys;
+  document.getElementById("gTitle").textContent=cur.title;document.getElementById("keys").innerHTML=cur.keys+' · <kbd>P</kbd> pause · <kbd>R</kbd> restart · <kbd>M</kbd> sound';
   menu.classList.add("out","gone");gameV.classList.remove("gone");requestAnimationFrame(function(){gameV.classList.remove("out")});
-  state="ready";hud();
-  showOv('<h3>'+cur.title+'</h3><p>'+cur.intro+'</p><div class="acts"><button class="btn btn-o" data-go>▶ Start</button></div>');
+  state="ready";hud();paintPause();
+  showOv('<h3>'+cur.title+'</h3><p>'+cur.intro+'</p><div class="acts"><button class="btn btn-o" data-go>▶ Start</button><button class="btn btn-g" data-hub="boards" data-game="'+key+'">🌍 Top 10</button></div>');
   try{history.replaceState(null,"","#"+key)}catch(e){}
 })}
 function toMenu(x,y){wipeTo(x||innerWidth/2,y||80,function(){
-  state="menu";cur=null;gameV.classList.add("out","gone");menu.classList.remove("gone");requestAnimationFrame(function(){menu.classList.remove("out")});paintBest();
+  state="menu";cur=null;gameV.classList.add("out","gone");menu.classList.remove("gone");requestAnimationFrame(function(){menu.classList.remove("out")});paintBest();HUB&&HUB.paint();
   try{history.replaceState(null,"",location.pathname)}catch(e){}
 })}
-function countdown(){HG.unlock();HG.FX.rings.length=0;HG.FX.shake=0;state="count";count=3;hideOv();tick();
-  function tick(){if(state!=="count")return;if(count===0){hideOv();state="play";last=performance.now();HG.sfx("go");return}
-    HG.sfx("tick");showOv('<div class="big">'+count+'</div>');count--;setTimeout(tick,650)}}
-function gameOver(){state="over";flash();var r=cur.over();
+function countdown(){HG.unlock();HG.FX.rings.length=0;HG.FX.shake=0;state="count";count=3;hideOv();paintPause();tick();
+  function tick(){if(state!=="count")return;if(count===0){hideOv();state="play";last=performance.now();HG.sfx("go");paintPause();return}
+    HG.sfx("tick");showOv('<div class="big">'+count+'</div>');count--;setTimeout(tick,560)}}
+function restart(){if(!cur)return;cur.reset();hud();countdown()}
+function pause(){if(state!=="play")return;state="paused";paintPause();
+  showOv('<h3>Paused</h3><p>Take a breath. Your run is waiting.</p><div class="acts"><button class="btn btn-o" id="resume">▶ Resume</button><button class="btn btn-g" data-go>↻ Restart</button><button class="btn btn-g" id="quit">← All games</button></div>')}
+function resume(){if(state==="paused")countdown()}
+function gameOver(){state="over";paintPause();flash();var r=cur.over();
   var isNew=false;if(r.score!=null&&r.score>getBest(curKey)){setBest(curKey,r.score);isNew=true}
   var won=curKey==="pong"?cur.ps>cur.as:isNew;setTimeout(function(){HG.sfx(won?"win":"lose")},350);
-  hud();
-  setTimeout(function(){showOv('<h3>'+r.title+'</h3><div class="big" style="font-size:clamp(44px,9vw,84px)">'+r.big+'</div>'+(isNew?'<p style="color:#2bd46b;margin:0 0 6px">★ New best!</p>':'')+
-    '<p>'+r.text+'</p><div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>')},300)}
+  var res=HUB?HUB.onGameOver(curKey,r,isNew):{earned:0};hud();
+  var key=curKey,score=r.score|0;
+  setTimeout(function(){if(state!=="over"||curKey!==key)return;
+    showOv('<h3>'+r.title+'</h3><div class="big" style="font-size:clamp(40px,8vw,78px)">'+r.big+'</div>'+(isNew?'<p style="color:#2bd46b;margin:0 0 4px">★ New personal best!</p>':'')+
+    '<p class="txt">'+r.text+'</p>'+(res.earned?'<p class="earn">+'+res.earned+' 🪙 coins</p>':'')+
+    '<div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><button class="btn btn-g" data-hub="skins">🎨 Skins</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>'+
+    (HUB?'<button class="lbtoggle" type="button">🌍 Show global top 10</button>'+HUB.boardBlock(key,score):''));
+    if(HUB){HUB.hydrate(ov,key,score);var tg=ov.querySelector(".lbtoggle"),lb=ov.querySelector(".lb");if(tg&&lb)tg.addEventListener("click",function(e){e.stopPropagation();lb.classList.toggle("show");tg.remove()})}},320)}
 
 document.addEventListener("click",function(e){
   var card=e.target.closest(".gcard[data-game],.acard[data-game]");if(card&&state==="menu"){HG.unlock();openGame(card.dataset.game,e.clientX,e.clientY);return}
-  if(e.target.closest("[data-go]")){e.stopPropagation();cur.reset();hud();countdown();return}
-  if(e.target.closest("#back")){toMenu(e.clientX,e.clientY)}
+  if(e.target.closest("[data-go]")){e.stopPropagation();restart();return}
+  if(e.target.closest("#resume")){e.stopPropagation();resume();return}
+  if(e.target.closest("#quit")||e.target.closest("#back")){toMenu(e.clientX,e.clientY)}
 });
-var screen=document.getElementById("screen");
+pauseBtn.addEventListener("click",function(e){e.stopPropagation();if(state==="play")pause();else if(state==="paused")resume()});
+document.getElementById("restartBtn").addEventListener("click",function(e){e.stopPropagation();if(cur&&state!=="menu")restart()});
+
 function localY(e){var r=cv.getBoundingClientRect();return (e.clientY-r.top)/r.height*H}
 function localX(e){var r=cv.getBoundingClientRect();return (e.clientX-r.left)/r.width*W}
 var sw=null;
-screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go],a,button"))return;
-  if(state!=="play")return;HG.ring(localX(e),localY(e),"rgba(255,255,255,.7)");
+screen.addEventListener("pointerdown",function(e){if(e.target.closest("[data-go],a,button,input,form,.lb"))return;
+  if(state!=="play")return;var x=localX(e),y=localY(e);HG.ring(x,y,"rgba(255,255,255,.7)");
   try{screen.setPointerCapture(e.pointerId)}catch(err){}
-  if(cur.press){cur.press(true);return}
-  if(cur.pointerXY){cur.pointerXY(localX(e),localY(e));cur.action();return}
-  if(cur.tap||cur.swipe||cur.tapXY){sw={x:e.clientX,y:e.clientY,lx:localX(e),ly:localY(e)};return}
-  cur.action();if(cur.pointer)cur.pointer(localY(e))});
+  if(cur.press){if(cur.pointerXY)cur.pointerXY(x,y);cur.press(true,x,y);return}
+  if(cur.pointerXY){cur.pointerXY(x,y);cur.action();return}
+  if(cur.tap||cur.swipe||cur.tapXY){sw={x:e.clientX,y:e.clientY,lx:x,ly:y};return}
+  cur.action();if(cur.pointer)cur.pointer(y)});
 function endPointer(e){if(cur&&cur.press)cur.press(false);if(!sw||state!=="play"){sw=null;return}
   var dy=e.clientY-sw.y,dx=e.clientX-sw.x,far=Math.max(Math.abs(dx),Math.abs(dy))>24;
   if(far){var dir=Math.abs(dx)>Math.abs(dy)?(dx<0?"left":"right"):(dy<0?"up":"down");
@@ -378,14 +484,16 @@ screen.addEventListener("pointerup",endPointer);
 screen.addEventListener("pointercancel",function(){if(cur&&cur.press)cur.press(false);sw=null});
 var muteBtn=document.getElementById("mute");function paintMute(){muteBtn.textContent=HG.isMuted()?"🔇":"🔊"}paintMute();
 muteBtn.addEventListener("click",function(e){e.stopPropagation();HG.setMuted(!HG.isMuted());paintMute();if(!HG.isMuted()){HG.unlock();HG.sfx("coin")}});
-screen.addEventListener("pointermove",function(e){if(state!=="play")return;var act=e.pointerType==="mouse"||e.buttons;if(!act)return;if(cur.pointer)cur.pointer(localY(e));if(cur.pointerXY)cur.pointerXY(localX(e),localY(e))});
-document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;
+screen.addEventListener("pointermove",function(e){if(state!=="play")return;var act=e.pointerType==="mouse"||e.buttons;if(!act)return;var x=localX(e),y=localY(e);if(cur.pointer)cur.pointer(y);if(cur.pointerXY)cur.pointerXY(x,y)});
+document.addEventListener("keydown",function(e){if(!cur)return;var k=e.key;if(e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
+  if(k==="p"||k==="P"){if(state==="play")pause();else if(state==="paused")resume();return}
+  if((k==="r"||k==="R")&&state!=="menu"){restart();return}
   if(state==="play"&&cur.press&&(k===" "||k==="ArrowUp"||k==="w"||k==="W")){e.preventDefault();if(!e.repeat)cur.press(true);return}
   if(state==="play"&&cur.key&&cur.key(k)){e.preventDefault();return}
   if(k==="ArrowDown"||k==="ArrowLeft"||k==="ArrowRight")e.preventDefault();
-  if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){e.preventDefault();if(state==="play")cur.action();else if(state==="ready"||state==="over"){cur.reset();hud();countdown()}}
+  if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){e.preventDefault();if(state==="play")cur.action();else if(state==="ready"||state==="over")restart();else if(state==="paused")resume()}
   if(curKey==="pong"&&state==="play"){if(k==="ArrowUp"||k==="w"||k==="W")cur.keyDir=-1;if(k==="ArrowDown"||k==="s"||k==="S"){e.preventDefault();cur.keyDir=1}}
-  if(k==="Escape")toMenu();if(k==="m"||k==="M"){muteBtn.click()}});
+  if(k==="Escape"){if(state==="play")pause();else toMenu()}if(k==="m"||k==="M"){muteBtn.click()}});
 document.addEventListener("keyup",function(e){if(cur&&cur.keyUp)cur.keyUp(e.key);if(cur&&cur.press&&/^( |ArrowUp|w|W)$/.test(e.key))cur.press(false);if(cur&&curKey==="pong"&&/^(ArrowUp|ArrowDown|w|W|s|S)$/.test(e.key))cur.keyDir=0});
 var fsBtn=document.getElementById("fs");
 if(!(screen.requestFullscreen||screen.webkitRequestFullscreen))fsBtn.style.display="none";
@@ -394,22 +502,23 @@ fsBtn.addEventListener("click",function(e){e.stopPropagation();
   if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document);return}
   var r=(screen.requestFullscreen||screen.webkitRequestFullscreen).call(screen);
   if(r&&r.then)r.then(function(){try{window.screen.orientation.lock("landscape").catch(function(){})}catch(err){}}).catch(function(){})});
-document.addEventListener("visibilitychange",function(){if(document.hidden&&state==="play"){state="paused";showOv('<h3>Paused</h3><div class="acts"><button class="btn btn-o" id="resume">▶ Resume</button></div>')}});
-ov.addEventListener("click",function(e){if(e.target.id==="resume"){e.stopPropagation();countdown()}});
+document.addEventListener("visibilitychange",function(){if(document.hidden&&state==="play")pause()});
+window.addEventListener("blur",function(){if(state==="play")pause()});
 
+var pacc=0,plast=0;
 function loop(now){
-  if(state==="menu"){var t=now/1000;previews.forEach(function(p,i){p.g.preview(p.c,t+i*1.3)})}
-  else if(cur){
+  if(state==="menu"){var t=now/1000;pacc+=now-plast;plast=now;if(pacc>=30){pacc=0;previews.forEach(function(p,i){if(p.vis)p.g.preview(p.c,t+i*1.3)})}}
+  else if(cur){plast=now;
     var fdt=1/60;if(state==="play"){var dt=Math.min((now-last)/1000,1/30);last=now;fdt=dt;var r=cur.update(dt);hud();if(r==="over")gameOver()}
     var so=HG.shakeOffset();ctx.fillStyle="#0b0b10";ctx.fillRect(0,0,W,H);ctx.save();ctx.translate(so[0],so[1]);
-    cur.draw(ctx);HG.stepFX(ctx,fdt);ctx.restore();
+    cur.draw(ctx);HG.stepFX(ctx,state==="play"?fdt:0);ctx.restore();
     var shk=HG.FX.shake;screen.style.transform=shk>6?"translate("+((Math.random()*2-1)*shk*0.25)+"px,"+((Math.random()*2-1)*shk*0.25)+"px)":"";
   }
   requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
 
-// deep link (#flappy / #pong / #rush)
+// deep link (#photon / #racer ...)
 var h=(location.hash||"").slice(1);if(GAMES[h])setTimeout(function(){openGame(h,innerWidth/2,innerHeight/2)},300);
 })();
 </script>

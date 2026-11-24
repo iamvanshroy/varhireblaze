@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Use POST" });
 
   const key = process.env.GROQ_API_KEY;
-  if (!key) return res.status(500).json({ error: "AI is not set up yet." });
+  if (!key) return res.status(503).json({ error: "Detailed AI feedback is taking a short break. Your score, missing skills and fixes above are complete, so you can use those right away." });
 
   const { text = "", jd = "" } = req.body || {};
   if (typeof text !== "string" || text.trim().length < 80)

@@ -9,8 +9,8 @@ function fmt(n){return (n|0).toLocaleString("en-IN")}
 
 var NAMES={racer:"Hire Racer",surfers:"Hire Surfers",cricket:"Hire Cricket",flight:"Hire Flight",cart:"Golf Cart Dash",football:"Hire Touchdown",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong",
   snake:"Resume Snake",breakout:"Glass Ceiling",invaders:"Spam Invaders",salary:"Salary 2048",memory:"Skill Match",catch:"Catch the Offer"};
-(HG.NEON||[]).forEach(function(g){NAMES[g.k]=g.name});
-var NEONK=(HG.NEON||[]).map(function(g){return g.k});
+(HG.NEON||[]).concat(HG.OFFICE||[]).forEach(function(g){NAMES[g.k]=g.name});
+var NEONK=(HG.NEON||[]).map(function(g){return g.k});var SERIESK=NEONK.concat((HG.OFFICE||[]).map(function(g){return g.k}));
 
 /* ---------- wallet ---------- */
 var W={coins:function(){return ls("vhb_coins",0)},total:function(){return ls("vhb_coins_total",0)},
@@ -30,7 +30,7 @@ var ACH=[
   {id:"explorer",n:"Explorer",d:"Play all 8 Neon Series games",i:"🧭"},
   {id:"board",n:"On the Board",d:"Post a score to a global leaderboard",i:"🌍"}
 ];
-(HG.NEON||[]).forEach(function(g){ACH.push({id:"g_"+g.k,n:g.ach[1],d:g.ach[2],i:"🏆",game:g.k,need:g.ach[0]})});
+(HG.NEON||[]).concat(HG.OFFICE||[]).forEach(function(g){ACH.push({id:"g_"+g.k,n:g.ach[1],d:g.ach[2],i:"🏆",game:g.k,need:g.ach[0]})});
 function unlock(id,out){var a=ls("vhb_ach",{});if(a[id])return;a[id]=Date.now();ss("vhb_ach",a);var def=ACH.filter(function(x){return x.id===id})[0];if(def){out&&out.push(def);toast(def.i+" Achievement: <b>"+esc(def.n)+"</b>")}paint()}
 
 /* ---------- toast ---------- */
@@ -40,12 +40,12 @@ function nextToast(){var h=tq.shift();if(!h){tbusy=false;return}tbusy=true;var e
   el.innerHTML=h;el.classList.add("on");try{HG.neonSfx&&HG.neonSfx("gate")}catch(e){}setTimeout(function(){el.classList.remove("on");setTimeout(nextToast,350)},2400)}
 
 /* ---------- game over bookkeeping ---------- */
-function onGameOver(key,r,isNew){var got=[],neon=NEONK.indexOf(key)>=0;
-  var earned=(r.coins|0)+(neon?Math.min(60,Math.floor((r.score|0)/(key==="apex"?250:key==="drift"?200:key==="pulse"||key==="horde"?100:40))):Math.min(15,2+((r.score|0)>0?3:0)))+(isNew&&(r.score|0)>0?5:0);
+function onGameOver(key,r,isNew){var got=[],neon=SERIESK.indexOf(key)>=0;
+  var earned=(r.coins|0)+(neon?Math.min(60,Math.floor((r.score|0)/(key==="apex"?250:key==="drift"?200:key==="pulse"||key==="horde"||key==="wfh"||key==="boss"?100:40))):Math.min(15,2+((r.score|0)>0?3:0)))+(isNew&&(r.score|0)>0?5:0);
   W.add(earned);
   var runs=ls("vhb_runs",0)+1;ss("vhb_runs",runs);unlock("first",got);if(runs>=10)unlock("runs10",got);if(runs>=50)unlock("runs50",got);
   if(W.total()>=100)unlock("coins100",got);if(W.total()>=1000)unlock("coins1000",got);
-  if(neon){var pl=ls("vhb_played",{});pl[key]=1;ss("vhb_played",pl);if(NEONK.every(function(k){return pl[k]}))unlock("explorer",got)}
+  if(NEONK.indexOf(key)>=0){var pl=ls("vhb_played",{});pl[key]=1;ss("vhb_played",pl);if(NEONK.every(function(k){return pl[k]}))unlock("explorer",got)}
   ACH.forEach(function(a){if(a.game===key&&(r.score|0)>=a.need)unlock(a.id,got)});
   return{earned:earned,ach:got}}
 

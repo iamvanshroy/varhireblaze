@@ -14,9 +14,11 @@ function toast(msg){var el=document.getElementById("vbShareToast");if(!el){el=do
   el.textContent=msg;el.style.opacity="1";clearTimeout(el._t);el._t=setTimeout(function(){el.style.opacity="0"},2600)}
 function share(kind,o){o=o||{};var url=abs(o.url),text=(o.text||"Play free on VarHireBlaze")+" "+url,t=encodeURIComponent(text);
   if(kind==="ig"){if(navigator.share){navigator.share({title:o.title||"VarHireBlaze",text:o.text||"",url:url}).catch(function(){})}
-    else{try{navigator.clipboard.writeText(text)}catch(e){}window.open("https://www.instagram.com/","_blank","noopener");toast("Link copied. Paste it in your Insta story or DM 📋")}return}
+    else{try{navigator.clipboard.writeText(text)}catch(e){}var ia=document.createElement("a");ia.href="https://www.instagram.com/";ia.target="_blank";ia.rel="noopener noreferrer";document.body.appendChild(ia);ia.click();ia.remove();toast("Link copied. Paste it in your Insta story or DM 📋")}return}
   var links={wa:"https://wa.me/?text="+t,x:"https://twitter.com/intent/tweet?text="+t,sms:"sms:?&body="+t};
-  var w=window.open(links[kind],"_blank","noopener");if(!w&&kind!=="sms")location.href=links[kind];if(kind==="sms"&&!w)location.href=links.sms}
+  if(kind==="sms"){location.href=links.sms;return}
+  /* a real link click opens a new tab without leaving the page (window.open with noopener always returns null) */
+  var a=document.createElement("a");a.href=links[kind];a.target="_blank";a.rel="noopener noreferrer";a.style.display="none";document.body.appendChild(a);a.click();a.remove()}
 function row(o,cls){return '<div class="vbshare '+(cls||"")+'" data-vbshare="'+esc(JSON.stringify(o))+'">'+["wa","x","ig","sms"].map(function(k){return '<button type="button" class="vbs vbs-'+k+'" data-k="'+k+'" aria-label="Share on '+NAME[k]+'" title="Share on '+NAME[k]+'">'+IC[k]+'</button>'}).join("")+'</div>'}
 var css='.vbshare{display:inline-flex;gap:6px;align-items:center}.vbs{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#e8e8ee;display:inline-grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s,color .2s;padding:0}.vbs:hover{transform:translateY(-2px)}.vbs-wa:hover{background:#1fae54;color:#fff;border-color:#1fae54}.vbs-x:hover{background:#000;color:#fff;border-color:#555}.vbs-ig:hover{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);color:#fff;border-color:transparent}.vbs-sms:hover{background:#2b2b36;color:#fff}';
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);

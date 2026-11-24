@@ -71,7 +71,7 @@ main{max-width:1100px;margin:0 auto;padding:34px 20px 60px}
 .gcard:nth-child(2){animation-delay:.08s}.gcard:nth-child(3){animation-delay:.16s}.gcard:nth-child(4){animation-delay:.24s}.gcard:nth-child(n+5){animation-delay:.3s}
 @keyframes rise{from{opacity:0;transform:translateY(30px)}}
 .gcard:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.6);box-shadow:0 20px 60px -20px rgba(255,106,0,.55)}
-.gcard::after{content:"";position:absolute;inset:-1px;border-radius:22px;padding:1px;background:linear-gradient(135deg,transparent 40%,rgba(255,106,0,.7),transparent 60%);
+.gcard::after{content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:22px;padding:1px;background:linear-gradient(135deg,transparent 40%,rgba(255,106,0,.7),transparent 60%);
  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.3s;background-size:250% 250%;animation:sweep 3s linear infinite}
 .gcard:hover::after{opacity:1}
 @keyframes sweep{0%{background-position:100% 0}100%{background-position:-100% 0}}
@@ -195,7 +195,7 @@ footer a{color:var(--o)}
 .ov .lbtoggle{background:none;border:0;color:var(--o2);font:600 13px Inter,sans-serif;cursor:pointer;margin-top:8px;text-decoration:underline}
 @media(max-width:600px){.ov .lb{display:none}.ov .lb.show{display:block}.ov .txt{display:none}.ov h3{margin-bottom:0}.ov .acts .btn-g[href]{display:none}}
 @media(min-width:601px){.ov .lbtoggle{display:none}}
-.cardshare{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}.acard .cardshare{border-top-color:#808080;padding:8px 0 0;margin-top:8px}.acard .vbs{border-color:#808080;background:#d4d0c8;color:#000}#barShare{display:inline-flex;margin-right:4px}@media(max-width:600px){#barShare{display:none}}
+.cardshare{position:relative;z-index:2;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}.acard .cardshare{border-top-color:#808080;padding:8px 0 0;margin-top:8px}.acard .vbs{border-color:#808080;background:#d4d0c8;color:#000}#barShare{display:inline-flex;margin-right:4px}@media(max-width:600px){#barShare{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>

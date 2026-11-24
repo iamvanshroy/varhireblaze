@@ -297,6 +297,8 @@ body{animation:pagein .7s var(--ease) both}@keyframes pagein{from{opacity:0}}
 a,button{-webkit-tap-highlight-color:transparent}
 @media(max-width:560px){.train .ncard{width:250px}.views{top:10px;right:12px}.hero{padding-top:44px}.stagewrap{margin-top:30px}}
 @media(prefers-reduced-motion:reduce){.train-track{animation:none}.train{overflow-x:auto}body{animation:none}}
+.nolog{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}.nolog span{padding:7px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.nolog span::before{content:"✓ ";color:var(--o)}
+.credit2{margin-top:44px;text-align:center;font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.28)}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -326,7 +328,7 @@ a,button{-webkit-tap-highlight-color:transparent}
       <a href="games.html" class="btn btn-o">Play free games</a>
       <a href="#check" class="btn btn-g">Check my resume</a>
     </div>
-    <p class="credit">Designed &amp; built by <b>Vansh Roy</b> · No login · No download</p>
+    <div class="nolog"><span>No login</span><span>No download</span><span>Free</span></div>
   </div>
   <div class="wrap stagewrap">
     <div class="gwin" id="stage">
@@ -494,6 +496,7 @@ a,button{-webkit-tap-highlight-color:transparent}
       <a class="post reveal" href="blog/gaming-skills-on-resume.html"><small>Games &amp; job hunting</small><h3>Gaming skills you can actually put on your resume</h3><p>Captained a team, ran a channel or built a mod? How to turn it into points recruiters take seriously.</p><span class="lnk">Read</span></a>
       <a class="post reveal" href="blog/job-search-stress-breaks.html"><small>Games &amp; job hunting</small><h3>Job search stress: why short breaks help you apply better</h3><p>A simple routine for applying with focus, and handling the silence and rejection without burning out.</p><span class="lnk">Read</span></a>
     </div>
+    <p class="credit2">Designed &amp; built by Vansh Roy</p>
   </div>
 </section>
 

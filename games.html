@@ -197,7 +197,7 @@ footer a{color:var(--o)}
 @media(min-width:601px){.ov .lbtoggle{display:none}}
 .cardshare{position:relative;z-index:2;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}.acard .cardshare{border-top-color:#808080;padding:8px 0 0;margin-top:8px}.acard .vbs{border-color:#808080;background:#d4d0c8;color:#000}#barShare{display:inline-flex;margin-right:4px}@media(max-width:600px){#barShare{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+@media(max-width:600px){.navtrk{display:none}}</style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -207,7 +207,7 @@ footer a{color:var(--o)}
 
 <nav><div class="in">
   <div><a href="/" class="brand">VarHire<span>Blaze</span></a><div class="byline">designed by <b>Vansh</b></div></div>
-  <a href="/#check" class="btn btn-g">📄 Resume tracker</a>
+  <div style="display:flex;gap:8px"><a href="/lab.html" class="btn btn-g">✨ VB Lab</a><a href="/#check" class="btn btn-g navtrk">📄 Resume tracker</a></div>
 </div></nav>
 
 <main>
@@ -563,5 +563,6 @@ requestAnimationFrame(loop);
 var h=(location.hash||"").slice(1);if(GAMES[h])setTimeout(function(){openGame(h,innerWidth/2,innerHeight/2)},300);
 })();
 </script>
+<script src="/secrets.js" defer></script>
 </body>
 </html>

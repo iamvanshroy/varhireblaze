@@ -304,6 +304,28 @@ a,button{-webkit-tap-highlight-color:transparent}
 .stagewrap{position:relative}
 @media(max-width:1520px){#vanshCv{left:auto;right:max(0px,calc(50% - 600px));top:auto;bottom:-30px;width:170px;height:207px}.gwin-foot{padding-right:150px}}
 @media(max-width:560px){#vanshCv{width:96px;height:117px;bottom:-26px;right:2px}.gwin-foot{padding-right:96px;justify-content:flex-start}}
+/* VB Lab section: Apple-style scroll reveal */
+.nav-new{color:#ff9a3c!important;position:relative}.nav-new::after{content:"";position:absolute;right:-8px;top:2px;width:6px;height:6px;border-radius:50%;background:#ff6a00;box-shadow:0 0 10px #ff6a00}
+.lab3{position:relative;padding:110px 0 70px;overflow:hidden}
+.lab3::before{content:"";position:absolute;left:50%;top:40px;width:1100px;height:700px;transform:translateX(-50%) scale(calc(.6 + var(--lp,0)*.6));background:radial-gradient(closest-side,rgba(255,106,0,.22),transparent);pointer-events:none;opacity:calc(var(--lp,0)*1.4)}
+.lab3-sticky{text-align:center;position:relative;padding:0 22px}
+.lab3-eb{opacity:calc(var(--lp,0)*2);transform:translateY(calc((1 - min(1,var(--lp,0)*2))*20px));display:inline-block}
+.lab3-h{font-size:clamp(64px,15vw,190px);line-height:.9;font-weight:700;letter-spacing:-.05em;transform:scale(calc(1.5 - min(1,var(--lp,0)*1.8)*.5));opacity:calc(.15 + var(--lp,0)*2);filter:blur(calc((1 - min(1,var(--lp,0)*2))*10px));will-change:transform}
+.lab3-h .o{color:var(--o,#ff6a00);background:linear-gradient(90deg,#ff6a00,#ffd23f,#ff6a00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:labsh 4s linear infinite}
+@keyframes labsh{to{background-position:-200% 0}}
+.lab3-p{color:var(--mut);font-size:clamp(17px,2vw,22px);max-width:640px;margin:22px auto 0;opacity:calc(var(--lp,0)*2 - .3)}
+.lab3-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px}
+.lt{position:relative;display:flex;flex-direction:column;gap:4px;padding:18px 16px;border-radius:20px;background:linear-gradient(160deg,#16161d,#0d0d12);border:1px solid rgba(255,255,255,.07);overflow:hidden;
+  opacity:0;transform:translateY(60px) scale(.92);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;transition-delay:calc(var(--i)*55ms)}
+.lab3.in .lt{opacity:1;transform:none}
+.lt:hover{border-color:rgba(255,106,0,.6);box-shadow:0 24px 60px -24px rgba(255,106,0,.6);transform:translateY(-6px)!important;transition-delay:0s}
+.lt i{font-style:normal;font-size:34px;line-height:1.2;transition:transform .5s cubic-bezier(.2,.8,.2,1)}.lt:hover i{transform:scale(1.18) rotate(-6deg)}
+.lt b{font:700 16px "Space Grotesk",Inter,sans-serif;letter-spacing:-.02em}.lt small{color:var(--mut);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.lt::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.08) 50%,transparent 65%);background-size:250% 100%;background-position:120% 0;transition:background-position .9s;pointer-events:none}.lt:hover::after{background-position:-120% 0}
+.lab3-cta{display:flex;gap:16px;align-items:center;justify-content:center;margin-top:34px;color:var(--mut);font-size:14px;flex-wrap:wrap}
+@media(max-width:900px){.lab3-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.lab3{padding:80px 0 50px}.lab3-grid{grid-template-columns:repeat(2,1fr);gap:10px}.lt{padding:14px}.lt b{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.lab3-h,.lab3-p,.lab3-eb{transform:none!important;opacity:1!important;filter:none!important}.lt{opacity:1;transform:none;transition:none}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -314,6 +336,7 @@ a,button{-webkit-tap-highlight-color:transparent}
   <div class="wrap">
     <a href="#top" class="brandbox"><span class="brand">VarHire<span>Blaze</span></span><span class="byline">designed by <b>Vansh</b></span></a>
     <div class="links">
+      <a href="lab.html" class="nav-new">VB Lab</a>
       <a href="games.html">Games</a>
       <a href="#check">Resume tracker</a>
       <a href="#wallpapers">Wallpapers</a>
@@ -350,6 +373,16 @@ a,button{-webkit-tap-highlight-color:transparent}
     </div>
   </div>
 </header>
+
+<section id="lab" class="lab3" aria-labelledby="labH">
+  <div class="lab3-sticky">
+    <span class="eyebrow lab3-eb">New · November update</span>
+    <h2 id="labH" class="lab3-h"><span>VB</span> <span class="o">Lab.</span></h2>
+    <p class="lab3-p">Fifteen new experiments, built from scratch. Raise a pet, make a beat, build a level, collect rare cards and chase a VB World Record.</p>
+  </div>
+  <div class="wrap"><div class="lab3-grid"><a class="lt" href="lab.html#pets" style="--i:0"><i>🥚</i><b>VB Pet Universe</b><small>Play</small></a><a class="lt" href="lab.html#sound" style="--i:1"><i>🎛️</i><b>Sound Machine</b><small>Create</small></a><a class="lt" href="lab.html#survival" style="--i:2"><i>🛡️</i><b>Survival Mode</b><small>Compete</small></a><a class="lt" href="lab.html#pixel" style="--i:3"><i>🎨</i><b>Pixel Studio</b><small>Create</small></a><a class="lt" href="lab.html#aquarium" style="--i:4"><i>🐠</i><b>Aquarium</b><small>Play</small></a><a class="lt" href="lab.html#physics" style="--i:5"><i>🧲</i><b>Physics Playground</b><small>Explore</small></a><a class="lt" href="lab.html#studio" style="--i:6"><i>🕹️</i><b>Game Studio</b><small>Create</small></a><a class="lt" href="lab.html#glitch" style="--i:7"><i>🌀</i><b>Reality Glitch</b><small>Explore</small></a><a class="lt" href="lab.html#cards" style="--i:8"><i>🃏</i><b>Trading Cards</b><small>Collect</small></a><a class="lt" href="lab.html#brain" style="--i:9"><i>🧠</i><b>Daily Brain</b><small>Play</small></a><a class="lt" href="lab.html#museum" style="--i:10"><i>🏛️</i><b>Dead Internet Museum</b><small>Explore</small></a><a class="lt" href="lab.html#records" style="--i:11"><i>🏆</i><b>World Records</b><small>Compete</small></a><a class="lt" href="lab.html#sixty" style="--i:12"><i>⏱️</i><b>60-Second Universe</b><small>Explore</small></a><a class="lt" href="lab.html#master" style="--i:13"><i>🎲</i><b>Game Master</b><small>Compete</small></a><a class="lt" href="lab.html#secret" style="--i:14"><i>🗝️</i><b>Secret Internet</b><small>Explore</small></a></div>
+  <div class="lab3-cta"><a href="lab.html" class="btn btn-o">Open VB Lab</a><span>15 experiences · free · no login</span></div></div>
+</section>
 
 <section id="games" class="games2">
   <div class="wrap">
@@ -528,7 +561,8 @@ a,button{-webkit-tap-highlight-color:transparent}
   <div class="wrap">
     <div class="sec-top reveal"><span class="eyebrow">What's new</span><h2 class="h-md">Updates</h2></div>
     <ul class="log reveal">
-      <li><time datetime="2026-11">November 2026</time><h4>Office Life: 4 new games starring Var</h4><p>Boss Alert, Jam Session, Home Office Hustle and Rise &amp; Grind. That makes 27 free games. Plus a new Office life section on the blog.</p></li>
+      <li><time datetime="2026-11">November 2026</time><h4>VB Lab: 15 new experiences</h4><p>Raise a digital pet, build an aquarium, make beats, draw pixel art, build and share your own game level, open trading card packs, take the Daily Brain Challenge, survive the daily arena, explore the Dead Internet Museum, hunt for secrets and chase VB World Records. Plus share buttons on every game.</p></li>
+      <li><time datetime="2026-11">November 2026</time><h4>Office Life: 4 new games starring Vansh</h4><p>Boss Alert, Jam Session, Home Office Hustle and Rise &amp; Grind. That makes 27 free games. Plus a new Office life section on the blog.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>Retro wallpapers and a games-first homepage</h4><p>Six new wallpapers: Night Drive, Showroom, Retro Terminal, Interview Mix, Save Progress and Pocket Player. The Neon Series now rolls across the homepage right under the live game window.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>The Neon Series is here</h4><p>Eight new original games: Photon Dash, Apex Highway, Pulse Defender, Rope Rally, Gradient Drop, Glitch Horde, Drift Circuit and Flipside. Plus coins, skins, achievements, global leaderboards, pause and quick restart in every game.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>Blog categories and new guides</h4><p>Guides are now grouped by topic, with a new Games &amp; job hunting section.</p></li>
@@ -1143,5 +1177,12 @@ document.getElementById("aiBtn").onclick = async ()=>{
     if(k>1.7&&k<10.4){var a=Math.min(1,(k-1.7)/0.3,(10.4-k)/0.3);bubble(LINES[cyc%LINES.length],a)}}
   requestAnimationFrame(frame)})();
 </script>
+<script>
+(function(){var sec=document.getElementById("lab");if(!sec)return;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){sec.style.setProperty("--lp",1);sec.classList.add("in");return}
+  var tick=false;function upd(){tick=false;var r=sec.getBoundingClientRect(),vh=innerHeight,p=Math.max(0,Math.min(1,(vh-r.top)/(vh*0.9)));sec.style.setProperty("--lp",p.toFixed(3));if(p>.55)sec.classList.add("in")}
+  addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});addEventListener("resize",upd);upd()})();
+</script>
+<script src="/secrets.js" defer></script>
 </body>
 </html>

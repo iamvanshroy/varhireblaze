@@ -1,6 +1,8 @@
 // Vercel serverless function: global leaderboards for VarHireBlaze games.
 //   GET  /api/leaderboard?game=photon          -> { top: [{ name, score }] }   (top 10)
 //   POST /api/leaderboard { game, name, score } -> { top, rank }
+//   GET  /api/leaderboard?game=all             -> { records: { game: { name, score } } }  (VB World Records)
+//   Daily boards (survival, brain) also take ?day=YYYY-MM-DD / { day } and reset every day.
 // Uses the same Upstash Redis database as /api/views (KV_REST_API_URL + KV_REST_API_TOKEN).
 // One entry per nickname per game; only a player's best score is kept.
 
@@ -9,7 +11,19 @@ const GAMES = {
   photon: 200000, apex: 500000, pulse: 500000, rope: 100000, gradient: 200000, horde: 500000, drift: 1000000, flip: 200000, boss: 500000, jam: 200000, wfh: 500000, grind: 200000,
   racer: 100000, surfers: 500000, cricket: 10000, flight: 100000, cart: 100000, football: 10000, flappy: 5000, rush: 10000, pong: 1000,
   snake: 100000, breakout: 1000000, invaders: 1000000, salary: 10000000, memory: 100000, catch: 100000,
+  survival: 36000, brain: 3000,
 };
+const DAILY = { survival: 1, brain: 1 };
+
+// a daily board accepts today's date, or yesterday/tomorrow so every time zone works
+function dayKey(game, raw) {
+  if (!DAILY[game]) return `vhb:lb:${game}`;
+  const d = String(raw || "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return null;
+  const diff = Math.abs(Date.parse(d + "T12:00:00Z") - Date.now());
+  if (!(diff < 40 * 3600 * 1000)) return null;
+  return `vhb:lb:${game}:${d}`;
+}
 const BAD = ["fuck", "shit", "bitch", "cunt", "dick", "pussy", "nigg", "fag", "rape", "porn", "sex", "chut", "bhosd", "madar", "behen", "lund", "gaand", "randi", "chod"];
 
 function cleanName(raw) {
@@ -45,8 +59,18 @@ export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
       const game = String(req.query.game || "");
+      if (game === "all") {
+        const keys = Object.keys(GAMES).filter((g) => !DAILY[g]);
+        const rows = await redis(keys.map((g) => ["ZREVRANGE", `vhb:lb:${g}`, "0", "0", "WITHSCORES"]));
+        const records = {};
+        keys.forEach((g, i) => { const t = parseTop(rows[i]); if (t.length) records[g] = t[0]; });
+        res.setHeader("Cache-Control", "public, s-maxage=30");
+        return res.status(200).json({ records });
+      }
       if (!GAMES[game]) return res.status(400).json({ error: "Unknown game" });
-      const [flat] = await redis([["ZREVRANGE", `vhb:lb:${game}`, "0", "9", "WITHSCORES"]]);
+      const k = dayKey(game, req.query.day);
+      if (!k) return res.status(400).json({ error: "Bad day" });
+      const [flat] = await redis([["ZREVRANGE", k, "0", "9", "WITHSCORES"]]);
       return res.status(200).json({ top: parseTop(flat) });
     }
     if (req.method === "POST") {
@@ -63,13 +87,16 @@ export default async function handler(req, res) {
       const [ok] = await redis([["SET", `vhb:rl:${game}:${ip}`, "1", "NX", "EX", "5"]]);
       if (ok !== "OK") return res.status(429).json({ error: "Slow down a little and try again." });
 
-      const key = `vhb:lb:${game}`;
-      const [, rank, flat] = await redis([
+      const key = dayKey(game, body.day);
+      if (!key) return res.status(400).json({ error: "That daily round has ended." });
+      const cmds = [
         ["ZADD", key, "GT", String(score), name],
         ["ZREVRANK", key, name],
         ["ZREVRANGE", key, "0", "9", "WITHSCORES"],
         ["ZREMRANGEBYRANK", key, "0", "-501"],
-      ]);
+      ];
+      if (DAILY[game]) cmds.push(["EXPIRE", key, String(9 * 86400)]);
+      const [, rank, flat] = await redis(cmds);
       return res.status(200).json({ top: parseTop(flat), rank: rank == null ? null : Number(rank) + 1 });
     }
     return res.status(405).json({ error: "Use GET or POST" });

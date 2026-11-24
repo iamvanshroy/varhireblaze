@@ -47,6 +47,10 @@ function onGameOver(key,r,isNew){var got=[],neon=SERIESK.indexOf(key)>=0;
   if(W.total()>=100)unlock("coins100",got);if(W.total()>=1000)unlock("coins1000",got);
   if(NEONK.indexOf(key)>=0){var pl=ls("vhb_played",{});pl[key]=1;ss("vhb_played",pl);if(NEONK.every(function(k){return pl[k]}))unlock("explorer",got)}
   ACH.forEach(function(a){if(a.game===key&&(r.score|0)>=a.need)unlock(a.id,got)});
+  /* VB Lab hooks: a trading-card pack every 3 runs, and VB Game Master challenges */
+  if(runs%3===0){ss("vb_packs",ls("vb_packs",0)+1);setTimeout(function(){toast("🃏 New VB card pack! Open it in <a href='/lab.html#cards' style='color:#ff9a3c'>VB Lab</a>")},1600)}
+  var gm=ls("vb_gm_active",null);
+  if(gm&&gm.game===key&&(r.score|0)>=gm.target){W.add(gm.reward);earned+=gm.reward;var done=ls("vb_gm_done",0)+1;ss("vb_gm_done",done);ss("vb_gm_active",null);setTimeout(function(){toast("🎲 Game Master challenge beaten: "+esc(gm.title)+" · +"+gm.reward+" 🪙")},900)}
   return{earned:earned,ach:got}}
 
 /* ---------- leaderboard ---------- */

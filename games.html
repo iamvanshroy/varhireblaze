@@ -195,6 +195,7 @@ footer a{color:var(--o)}
 .ov .lbtoggle{background:none;border:0;color:var(--o2);font:600 13px Inter,sans-serif;cursor:pointer;margin-top:8px;text-decoration:underline}
 @media(max-width:600px){.ov .lb{display:none}.ov .lb.show{display:block}.ov .txt{display:none}.ov h3{margin-bottom:0}.ov .acts .btn-g[href]{display:none}}
 @media(min-width:601px){.ov .lbtoggle{display:none}}
+.cardshare{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}.acard .cardshare{border-top-color:#808080;padding:8px 0 0;margin-top:8px}.acard .vbs{border-color:#808080;background:#d4d0c8;color:#000}#barShare{display:inline-flex;margin-right:4px}@media(max-width:600px){#barShare{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
@@ -286,7 +287,7 @@ footer a{color:var(--o)}
     </section>
     <section class="neon office" id="office" aria-labelledby="officeH">
       <div class="sechead" style="margin-top:56px"><div><span class="kicker">New · Office Life</span><h2 id="officeH">Office life, <span>but playable.</span></h2></div>
-        <p>Starring Var: dodge the boss, beat the morning jam, survive work-from-home chaos and the 6 AM treadmill.</p></div>
+        <p>Starring Vansh: dodge the boss, beat the morning jam, survive work-from-home chaos and the 6 AM treadmill.</p></div>
       <div class="cards">
       <div class="gcard" data-game="boss">
         <canvas data-prev="boss" width="480" height="300"></canvas>
@@ -299,7 +300,7 @@ footer a{color:var(--o)}
         <canvas data-prev="jam" width="480" height="300"></canvas>
         <span class="tagl">Traffic jam</span>
         <h3>Jam Session</h3>
-        <p>Hop into the moving lane before the morning jam drives Var mad.</p>
+        <p>Hop into the moving lane before the morning jam drives Vansh mad.</p>
         <div class="row"><span class="best">Best: <b data-best="jam">0</b> m</span><span class="play">▶</span></div>
       </div>
       <div class="gcard" data-game="wfh">
@@ -411,7 +412,7 @@ footer a{color:var(--o)}
       <div class="bar">
         <button class="btn btn-g" id="back">← All games</button>
         <h2 id="gTitle">Game</h2>
-        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span><span class="tools"><button class="pill" id="pauseBtn" aria-label="Pause (P)" title="Pause (P)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/><rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"/></svg></button><button class="pill" id="restartBtn" aria-label="Quick restart (R)" title="Quick restart (R)"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8A5.5 5.5 0 1 1 11.9 4.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12.5 1v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="pill mute" id="mute" aria-label="Sound on/off (M)">🔊</button></span></div>
+        <div class="hud"><span class="pill" id="hudA"></span><span class="pill" id="hudB"></span><span class="tools"><span id="barShare"></span><button class="pill" id="pauseBtn" aria-label="Pause (P)" title="Pause (P)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" rx="1" fill="currentColor"/><rect x="7" y="1" width="3" height="10" rx="1" fill="currentColor"/></svg></button><button class="pill" id="restartBtn" aria-label="Quick restart (R)" title="Quick restart (R)"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8A5.5 5.5 0 1 1 11.9 4.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12.5 1v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="pill mute" id="mute" aria-label="Sound on/off (M)">🔊</button></span></div>
       </div>
       <div class="screen" id="screen">
         <canvas id="cv"></canvas>
@@ -430,6 +431,7 @@ footer a{color:var(--o)}
 <script src="/games-core.js"></script>
 <script src="/neon-games.js"></script>
 <script src="/games-hub.js"></script>
+<script src="/vb-share.js"></script>
 <script>
 (function(){
 "use strict";
@@ -437,6 +439,10 @@ var HG=window.HireGames,W=HG.W,H=HG.H,GAMES=HG.GAMES,getBest=HG.getBest,setBest=
 document.getElementById("yr").textContent=new Date().getFullYear();
 (function(){var c=document.getElementById("clock95");function t(){var d=new Date();c.textContent=d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}if(c){t();setInterval(t,15000)}})();
 
+/* ---------- share buttons beside every game ---------- */
+function gameName(k){return (HUB&&HUB.NAMES&&HUB.NAMES[k])||k}
+function shareObj(k,score){return{title:gameName(k)+" · VarHireBlaze",text:score?("I scored "+score+" in "+gameName(k)+" on VarHireBlaze 🎮 Can you beat me? Free, no login:"):("Playing "+gameName(k)+" on VarHireBlaze 🎮 Free, no login, no download:"),url:"/games.html#"+k}}
+if(window.VBShare)[].forEach.call(document.querySelectorAll(".gcard[data-game],.acard[data-game]"),function(card){var k=card.dataset.game;var d=document.createElement("div");d.className="cardshare";d.innerHTML=VBShare.row(shareObj(k));card.appendChild(d)});
 /* ---------- menu previews (only the ones on screen are animated) ---------- */
 var previews=[].map.call(document.querySelectorAll("canvas[data-prev]"),function(cv){var g=GAMES[cv.dataset.prev]();var p={cv:cv,c:cv.getContext("2d"),g:g,vis:false};p.c.setTransform(cv.width/W,0,0,cv.height/H,0,0);return p});
 if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){previews.forEach(function(p){if(p.cv===e.target)p.vis=e.isIntersecting})})},{rootMargin:"80px"});previews.forEach(function(p){io.observe(p.cv)})}
@@ -464,7 +470,7 @@ function openGame(key,x,y){if(!GAMES[key])return;wipeTo(x,y,function(){
   curKey=key;cur=GAMES[key]();cur.reset();gameV.classList.toggle("retro",!!cur.retro);screen.setAttribute("data-title",(cur.title||"").toUpperCase()+".EXE");
   document.getElementById("gTitle").textContent=cur.title;document.getElementById("keys").innerHTML=cur.keys+' · <kbd>P</kbd> pause · <kbd>R</kbd> restart · <kbd>M</kbd> sound';
   menu.classList.add("out","gone");gameV.classList.remove("gone");requestAnimationFrame(function(){gameV.classList.remove("out")});
-  state="ready";hud();paintPause();
+  state="ready";hud();paintPause();if(window.VBShare)document.getElementById("barShare").innerHTML=VBShare.row(shareObj(key));
   showOv('<h3>'+cur.title+'</h3><p>'+cur.intro+'</p><div class="acts"><button class="btn btn-o" data-go>▶ Start</button><button class="btn btn-g" data-hub="boards" data-game="'+key+'">🌍 Top 10</button></div>');
   try{history.replaceState(null,"","#"+key)}catch(e){}
 })}
@@ -487,7 +493,7 @@ function gameOver(){state="over";paintPause();flash();var r=cur.over();
   setTimeout(function(){if(state!=="over"||curKey!==key)return;
     showOv('<h3>'+r.title+'</h3><div class="big" style="font-size:clamp(40px,8vw,78px)">'+r.big+'</div>'+(isNew?'<p style="color:#2bd46b;margin:0 0 4px">★ New personal best!</p>':'')+
     '<p class="txt">'+r.text+'</p>'+(res.earned?'<p class="earn">+'+res.earned+' 🪙 coins</p>':'')+
-    (BLOG[key]?'<p class="txt" style="font-size:14px">Real talk: <a href="'+BLOG[key][0]+'" style="color:#ff9a3c;text-decoration:underline">'+BLOG[key][1]+'</a></p>':'')+'<div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><button class="btn btn-g" data-hub="skins">🎨 Skins</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>'+
+    (BLOG[key]?'<p class="txt" style="font-size:14px">Real talk: <a href="'+BLOG[key][0]+'" style="color:#ff9a3c;text-decoration:underline">'+BLOG[key][1]+'</a></p>':'')+(window.VBShare?'<div style="margin:6px 0 10px"><small style="color:#9a9aa8;display:block;margin-bottom:6px">Challenge a friend</small>'+VBShare.row(shareObj(key,r.big))+'</div>':'')+'<div class="acts"><button class="btn btn-o" data-go>↻ Play again</button><button class="btn btn-g" data-hub="skins">🎨 Skins</button><a class="btn btn-g" href="/#check">Fix my real resume →</a></div>'+
     (HUB?'<button class="lbtoggle" type="button">🌍 Show global top 10</button>'+HUB.boardBlock(key,score):''));
     if(HUB){HUB.hydrate(ov,key,score);var tg=ov.querySelector(".lbtoggle"),lb=ov.querySelector(".lb");if(tg&&lb)tg.addEventListener("click",function(e){e.stopPropagation();lb.classList.toggle("show");tg.remove()})}},320)}
 

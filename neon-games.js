@@ -522,15 +522,15 @@ NEW.flip=function(){
   return S;
 };
 
-/* ---------- Var: the Office Life character (cartoon, drawn in code) ----------
+/* ---------- Vansh: the VarHireBlaze character (cartoon, drawn in code) ----------
    Swept-back black hair, black sunglasses, light stubble, grey knit sweater, chain. */
-var SKIN="#b97a52",SKIN2="#9c6340",HAIR="#121214",SWEAT="#5f5a57",SWEAT2="#4a4643";
+var SKIN="#f3dcc4",SKIN2="#e2bfa0",HAIR="#5b3a24",SWEAT="#5f5a57",SWEAT2="#4a4643";
 function varHead(c,x,y,r,mood,t){ // centre of head
   c.save();c.translate(x,y);
   c.fillStyle=SKIN2;c.beginPath();c.ellipse(-r*0.98,r*0.08,r*0.16,r*0.24,0,0,7);c.fill();c.beginPath();c.ellipse(r*0.98,r*0.08,r*0.16,r*0.24,0,0,7);c.fill();
   c.fillStyle=SKIN;c.beginPath();c.moveTo(-r*0.92,-r*0.2);c.quadraticCurveTo(-r*0.95,r*0.75,0,r*1.05);c.quadraticCurveTo(r*0.95,r*0.75,r*0.92,-r*0.2);c.quadraticCurveTo(0,-r*1.05,-r*0.92,-r*0.2);c.fill();
   // stubble
-  c.fillStyle="rgba(40,25,20,.28)";c.beginPath();c.moveTo(-r*0.7,r*0.35);c.quadraticCurveTo(0,r*1.25,r*0.7,r*0.35);c.quadraticCurveTo(0,r*0.8,-r*0.7,r*0.35);c.fill();
+  c.fillStyle="rgba(91,58,36,.22)";c.beginPath();c.moveTo(-r*0.7,r*0.35);c.quadraticCurveTo(0,r*1.25,r*0.7,r*0.35);c.quadraticCurveTo(0,r*0.8,-r*0.7,r*0.35);c.fill();
   // hair: swept back with volume
   c.fillStyle=HAIR;c.beginPath();c.moveTo(-r*0.98,-r*0.05);c.quadraticCurveTo(-r*1.15,-r*1.05,-r*0.35,-r*1.38);c.quadraticCurveTo(r*0.6,-r*1.62,r*1.12,-r*0.9);c.quadraticCurveTo(r*1.15,-r*0.35,r*0.95,-r*0.05);
   c.quadraticCurveTo(r*0.75,-r*0.55,r*0.15,-r*0.62);c.quadraticCurveTo(-r*0.55,-r*0.6,-r*0.98,-r*0.05);c.fill();
@@ -542,7 +542,7 @@ function varHead(c,x,y,r,mood,t){ // centre of head
   c.fillRect(-r*0.1,gy-r*0.16,r*0.2,r*0.07);
   c.fillStyle="rgba(255,255,255,.22)";c.fillRect(-r*0.72,gy-r*0.1,r*0.22,r*0.05);c.fillRect(r*0.28,gy-r*0.1,r*0.22,r*0.05);
   // mouth
-  c.strokeStyle="#5a2e22";c.lineWidth=Math.max(1.2,r*0.07);c.lineCap="round";c.beginPath();
+  c.strokeStyle="#a0523e";c.lineWidth=Math.max(1.2,r*0.07);c.lineCap="round";c.beginPath();
   if(mood==="happy"){c.arc(0,r*0.5,r*0.25,0.2,Math.PI-0.2)}else if(mood==="angry"){c.moveTo(-r*0.25,r*0.65);c.quadraticCurveTo(0,r*0.45,r*0.25,r*0.65)}else if(mood==="o"){c.arc(0,r*0.6,r*0.12,0,7)}else{c.moveTo(-r*0.2,r*0.58);c.quadraticCurveTo(0,r*0.64,r*0.22,r*0.55)}c.stroke();
   if(mood==="angry"){c.fillStyle="rgba(255,60,60,.28)";c.beginPath();c.ellipse(-r*0.55,r*0.32,r*0.22,r*0.12,0,0,7);c.fill();c.beginPath();c.ellipse(r*0.55,r*0.32,r*0.22,r*0.12,0,0,7);c.fill();c.strokeStyle=HAIR;c.lineWidth=r*0.1;c.beginPath();c.moveTo(-r*0.75,-r*0.42);c.lineTo(-r*0.15,-r*0.3);c.moveTo(r*0.75,-r*0.42);c.lineTo(r*0.15,-r*0.3);c.stroke()}
   c.restore()}
@@ -555,6 +555,15 @@ function varBody(c,x,y,s,pose,t,mood){ // x,y = feet centre (or seat for sit); s
     c.strokeStyle="#e9e9ee";c.lineWidth=1.4;c.beginPath();c.moveTo(-5,-64);c.bezierCurveTo(-12,-40,-14,-20,-20,0);c.stroke(); // earphone wire
     c.fillStyle=SKIN;c.fillRect(-7,-74,14,10);
     varHead(c,0,-96,24,mood,t)}
+  else if(pose==="wave"){var wv=Math.sin(t*9)*0.45;
+    c.strokeStyle="#2a2a34";c.lineWidth=9;c.beginPath();c.moveTo(0,-44);c.lineTo(-9,0);c.moveTo(0,-44);c.lineTo(9,0);c.stroke();
+    c.fillStyle="#f4f4f6";c.fillRect(-17,-6,16,7);c.fillRect(4,-6,16,7);
+    c.fillStyle=SWEAT;c.beginPath();c.moveTo(-15,-42);c.quadraticCurveTo(-18,-88,-6,-92);c.lineTo(8,-92);c.quadraticCurveTo(19,-86,15,-42);c.closePath();c.fill();
+    c.strokeStyle=SWEAT;c.lineWidth=8;c.beginPath();c.moveTo(-8,-84);c.lineTo(-16,-62);c.lineTo(-12,-46);c.stroke();
+    c.beginPath();c.moveTo(8,-84);c.lineTo(26,-96);c.lineTo(28+Math.sin(wv)*14,-118-Math.cos(wv)*4);c.stroke();
+    c.fillStyle=SKIN;c.beginPath();c.arc(28+Math.sin(wv)*16,-122-Math.cos(wv)*4,6,0,7);c.fill();
+    c.strokeStyle="#d8c9a0";c.lineWidth=1.6;c.beginPath();c.moveTo(-6,-92);c.quadraticCurveTo(1,-80,8,-92);c.stroke();
+    c.fillStyle=SKIN;c.fillRect(-5,-100,10,10);varHead(c,1,-116,18,mood||"happy",t)}
   else{ // standing / running side-ish
     var run=pose==="run",ph=t*14,leg=run?Math.sin(ph)*0.7:0,arm=run?Math.sin(ph)*0.8:0;
     c.strokeStyle="#2a2a34";c.lineWidth=9;
@@ -574,7 +583,7 @@ function officeWall(c,col1,col2){var g=c.createLinearGradient(0,0,0,H);g.addColo
 NEW.boss=function(){
   var S={};
   S.title="Boss Alert";S.keys="Hold <kbd>Space</kbd> / hold the screen to chill on your phone · let go to look busy";
-  S.intro="Var wants a break. Hold to scroll memes and earn chill points. Watch the glass door: when a shadow shows up, let go and look busy before the boss peeks in. 3 strikes and you're in a meeting.";
+  S.intro="Vansh wants a break. Hold to scroll memes and earn chill points. Watch the glass door: when a shadow shows up, let go and look busy before the boss peeks in. 3 strikes and you're in a meeting.";
   S.reset=function(){S.t=0;S.slack=false;S.score=0;S.coins=0;S.strikes=0;S.combo=0;S.ev=null;S.next=2.5;S.parts=[];S.txt=[];S.lvl=1;S.anim=0;S.caught=0};
   S.press=function(on){S.slack=on};S.action=function(){};
   S.hud=function(){return["<b>"+(S.score|0)+"</b> chill · "+"❌".repeat(S.strikes)+"⬜".repeat(Math.max(0,3-S.strikes))+" · 🪙 <b>"+S.coins+"</b>","Best <b>"+best("boss",S.score)+"</b>"]};
@@ -630,7 +639,7 @@ NEW.boss=function(){
 NEW.jam=function(){
   var S={},LN=4,LW=120,X0=(W-LN*LW)/2,PY=380,CL=70;
   S.title="Jam Session";S.keys="Change lane: <kbd>←</kbd> <kbd>→</kbd> · Touch: tap left or right side";
-  S.intro="Morning rush, every lane stops and starts. Hop into whichever lane is moving, but only where there's a gap. If Var's frustration meter fills up, the day's over.";
+  S.intro="Morning rush, every lane stops and starts. Hop into whichever lane is moving, but only where there's a gap. If Vansh's frustration meter fills up, the day's over.";
   function flow(l){var b=S.base,ph=S.ph[l];var v=b*(0.55+0.45*Math.sin(S.t*S.fq[l]+ph));if(Math.sin(S.t*S.fq[l]*0.37+ph*2)>0.72)v*=0.08;return Math.max(0,v)}
   S.reset=function(){S.t=0;S.base=150;S.lane=1;S.px=X0+LW*1.5;S.dist=0;S.fr=0;S.coins=0;S.parts=[];S.txt=[];S.honk=0;S.ph=[];S.fq=[];S.cars=[];S.pos=0;S.coinsL=[];
     for(var l=0;l<LN;l++){S.ph.push(rand(0,6));S.fq.push(rand(0.25,0.6));S.cars.push([]);for(var k=0;k<14;k++)S.cars[l].push({y:k*rand(95,150)-600,col:["#3de8ff","#a66bff","#f4f4f6","#2bd46b","#ffd23f","#ff3d5e","#8a8f9c"][(Math.random()*7)|0]})}
@@ -676,7 +685,7 @@ NEW.jam=function(){
     c.fillStyle="#333";rr(c,86,44,86,14,7);c.fill();c.fillStyle=S.fr>70?RED:S.fr>35?GOLD:GRN;rr(c,86,44,86*S.fr/100,14,7);c.fill();label(c,"FRUSTRATION",129,30,10,MUT);
     var clock=8*60+20+(S.dist/40|0),hh=(clock/60|0)%24,mm=clock%60;label(c,(hh>12?hh-12:hh)+":"+("0"+mm).slice(-2)+" AM",W-80,30,18,TXT);
     stepText(c,S.txt,1/60)};
-  S.over=function(){return overObj("Road rage!",(S.dist|0)+" m","Var gave up on the jam. "+S.coins+" coins collected.",S.dist,S.coins)};
+  S.over=function(){return overObj("Road rage!",(S.dist|0)+" m","Vansh gave up on the jam. "+S.coins+" coins collected.",S.dist,S.coins)};
   S.preview=HG.livePreview(S,function(s){if(Math.random()<0.04){var lf=[];for(var l=0;l<4;l++)lf.push(flow(l));var bestL=s.lane;for(l=Math.max(0,s.lane-1);l<=Math.min(3,s.lane+1);l++)if(lf[l]>lf[bestL]*1.3&&!blocked(l))bestL=l;if(bestL!==s.lane)move(bestL>s.lane?1:-1)}s.fr=Math.min(s.fr,60)});
   return S;
 };
@@ -785,7 +794,7 @@ var INFO=[
 ];
 var OFFICE=[
   {k:"boss",name:"Boss Alert",tag:"Reflex · office",desc:"Slack off on your phone, but look busy before the boss peeks in.",unit:"chill",ach:[600,"Never Caught","Score 600 in Boss Alert"]},
-  {k:"jam",name:"Jam Session",tag:"Traffic jam",desc:"Hop into the moving lane before the morning jam drives Var mad.",unit:"m",ach:[800,"Lane Hopper","Drive 800 m in Jam Session"]},
+  {k:"jam",name:"Jam Session",tag:"Traffic jam",desc:"Hop into the moving lane before the morning jam drives Vansh mad.",unit:"m",ach:[800,"Lane Hopper","Drive 800 m in Jam Session"]},
   {k:"wfh",name:"Home Office Hustle",tag:"Multitasking",desc:"Meeting, coffee, plant, cat, delivery. Keep all five alive.",unit:"pts",ach:[900,"WFH Pro","Score 900 in Home Office Hustle"]},
   {k:"grind",name:"Rise & Grind",tag:"Treadmill tapper",desc:"Tap to keep up with the treadmill. Coffee helps.",unit:"m",ach:[400,"Morning Person","Run 400 m in Rise & Grind"]}
 ];

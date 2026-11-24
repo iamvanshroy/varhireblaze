@@ -300,6 +300,10 @@ a,button{-webkit-tap-highlight-color:transparent}
 .nolog{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}.nolog span{padding:7px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.nolog span::before{content:"✓ ";color:var(--o)}
 .credit2{margin-top:44px;text-align:center;font-size:12px;letter-spacing:.08em;color:rgba(255,255,255,.28)}
 .office2{padding:40px 0 100px}.ogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}@media(max-width:900px){.ogrid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.ogrid{grid-template-columns:1fr}}
+#vanshCv{position:absolute;left:max(0px,calc(50% - 740px));top:150px;width:230px;height:280px;z-index:3;pointer-events:none;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6))}
+.stagewrap{position:relative}
+@media(max-width:1520px){#vanshCv{left:auto;right:max(0px,calc(50% - 600px));top:auto;bottom:-30px;width:170px;height:207px}.gwin-foot{padding-right:150px}}
+@media(max-width:560px){#vanshCv{width:96px;height:117px;bottom:-26px;right:2px}.gwin-foot{padding-right:96px;justify-content:flex-start}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -332,6 +336,7 @@ a,button{-webkit-tap-highlight-color:transparent}
     <div class="nolog"><span>No login</span><span>No download</span><span>Free</span></div>
   </div>
   <div class="wrap stagewrap">
+    <canvas id="vanshCv" width="460" height="560" aria-hidden="true"></canvas>
     <div class="gwin" id="stage">
       <div class="gwin-bar"><i></i><i></i><i></i><span>VarHireBlaze Games</span><em><span class="dot"></span>LIVE</em></div>
       <div class="gwin-tabs" id="liveTabs">
@@ -392,7 +397,7 @@ a,button{-webkit-tap-highlight-color:transparent}
     <div class="sec-top reveal">
       <span class="eyebrow">New · Office Life</span>
       <h2 class="h-lg">Office life,<br><span class="o">but playable.</span></h2>
-      <p class="sub" style="margin-top:18px">Meet Var. Dodge the boss, beat the morning traffic, survive work-from-home chaos and the 6 AM treadmill.</p>
+      <p class="sub" style="margin-top:18px">Meet Vansh. Dodge the boss, beat the morning traffic, survive work-from-home chaos and the 6 AM treadmill.</p>
     </div>
     <div class="ogrid">
       <a class="ncard reveal" href="games.html#boss"><canvas data-live="boss" width="800" height="500"></canvas><div class="nc-b"><small>Reflex · office</small><h3>Boss Alert</h3><p>Chill on your phone. Look busy when the boss peeks in.</p></div></a>
@@ -1118,6 +1123,25 @@ document.getElementById("aiBtn").onclick = async ()=>{
   function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
   window.addEventListener("scroll",req,{passive:true});window.addEventListener("resize",req);frame();
 })();
+</script>
+<script>
+/* Vansh walks onto the first screen, waves and talks */
+(function(){var HG=window.HireGames,cv=document.getElementById("vanshCv");if(!HG||!HG.varBody||!cv)return;var c=cv.getContext("2d"),W=230,H=280;
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fit(){var d=Math.min(window.devicePixelRatio||1,2),w=cv.clientWidth||230,h=cv.clientHeight||280;cv.width=Math.round(w*d);cv.height=Math.round(h*d);c.setTransform(cv.width/W,0,0,cv.height/H,0,0)}fit();window.addEventListener("resize",fit);
+  var LINES=["Hey, I'm Vansh 👋","Play a round?","New: VB Lab ✨","27 free games!"],t0=performance.now(),vis=true;
+  if("IntersectionObserver" in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+  function bubble(txt,a){c.save();c.globalAlpha=a;c.font="700 15px Inter,sans-serif";var w=c.measureText(txt).width+26,x=W/2-w/2+10,y=10;c.fillStyle="#fff";
+    c.beginPath();c.moveTo(x+12,y);c.arcTo(x+w,y,x+w,y+36,12);c.arcTo(x+w,y+36,x,y+36,12);c.arcTo(x,y+36,x,y,12);c.arcTo(x,y,x+w,y,12);c.fill();
+    c.beginPath();c.moveTo(W/2,y+36);c.lineTo(W/2+12,y+36);c.lineTo(W/2+2,y+48);c.fill();c.fillStyle="#0b0b0b";c.textBaseline="middle";c.fillText(txt,x+13,y+19);c.restore()}
+  function frame(now){requestAnimationFrame(frame);if(!vis||document.hidden)return;var T=(now-t0)/1000,L=12,k=T%L,cyc=Math.floor(T/L);c.clearRect(0,0,W,H);
+    var x=W/2+10,pose="run",tt=T,mood="happy";
+    if(reduce){k=5}
+    if(k<1.6){x=-60+(W/2+70)*(k/1.6);tt=T}else if(k<4.6){pose="wave";tt=T}else if(k<10.6){pose="run";tt=0;x=W/2+10+Math.sin(T*1.5)*1.5}else{pose="run";tt=T;x=W/2+10+(k-10.6)/1.4*(W+80)}
+    c.fillStyle="rgba(0,0,0,.35)";c.beginPath();c.ellipse(x,H-14,34,7,0,0,7);c.fill();
+    HG.varBody(c,x,H-14+(pose==="run"&&tt===0?Math.sin(T*2)*1.5:0),1.55,pose,tt,mood);
+    if(k>1.7&&k<10.4){var a=Math.min(1,(k-1.7)/0.3,(10.4-k)/0.3);bubble(LINES[cyc%LINES.length],a)}}
+  requestAnimationFrame(frame)})();
 </script>
 </body>
 </html>

@@ -90,10 +90,10 @@ function particles(list,x,y,col,n){for(var i=0;i<n;i++){var a=Math.random()*Math
 function stepParts(c,list,dt){for(var i=list.length-1;i>=0;i--){var p=list[i];p.l-=dt;if(p.l<=0){list.splice(i,1);continue}p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=500*dt;
   c.globalAlpha=Math.max(0,p.l);c.fillStyle=p.col;c.fillRect(p.x-2,p.y-2,4,4)}c.globalAlpha=1}
 
-/* ---------- GAME: Flappy Hire ---------- */
+/* ---------- GAME: Hire Hopper ---------- */
 function Flappy(){
   var S={};
-  S.title="Flappy Hire";S.keys="Tap / click / <kbd>Space</kbd> to flap";
+  S.title="Hire Hopper";S.keys="Tap / click / <kbd>Space</kbd> to flap";
   S.intro="Flap between the rejection letters. Every gap you clear is another interview.";
   S.reset=function(){S.y=H/2;S.vy=-320;S.pipes=[];S.next=0.6;S.score=0;S.t=0;S.parts=[];S.dead=false;S.scroll=0};
   S.action=function(){if(!S.dead){S.vy=-420;S.squash=1;sfx("flap");particles(S.parts,160,S.y-10,"rgba(255,255,255,.6)",4)}};
@@ -130,9 +130,9 @@ function Flappy(){
   return S;
 }
 
-/* ---------- GAME: Resume Pong ---------- */
+/* ---------- GAME: Paddle Pitch ---------- */
 function Pong(){
-  var S={};S.title="Resume Pong";S.keys="Drag / move mouse, or <kbd>↑</kbd> <kbd>↓</kbd> / <kbd>W</kbd> <kbd>S</kbd>";
+  var S={};S.title="Paddle Pitch";S.keys="Drag / move mouse, or <kbd>↑</kbd> <kbd>↓</kbd> / <kbd>W</kbd> <kbd>S</kbd>";
   S.intro="You (left) vs the Recruiter (right). Get your resume past their desk. First to 7 wins.";
   var PH=96,PW=14;
   S.reset=function(){S.py=H/2;S.ay=H/2;S.ps=0;S.as=0;S.t=0;S.parts=[];S.serve(1);S.target=null;S.keyDir=0};
@@ -511,9 +511,9 @@ function Football(){
   return S;
 }
 
-/* ---------- GAME: Hire Surfers ---------- */
+/* ---------- GAME: Commute Runner ---------- */
 function Surfers(){
-  var S={};S.title="Hire Surfers";S.keys="Swipe ← → to switch tracks, ↑ jump, ↓ roll · arrow keys work too";
+  var S={};S.title="Commute Runner";S.keys="Swipe ← → to switch tracks, ↑ jump, ↓ roll · arrow keys work too";
   S.intro="Run the career tracks! Dodge the LAYOFF EXPRESS, jump DEADLINES, roll under the BOSS bar, grab skill coins.";
   var HZ=150,GB=470,VX=400;
   function proj(z){return 1/(1+z*0.11)}
@@ -672,9 +672,9 @@ function Breakout(){
   return S;
 }
 
-/* ---------- Spam Invaders ---------- */
+/* ---------- Spam Storm ---------- */
 function Invaders(){
-  var S={retro:1};S.title="Spam Invaders";S.keys="Drag / move mouse or <kbd>←</kbd> <kbd>→</kbd> · auto-fire, tap to fire faster";
+  var S={retro:1};S.title="Spam Storm";S.keys="Drag / move mouse or <kbd>←</kbd> <kbd>→</kbd> · auto-fire, tap to fire faster";
   S.intro="Your inbox is under attack! Blast the spam emails before they reach the bottom. Dodge the junk they drop.";
   S.reset=function(){S.x=W/2;S.tx=W/2;S.keyDir=0;S.sh=[];S.bombs=[];S.lives=3;S.sc=0;S.wave=1;S.t=0;S.cool=0;S.parts=[];S.pops=[];S.inv=0;S.build()};
   S.build=function(){S.al=[];for(var r=0;r<4;r++)for(var q=0;q<8;q++)S.al.push({x:120+q*70,y:50+r*48,r:r});S.dx=1;S.mv=40+S.wave*10};

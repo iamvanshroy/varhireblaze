@@ -7,8 +7,8 @@ function ss(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function fmt(n){return (n|0).toLocaleString("en-IN")}
 
-var NAMES={racer:"Hire Racer",surfers:"Hire Surfers",cricket:"Hire Cricket",flight:"Hire Flight",cart:"Golf Cart Dash",football:"Hire Touchdown",flappy:"Flappy Hire",rush:"Hire Rush",pong:"Resume Pong",
-  snake:"Resume Snake",breakout:"Glass Ceiling",invaders:"Spam Invaders",salary:"Salary 2048",memory:"Skill Match",catch:"Catch the Offer"};
+var NAMES={racer:"Hire Racer",surfers:"Commute Runner",cricket:"Hire Cricket",flight:"Hire Flight",cart:"Golf Cart Dash",football:"Hire Touchdown",flappy:"Hire Hopper",rush:"Hire Rush",pong:"Paddle Pitch",
+  snake:"Resume Snake",breakout:"Glass Ceiling",invaders:"Spam Storm",salary:"Salary 2048",memory:"Skill Match",catch:"Catch the Offer"};
 (HG.NEON||[]).concat(HG.OFFICE||[]).forEach(function(g){NAMES[g.k]=g.name});
 var NEONK=(HG.NEON||[]).map(function(g){return g.k});var SERIESK=NEONK.concat((HG.OFFICE||[]).map(function(g){return g.k}));
 

@@ -197,7 +197,23 @@ footer a{color:var(--o)}
 @media(min-width:601px){.ov .lbtoggle{display:none}}
 .cardshare{position:relative;z-index:2;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}.acard .cardshare{border-top-color:#808080;padding:8px 0 0;margin-top:8px}.acard .vbs{border-color:#808080;background:#d4d0c8;color:#000}#barShare{display:inline-flex;margin-right:4px}@media(max-width:600px){#barShare{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media(max-width:600px){.navtrk{display:none}}</style>
+@media(max-width:600px){.navtrk{display:none}}.catshow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:26px 0 40px}
+.cs{position:relative;display:flex;flex-direction:column;gap:2px;padding:16px 16px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.08);overflow:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .45s;opacity:0;transform:translateY(24px);animation:csin .8s cubic-bezier(.2,.8,.2,1) forwards}
+.cs:nth-child(2){animation-delay:.07s}.cs:nth-child(3){animation-delay:.14s}.cs:nth-child(4){animation-delay:.21s}.cs:nth-child(5){animation-delay:.28s}
+@keyframes csin{to{opacity:1;transform:none}}
+.cs:hover{transform:translateY(-5px);border-color:rgba(255,106,0,.55);box-shadow:0 24px 50px -24px rgba(255,106,0,.6)}
+.cs-ic{font-size:26px;margin-bottom:6px}.cs b{font:700 17px "Space Grotesk",Inter,sans-serif;letter-spacing:-.02em}.cs small{color:var(--mut);font-size:12.5px}
+.cs em{position:absolute;top:12px;right:12px;font:800 10px Inter,sans-serif;font-style:normal;letter-spacing:.08em;background:#2bd46b;color:#06210f;padding:3px 8px;border-radius:999px}
+.cs-new{background:linear-gradient(150deg,rgba(43,212,107,.18),#101015 60%)}.cs-neon{background:linear-gradient(150deg,rgba(166,107,255,.2),#101015 60%)}.cs-hire{background:linear-gradient(150deg,rgba(255,106,0,.2),#101015 60%)}.cs-arc{background:linear-gradient(150deg,rgba(0,160,160,.22),#101015 60%)}.cs-lab{background:linear-gradient(150deg,rgba(255,210,63,.18),#101015 60%)}
+.newdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd46b;margin-right:8px;vertical-align:1px;box-shadow:0 0 0 0 rgba(43,212,107,.6);animation:ndp 1.6s infinite}
+@keyframes ndp{70%{box-shadow:0 0 0 8px rgba(43,212,107,0)}100%{box-shadow:0 0 0 0 rgba(43,212,107,0)}}
+.gcard.isnew{position:relative;border-color:rgba(43,212,107,.35)}
+.gcard.isnew::before{content:"NEW";position:absolute;top:16px;left:16px;z-index:2;font:800 10px Inter,sans-serif;letter-spacing:.08em;background:#2bd46b;color:#06210f;padding:4px 9px;border-radius:999px;box-shadow:0 6px 16px -6px #2bd46b;pointer-events:none}
+#office,#neon,#hire,#arcade{scroll-margin-top:80px}
+@media(max-width:900px){.catshow{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.catshow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:20px -20px 30px;padding:0 20px 6px;scrollbar-width:none}.catshow::-webkit-scrollbar{display:none}.cs{flex:0 0 160px;scroll-snap-align:start}}
+@media(prefers-reduced-motion:reduce){.cs{opacity:1;transform:none;animation:none}}
+</style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -223,8 +239,77 @@ footer a{color:var(--o)}
       <button class="chip" data-hub="ach">🏆 Achievements <b data-achn>0</b></button>
       <button class="chip" data-hub="boards">🌍 Leaderboards</button>
     </div>
+    <nav class="catshow" aria-label="Game categories">
+      <a href="#office" class="cs cs-new"><span class="cs-ic">✨</span><b>Office Life</b><small>8 games · 4 just launched</small><em>NEW</em></a>
+      <a href="#neon" class="cs cs-neon"><span class="cs-ic">⚡</span><b>Neon Series</b><small>8 high-speed originals</small></a>
+      <a href="#hire" class="cs cs-hire"><span class="cs-ic">💼</span><b>Hire Games</b><small>9 job-hunt games</small></a>
+      <a href="#arcade" class="cs cs-arc"><span class="cs-ic">🕹️</span><b>90s Arcade</b><small>6 retro classics, our way</small></a>
+      <a href="/lab.html" class="cs cs-lab"><span class="cs-ic">🧪</span><b>VB Lab</b><small>15 experiences</small></a>
+    </nav>
+    <section class="neon office" id="office" aria-labelledby="officeH">
+      <div class="sechead"><div><span class="kicker"><i class="newdot"></i>Just launched · Office Life</span><h2 id="officeH">Office life, <span>but playable.</span></h2></div>
+        <p>Starring Vansh: wake up before 9:00, catch the metro, dodge the boss, beat the jam, survive WFH chaos, climb the career ladder and shop at the VB24 Store.</p></div>
+      <div class="cards">
+      <div class="gcard isnew" data-game="wake">
+        <canvas data-prev="wake" width="480" height="300"></canvas>
+        <span class="tagl">Morning routine</span>
+        <h3>Wake Up Rush</h3>
+        <p>Bed to office before 9:00. Grab the checklist items in order.</p>
+        <div class="row"><span class="best">Best: <b data-best="wake">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard isnew" data-game="metro">
+        <canvas data-prev="metro" width="480" height="300"></canvas>
+        <span class="tagl">Commute runner</span>
+        <h3>Metro Rush</h3>
+        <p>Sprint down the platform and catch the metro before the doors close.</p>
+        <div class="row"><span class="best">Best: <b data-best="metro">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard isnew" data-game="stairs">
+        <canvas data-prev="stairs" width="480" height="300"></canvas>
+        <span class="tagl">Stair climber</span>
+        <h3>Career Ladder</h3>
+        <p>Climb from Intern to CEO. Ladders up, banana peels down.</p>
+        <div class="row"><span class="best">Best: <b data-best="stairs">0</b> floors</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard isnew" data-game="shop">
+        <canvas data-prev="shop" width="480" height="300"></canvas>
+        <span class="tagl">Grocery rush</span>
+        <h3>VB24 Store</h3>
+        <p>Grab everything on the shopping list before the store closes.</p>
+        <div class="row"><span class="best">Best: <b data-best="shop">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="wfh">
+        <canvas data-prev="wfh" width="480" height="300"></canvas>
+        <span class="tagl">Multitasking</span>
+        <h3>Home Office Hustle</h3>
+        <p>Meeting, coffee, plant, cat, delivery. Keep all five alive.</p>
+        <div class="row"><span class="best">Best: <b data-best="wfh">0</b> pts</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="boss">
+        <canvas data-prev="boss" width="480" height="300"></canvas>
+        <span class="tagl">Reflex · office</span>
+        <h3>Boss Alert</h3>
+        <p>Slack off on your phone, but look busy before the boss peeks in.</p>
+        <div class="row"><span class="best">Best: <b data-best="boss">0</b> chill</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="jam">
+        <canvas data-prev="jam" width="480" height="300"></canvas>
+        <span class="tagl">Traffic jam</span>
+        <h3>Jam Session</h3>
+        <p>Hop into the moving lane before the morning jam drives Vansh mad.</p>
+        <div class="row"><span class="best">Best: <b data-best="jam">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      <div class="gcard" data-game="grind">
+        <canvas data-prev="grind" width="480" height="300"></canvas>
+        <span class="tagl">Treadmill tapper</span>
+        <h3>Rise & Grind</h3>
+        <p>Tap to keep up with the treadmill. Coffee helps.</p>
+        <div class="row"><span class="best">Best: <b data-best="grind">0</b> m</span><span class="play">▶</span></div>
+      </div>
+      </div>
+    </section>
     <section class="neon" id="neon" aria-labelledby="neonH">
-      <div class="sechead"><div><span class="kicker">New · Neon Series</span><h2 id="neonH">Eight originals. <span>Built for speed.</span></h2></div>
+      <div class="sechead" style="margin-top:56px"><div><span class="kicker">Neon Series</span><h2 id="neonH">Eight originals. <span>Built for speed.</span></h2></div>
         <p>Every Neon game has coins, skins, achievements and a global top 10. They get harder the longer you last.</p></div>
       <div class="cards">
       <div class="gcard" data-game="apex">
@@ -282,68 +367,6 @@ footer a{color:var(--o)}
         <h3>Photon Dash</h3>
         <p>Thread a light-ship through a neon void that keeps getting faster.</p>
         <div class="row"><span class="best">Best: <b data-best="photon">0</b> m</span><span class="play">▶</span></div>
-      </div>
-      </div>
-    </section>
-    <section class="neon office" id="office" aria-labelledby="officeH">
-      <div class="sechead" style="margin-top:56px"><div><span class="kicker">New · Office Life</span><h2 id="officeH">Office life, <span>but playable.</span></h2></div>
-        <p>Starring Vansh: wake up before 9:00, catch the metro, dodge the boss, beat the jam, survive WFH chaos, climb the career ladder and shop at the VB24 Store.</p></div>
-      <div class="cards">
-      <div class="gcard" data-game="wfh">
-        <canvas data-prev="wfh" width="480" height="300"></canvas>
-        <span class="tagl">Multitasking</span>
-        <h3>Home Office Hustle</h3>
-        <p>Meeting, coffee, plant, cat, delivery. Keep all five alive.</p>
-        <div class="row"><span class="best">Best: <b data-best="wfh">0</b> pts</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="boss">
-        <canvas data-prev="boss" width="480" height="300"></canvas>
-        <span class="tagl">Reflex · office</span>
-        <h3>Boss Alert</h3>
-        <p>Slack off on your phone, but look busy before the boss peeks in.</p>
-        <div class="row"><span class="best">Best: <b data-best="boss">0</b> chill</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="jam">
-        <canvas data-prev="jam" width="480" height="300"></canvas>
-        <span class="tagl">Traffic jam</span>
-        <h3>Jam Session</h3>
-        <p>Hop into the moving lane before the morning jam drives Vansh mad.</p>
-        <div class="row"><span class="best">Best: <b data-best="jam">0</b> m</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="grind">
-        <canvas data-prev="grind" width="480" height="300"></canvas>
-        <span class="tagl">Treadmill tapper</span>
-        <h3>Rise & Grind</h3>
-        <p>Tap to keep up with the treadmill. Coffee helps.</p>
-        <div class="row"><span class="best">Best: <b data-best="grind">0</b> m</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="wake">
-        <canvas data-prev="wake" width="480" height="300"></canvas>
-        <span class="tagl">Morning routine</span>
-        <h3>Wake Up Rush</h3>
-        <p>Bed to office before 9:00. Grab the checklist items in order.</p>
-        <div class="row"><span class="best">Best: <b data-best="wake">0</b> pts</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="metro">
-        <canvas data-prev="metro" width="480" height="300"></canvas>
-        <span class="tagl">Commute runner</span>
-        <h3>Metro Rush</h3>
-        <p>Sprint down the platform and catch the metro before the doors close.</p>
-        <div class="row"><span class="best">Best: <b data-best="metro">0</b> pts</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="stairs">
-        <canvas data-prev="stairs" width="480" height="300"></canvas>
-        <span class="tagl">Stair climber</span>
-        <h3>Career Ladder</h3>
-        <p>Climb from Intern to CEO. Ladders up, banana peels down.</p>
-        <div class="row"><span class="best">Best: <b data-best="stairs">0</b> floors</span><span class="play">▶</span></div>
-      </div>
-      <div class="gcard" data-game="shop">
-        <canvas data-prev="shop" width="480" height="300"></canvas>
-        <span class="tagl">Grocery rush</span>
-        <h3>VB24 Store</h3>
-        <p>Grab everything on the shopping list before the store closes.</p>
-        <div class="row"><span class="best">Best: <b data-best="shop">0</b> pts</span><span class="play">▶</span></div>
       </div>
       </div>
     </section>

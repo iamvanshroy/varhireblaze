@@ -11,6 +11,7 @@ const GAMES = {
   photon: 200000, apex: 500000, pulse: 500000, rope: 100000, gradient: 200000, horde: 500000, drift: 1000000, flip: 200000, boss: 500000, jam: 200000, wfh: 500000, grind: 200000,
   racer: 100000, surfers: 500000, cricket: 10000, flight: 100000, cart: 100000, football: 10000, flappy: 5000, rush: 10000, pong: 1000,
   snake: 100000, breakout: 1000000, invaders: 1000000, salary: 10000000, memory: 100000, catch: 100000,
+  wake: 200000, metro: 200000, stairs: 100000, shop: 500000,
   survival: 36000, brain: 3000,
 };
 const DAILY = { survival: 1, brain: 1 };

@@ -1,8 +1,8 @@
 /* VB World Records — the real #1 score for every game, read live from the global leaderboards. */
 VBLab.reg("records",{mount:function(root,L){
   var HUB=window.VHBHub,HG=window.HireGames,NAMES=(HUB&&HUB.NAMES)||{};
-  var ORDER=["wfh","boss","jam","grind","apex","drift","pulse","rope","gradient","horde","flip","photon","racer","surfers","cricket","flight","cart","football","flappy","rush","pong","snake","breakout","invaders","salary","memory","catch"];
-  var GROUP={wfh:"Office Life",boss:"Office Life",jam:"Office Life",grind:"Office Life",apex:"Neon",drift:"Neon",pulse:"Neon",rope:"Neon",gradient:"Neon",horde:"Neon",flip:"Neon",photon:"Neon"};
+  var ORDER=["wfh","boss","jam","grind","wake","metro","stairs","shop","apex","drift","pulse","rope","gradient","horde","flip","photon","racer","surfers","cricket","flight","cart","football","flappy","rush","pong","snake","breakout","invaders","salary","memory","catch"];
+  var GROUP={wake:"Office Life",metro:"Office Life",stairs:"Office Life",shop:"Office Life",wfh:"Office Life",boss:"Office Life",jam:"Office Life",grind:"Office Life",apex:"Neon",drift:"Neon",pulse:"Neon",rope:"Neon",gradient:"Neon",horde:"Neon",flip:"Neon",photon:"Neon"};
   ORDER=ORDER.filter(function(k){return NAMES[k]});
   root.innerHTML='<div class="lab-pad"><div class="lab-row" style="justify-content:space-between;margin-bottom:6px"><div><div class="lab-h">VB World Records</div><p class="lab-mut">The #1 score in every VarHireBlaze game, live from the global leaderboards. Beat one and your nickname takes its place.</p></div>'+
    '<div class="lab-row"><button class="lab-btn on" data-f="all">All</button><button class="lab-btn" data-f="Office Life">Office Life</button><button class="lab-btn" data-f="Neon">Neon</button><button class="lab-btn" data-f="Hire">Hire Games</button></div></div>'+

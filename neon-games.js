@@ -781,6 +781,211 @@ NEW.grind=function(){
   return S;
 };
 
+/* ================= OFFICE LIFE: DAILY GRIND PACK (4 more) ================= */
+var FACE=null;function face(){if(!FACE&&typeof Image!=="undefined"){FACE=new Image();FACE.src="/img/vansh-face.webp"}return FACE&&FACE.complete&&FACE.naturalWidth?FACE:null}
+function faceBadge(c,x,y,r){var f=face();c.save();c.beginPath();c.arc(x,y,r,0,7);c.closePath();if(f){c.save();c.clip();c.drawImage(f,x-r,y-r,r*2,r*2);c.restore()}else{c.fillStyle="#f3dcc4";c.fill();varHead(c,x,y+r*0.08,r*0.78,"happy",0)}c.lineWidth=Math.max(1.5,r*0.14);c.strokeStyle="#fff";c.stroke();c.restore()}
+function emo(c,ch,x,y,s){c.save();c.fillStyle="#000";c.globalAlpha=1;c.font=(s|0)+"px 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif";c.textAlign="center";c.textBaseline="middle";c.fillText(ch,x,y);c.restore()}
+
+/* ---------- 13. WAKE UP RUSH — bed to office before 9:00 ---------- */
+NEW.wake=function(){
+  var S={};
+  var POOL=[["🪥","Toothbrush"],["👔","Shirt"],["🧦","Socks"],["🍞","Toast"],["☕","Coffee"],["🔑","Keys"],["👛","Wallet"],["📱","Phone"],["🎒","Bag"],["👟","Shoes"],["🪪","ID card"],["🔌","Charger"],["☂️","Umbrella"],["💻","Laptop"]];
+  var SLOTS=[[250,120],[370,110],[500,120],[640,120],[300,230],[450,240],[600,240],[730,250],[330,360],[480,380],[630,370],[740,400]];
+  S.title="Wake Up Rush";S.keys="Tap to wake up, then tap the items on the checklist <b>in order</b> · Keys <kbd>1</kbd>–<kbd>9</kbd>, <kbd>0</kbd>, <kbd>-</kbd>, <kbd>=</kbd>";
+  S.intro="The alarm is screaming and the office opens at 9:00. Wake Vansh up, then grab everything on the checklist in the right order: brush, dress, eat, keys, bag. Wrong item? Lost minutes. Every day the list gets longer and the clock gets faster.";
+  S.reset=function(){S.t=0;S.day=0;S.score=0;S.coins=0;S.parts=[];S.txt=[];S.anim=0;nextDay()};
+  function nextDay(){S.day++;S.phase="alarm";S.wakeTaps=0;S.min=7*60+30;S.rate=Math.min(6,2.1+S.day*0.45);S.done=0;S.shake=0;S.commute=0;
+    var n=Math.min(9,2+S.day),pick=POOL.slice().sort(function(){return Math.random()-.5});S.list=pick.slice(0,n);var decoy=pick.slice(n,n+Math.min(3,1+S.day));
+    var items=S.list.concat(decoy),slots=SLOTS.slice().sort(function(){return Math.random()-.5});S.items=items.map(function(it,i){return{e:it[0],n:it[1],x:slots[i][0],y:slots[i][1],got:false,wob:0}})}
+  function tapItem(i){if(S.phase!=="go"||i<0||i>=S.items.length)return;var it=S.items[i];if(it.got)return;var need=S.list[S.done];
+    if(it.n===need[1]){it.got=true;S.done++;S.score+=10;snd("grab");sparks(S.parts,it.x,it.y,GOLD,10,160);floatText(S.txt,it.x,it.y-40,"✓ "+it.n,GRN);
+      if(S.done>=S.list.length){var left=9*60-S.min,bonus=Math.max(0,Math.round(left));S.score+=bonus;S.coins+=1+(left>20?1:0);snd("level");floatText(S.txt,W/2,170,"Out the door! +"+bonus,GOLD);S.phase="commute";S.commute=0}}
+    else{S.min+=6;it.wob=0.5;snd("hurt");buzz([40]);floatText(S.txt,it.x,it.y-40,"Not yet! −6 min",RED)}}
+  S.action=function(){if(S.phase==="alarm")wake()};
+  function wake(){S.wakeTaps++;S.shake=0.25;snd("jump");if(S.wakeTaps>=3){S.phase="go";snd("power");floatText(S.txt,170,170,"I'M UP!",CY)}}
+  S.tapXY=function(x,y){if(S.phase==="alarm"){wake();return}var bi=-1,bd=60;S.items.forEach(function(it,i){var d=Math.hypot(x-it.x,y-it.y);if(d<bd&&!it.got){bd=d;bi=i}});if(bi>=0)tapItem(bi)};
+  S.key=function(k){var map="1234567890-=",i=map.indexOf(k);if(i>=0){if(S.phase==="alarm")wake();else tapItem(i);return true}return false};
+  function clock(m){var h=(m/60)|0,mm=(m%60)|0;return h+":"+(mm<10?"0":"")+mm}
+  S.hud=function(){return["Day <b>"+S.day+"</b> · ⏰ <b>"+clock(S.min)+"</b> · <b>"+S.score+"</b> pts · 🪙 <b>"+S.coins+"</b>","Best <b>"+best("wake",S.score)+"</b>"]};
+  S.update=function(dt){S.t+=dt;S.anim+=dt;S.shake=Math.max(0,S.shake-dt);S.items.forEach(function(it){it.wob=Math.max(0,it.wob-dt)});
+    if(S.phase==="commute"){S.commute+=dt;if(S.commute>1.6)nextDay();return}
+    S.min+=dt*S.rate*(S.phase==="alarm"?1.6:1);if(S.min>=9*60){S.min=9*60;return "over"}};
+  S.draw=function(c){var t=S.anim;var g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2b2440");g.addColorStop(1,"#18142a");c.fillStyle=g;c.fillRect(0,0,W,H);
+    c.fillStyle="#3a2f52";c.fillRect(0,430,W,70);
+    // window with sunrise
+    var sun=Math.min(1,(S.min-450)/90);var wg=c.createLinearGradient(0,40,0,170);wg.addColorStop(0,sun>0.5?"#7ec8ff":"#ff9a6a");wg.addColorStop(1,"#ffd9a0");c.fillStyle=wg;rr(c,40,40,150,120,8);c.fill();c.fillStyle="#fff3c4";c.beginPath();c.arc(115,150-sun*80,18,0,7);c.fill();c.strokeStyle="#4a3d68";c.lineWidth=6;rr(c,40,40,150,120,8);c.stroke();
+    // shelves
+    c.fillStyle="#5a4434";[[210,148,480],[260,268,520],[290,398,480]].forEach(function(s){c.fillRect(s[0],s[1],s[2],10)});
+    // bed
+    c.fillStyle="#6b4a34";c.fillRect(20,360,190,70);c.fillStyle="#e8e4f4";rr(c,24,340,180,34,10);c.fill();c.fillStyle="#ff9a3c";rr(c,70,346,140,40,10);c.fill();
+    if(S.phase==="alarm"){c.save();if(S.shake>0)c.translate(Math.sin(t*90)*4,0);varHead(c,52,340,22,"o",t);c.restore();
+      var ax=150,ay=300+Math.sin(t*40)*2;c.save();c.translate(ax,ay);c.rotate(Math.sin(t*30)*0.15);emo(c,"⏰",0,0,44);c.restore();label(c,"RIIIING! Tap ×"+(3-S.wakeTaps),ax,ay-40,16,RED)}
+    else{varBody(c,S.phase==="commute"?230+S.commute*500:230,430,1.05,S.phase==="commute"?"run":"stand",t,S.min>8*60+40?"angry":"happy")}
+    // items
+    S.items.forEach(function(it,i){if(it.got)return;var bob=Math.sin(t*3+i)*2,wx=it.wob>0?Math.sin(it.wob*60)*5:0;c.fillStyle="rgba(255,255,255,.06)";c.beginPath();c.arc(it.x+wx,it.y+bob,30,0,7);c.fill();emo(c,it.e,it.x+wx,it.y+bob,38);label(c,"1234567890-="[i],it.x+24,it.y+22,10,"rgba(255,255,255,.45)")});
+    // checklist
+    c.fillStyle="rgba(10,10,16,.78)";rr(c,W-150,10,140,26+S.list.length*20,10);c.fill();label(c,"TO DO · Day "+S.day,W-80,26,11,GOLD);
+    S.list.forEach(function(l,i){var y=46+i*20,done=i<S.done,cur=i===S.done;c.save();c.globalAlpha=done?0.4:1;emo(c,l[0],W-136,y,14);c.fillStyle=cur?"#fff":MUT;c.font=(cur?"700 ":"500 ")+"12px Inter,sans-serif";c.textAlign="left";c.textBaseline="middle";c.fillText((done?"✓ ":"")+l[1],W-124,y);c.restore()});
+    // big clock
+    var late=S.min>8*60+40;c.fillStyle=late?RED:"#fff";c.font="700 30px 'Space Grotesk',Inter,sans-serif";c.textAlign="left";c.textBaseline="alphabetic";c.fillText(clock(S.min),214,40);label(c,"office opens 9:00",268,58,11,MUT);
+    if(S.phase==="commute"){c.fillStyle="rgba(0,0,0,"+Math.min(.6,S.commute*.5)+")";c.fillRect(0,0,W,H);label(c,"Day "+S.day+" ✓ Made it!",W/2,H/2,30,GOLD)}
+    stepSparks(c,S.parts,1/60,200);stepText(c,S.txt,1/60)};
+  S.over=function(){return overObj("Late for work! 😴",S.score+"","Vansh made it through "+(S.day-1)+" morning"+(S.day===2?"":"s")+" before missing 9:00.",S.score,S.coins)};
+  S.preview=HG.livePreview(S,function(s){if(s.phase==="alarm"){if(Math.random()<0.08)wake();return}if(s.phase!=="go"||Math.random()>0.06)return;var need=s.list[s.done];if(!need)return;var i=-1;s.items.forEach(function(it,k){if(it.n===need[1])i=k});tapItem(i)});
+  return S;
+};
+
+/* ---------- 14. METRO RUSH — catch the train before the doors close ---------- */
+NEW.metro=function(){
+  var S={},GY=400,PX=170;
+  S.title="Metro Rush";S.keys="Tap / <kbd>Space</kbd> / <kbd>↑</kbd> to jump · hold for a higher jump";
+  S.intro="The 8:42 metro is already on the platform and the doors are about to close. Vansh sprints down the platform. Jump over bags, wet floors and slow walkers. Every stumble costs time. Miss the doors and you're late.";
+  var OB=[{k:"bag",w:34,h:30},{k:"wet",w:60,h:8},{k:"walker",w:30,h:72},{k:"cart",w:50,h:40},{k:"pigeon",w:24,h:18}];
+  S.reset=function(){S.t=0;S.st=0;S.score=0;S.coins=0;S.parts=[];S.txt=[];S.y=0;S.vy=0;S.hold=false;S.run=0;S.slow=0;S.newStation()};
+  S.newStation=function(){S.st++;S.x=0;S.speed=300+S.st*22;S.len=2200+S.st*350;S.time=S.len/S.speed*1.42-Math.min(2,S.st*0.12);S.timer=S.time;S.obs=[];S.coinsW=[];S.phase="run";S.board=0;
+    var x=500;while(x<S.len-260){var o=OB[Math.floor(Math.random()*Math.min(OB.length,2+S.st))];S.obs.push({k:o.k,x:x,w:o.w,h:o.h,hit:false});if(Math.random()<0.5)S.coinsW.push({x:x+rand(-40,40),y:rand(90,150),got:false});x+=rand(260,520)-Math.min(120,S.st*10)}};
+  function jump(){if(S.y===0&&S.phase==="run"){S.vy=640;snd("jump")}}
+  S.action=jump;S.press=function(on){S.hold=on;if(on)jump()};
+  S.key=function(k){if(k==="ArrowUp"||k==="w"||k==="W"){jump();return true}return false};
+  S.hud=function(){return["Station <b>"+S.st+"</b> · 🚪 <b>"+Math.max(0,S.timer).toFixed(1)+"s</b> · 🪙 <b>"+S.coins+"</b>","Best <b>"+best("metro",S.score)+"</b>"]};
+  S.update=function(dt){S.t+=dt;
+    if(S.phase==="board"){S.board+=dt;if(S.board>1.4)S.newStation();return}
+    if(S.phase==="miss"){S.board+=dt;return S.board>1.4?"over":undefined}
+    S.timer-=dt;S.slow=Math.max(0,S.slow-dt);var sp=S.speed*(S.slow>0?0.35:1)*(1+Math.min(.25,S.t*0.002));S.x+=sp*dt;S.run+=dt*sp/90;
+    S.vy-=(S.hold&&S.vy>0?1250:2300)*dt;S.y=Math.max(0,S.y+S.vy*dt);if(S.y===0)S.vy=0;
+    S.obs.forEach(function(o){var sx=PX+(o.x-S.x);if(!o.hit&&sx<PX+18&&sx+o.w>PX-14&&S.y<o.h-4){o.hit=true;S.slow=0.7;S.timer-=0.6;snd("hurt");buzz([50]);HG.boom(PX,GY-30,RED,8);floatText(S.txt,PX,GY-110,"Oops! −0.6s",RED)}});
+    S.coinsW.forEach(function(cn){var sx=PX+(cn.x-S.x);if(!cn.got&&Math.abs(sx-PX)<26&&Math.abs((GY-40-S.y)-(GY-cn.y))<46){cn.got=true;S.coins++;snd("coin");floatText(S.txt,PX,GY-cn.y-20,"+1",GOLD)}});
+    if(S.x>=S.len){S.phase="board";S.board=0;var bonus=Math.round(S.timer*10);S.score+=100+bonus;snd("level");floatText(S.txt,W/2,150,"CAUGHT IT! +"+(100+bonus),GOLD);if(S.timer>2)S.coins++}
+    else if(S.timer<=0){S.phase="miss";S.board=0;snd("boom");buzz([90,50,90]);floatText(S.txt,W/2,150,"DOORS CLOSED",RED)}};
+  S.draw=function(c){var t=S.t,cam=S.x;
+    var g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1d2333");g.addColorStop(1,"#101420");c.fillStyle=g;c.fillRect(0,0,W,H);
+    // wall tiles + signs
+    c.fillStyle="#232a3e";for(var x=-((cam*0.6)%60);x<W;x+=60){c.fillRect(x,40,56,200)}c.fillStyle="#ff6a00";c.fillRect(0,236,W,8);
+    for(var sgn=Math.floor(cam*0.6/700);sgn<Math.floor(cam*0.6/700)+3;sgn++){var sx2=sgn*700-cam*0.6+300;c.fillStyle="#0f1320";rr(c,sx2,70,190,46,8);c.fill();label(c,"VB LINE · Stn "+(S.st),sx2+95,93,14,"#fff")}
+    // track pit + train
+    c.fillStyle="#0a0c12";c.fillRect(0,GY+8,W,92);c.fillStyle="#ffd23f";c.fillRect(0,GY,W,8);
+    var tx=PX+(S.len-S.x)-40;if(tx<W+40){c.fillStyle="#d8dce6";rr(c,tx,GY-170,640,170,16);c.fill();c.fillStyle="#ff6a00";c.fillRect(tx,GY-60,640,10);
+      for(var w=0;w<4;w++){c.fillStyle="#2a3350";rr(c,tx+150+w*120,GY-150,80,50,6);c.fill()}
+      var close=S.phase==="miss"?1:Math.max(0,1-S.timer/2);var dw=36*(1-close);c.fillStyle="#555b6e";c.fillRect(tx+20,GY-160,80,160);c.fillStyle="#1a1f2e";c.fillRect(tx+60-dw,GY-150,dw*2,150);
+      if(S.timer<2&&S.phase==="run"&&Math.sin(t*20)>0){c.fillStyle=RED;c.beginPath();c.arc(tx+60,GY-172,7,0,7);c.fill()}label(c,"VB METRO",tx+340,GY-30,18,"#222")}
+    // obstacles
+    S.obs.forEach(function(o){var sx=PX+(o.x-S.x);if(sx<-80||sx>W+80)return;
+      if(o.k==="bag"){c.fillStyle="#7a4d2a";rr(c,sx,GY-o.h,o.w,o.h,6);c.fill();c.fillStyle="#5a3a1f";c.fillRect(sx+10,GY-o.h-8,14,8)}
+      else if(o.k==="wet"){c.fillStyle="rgba(61,162,255,.5)";c.beginPath();c.ellipse(sx+o.w/2,GY-2,o.w/2,6,0,0,7);c.fill();c.fillStyle="#ffd23f";c.beginPath();c.moveTo(sx+8,GY);c.lineTo(sx+18,GY-36);c.lineTo(sx+28,GY);c.fill();label(c,"!",sx+18,GY-12,12,"#111")}
+      else if(o.k==="walker"){stick(c,sx+15,GY,1,{t:t,run:true,color:"#8a90a6"})}
+      else if(o.k==="cart"){c.fillStyle="#9aa0b0";c.fillRect(sx,GY-o.h,o.w,o.h-10);c.fillStyle="#333";c.beginPath();c.arc(sx+10,GY-6,6,0,7);c.arc(sx+o.w-10,GY-6,6,0,7);c.fill()}
+      else{c.fillStyle="#8a8a96";c.beginPath();c.ellipse(sx+12,GY-9,12,8,0,0,7);c.fill();c.beginPath();c.arc(sx+22,GY-16,5,0,7);c.fill()}});
+    S.coinsW.forEach(function(cn){if(cn.got)return;var sx=PX+(cn.x-S.x);if(sx>-20&&sx<W+20)coinIcon(c,sx,GY-cn.y,9,t)});
+    // Vansh
+    if(!(S.phase==="board"&&S.board>0.5)){var bx=S.phase==="board"?PX+S.board*260:PX;varBody(c,bx,GY-S.y,0.95,S.y>0?"stand":"run",S.run*0.35,S.slow>0?"o":S.timer<2?"angry":"happy")}
+    // timer bar
+    var f=Math.max(0,S.timer/S.time);c.fillStyle="rgba(0,0,0,.5)";rr(c,W/2-160,12,320,14,7);c.fill();c.fillStyle=f>0.4?GRN:f>0.2?GOLD:RED;rr(c,W/2-160,12,320*f,14,7);c.fill();label(c,"Doors close in "+Math.max(0,S.timer).toFixed(1)+"s",W/2,42,13,"#fff");
+    var prog=Math.min(1,S.x/S.len);c.fillStyle="rgba(255,255,255,.15)";c.fillRect(W/2-160,52,320,3);c.fillStyle="#ff6a00";c.fillRect(W/2-160,52,320*prog,3);
+    stepSparks(c,S.parts,1/60,200);stepText(c,S.txt,1/60)};
+  S.over=function(){return overObj("Missed the metro! 🚇",S.score+"","Vansh caught "+(S.st-1)+" train"+(S.st===2?"":"s")+" before the doors won.",S.score,S.coins)};
+  S.preview=HG.livePreview(S,function(s){s.obs.forEach(function(o){var d=o.x-s.x;if(d>40&&d<95&&s.y===0)jump()})});
+  return S;
+};
+
+/* ---------- 15. CAREER LADDER — climb the corporate stairs ---------- */
+NEW.stairs=function(){
+  var S={},SW=78,SH=40;
+  var TITLES=[[0,"Intern"],[20,"Trainee"],[45,"Junior"],[80,"Associate"],[120,"Senior"],[170,"Team Lead"],[230,"Manager"],[300,"Director"],[380,"VP"],[480,"CEO 👑"]];
+  S.title="Career Ladder";S.keys="Tap the <b>left</b> or <b>right</b> half of the screen · or <kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd>";
+  S.intro="Climb the corporate staircase from Intern to CEO. Step left or right to match the next stair. Golden ladders 🪜 jump you up 5 floors. Banana peels 🍌 slide you back down 3. Wrong step or an empty energy bar and you fall.";
+  function gen(n){while(S.steps.length<n){var last=S.steps[S.steps.length-1];var d=Math.random()<0.65?last.d:-last.d;var x=last.x+d;if(Math.abs(x)>4){d=-d;x=last.x+d}var k="";var idx=S.steps.length;if(idx>8&&Math.random()<0.06)k="ladder";else if(idx>12&&Math.random()<0.07)k="peel";S.steps.push({x:x,d:d,k:k})}}
+  S.reset=function(){S.t=0;S.steps=[{x:0,d:1,k:""}];gen(40);S.i=0;S.top=0;S.energy=1;S.coins=0;S.parts=[];S.txt=[];S.cam=0;S.fall=0;S.face=1;S.lastT=0;S.slide=0;S.title_i=0};
+  function title(f){var r=TITLES[0][1];TITLES.forEach(function(x){if(f>=x[0])r=x[1]});return r}
+  function step(d){if(S.fall||S.slide>0)return;var nx=S.steps[S.i+1];S.face=d;gen(S.i+30);
+    if(nx.d!==d){S.fall=0.001;snd("boom");buzz([90,50,90]);return}
+    S.i++;S.energy=Math.min(1,S.energy+0.09);snd("jump");landed()}
+  function landed(){var s=S.steps[S.i];if(s.k==="ladder"){s.k="";S.i=Math.min(S.i+5,S.steps.length-2);gen(S.i+30);S.coins++;snd("power");floatText(S.txt,W/2,170,"PROMOTION! +5 🪜",GOLD)}
+    else if(s.k==="peel"){s.k="";S.slide=0.45;S.i=Math.max(0,S.i-3);snd("hurt");floatText(S.txt,W/2,170,"Slipped! −3 🍌",RED)}
+    if(S.i>S.top){S.top=S.i;var tt=title(S.top);if(tt!==S.curT){if(S.curT){snd("level");floatText(S.txt,W/2,130,"Now: "+tt,CY);S.coins++}S.curT=tt}}}
+  S.tapXY=function(x){step(x<W/2?-1:1)};S.action=function(){};
+  S.key=function(k){if(k==="ArrowLeft"||k==="a"||k==="A"){step(-1);return true}if(k==="ArrowRight"||k==="d"||k==="D"){step(1);return true}return false};
+  S.hud=function(){return["Floor <b>"+S.top+"</b> · "+title(S.top)+" · 🪙 <b>"+S.coins+"</b>","Best <b>"+best("stairs",S.top)+"</b>"]};
+  S.update=function(dt){S.t+=dt;if(S.fall){S.fall+=dt;return S.fall>1?"over":undefined}S.slide=Math.max(0,S.slide-dt);
+    if(S.i>0)S.energy-=dt*(0.14+Math.min(0.42,S.top*0.0011));if(S.energy<=0){S.energy=0;S.fall=0.001;snd("boom");floatText(S.txt,W/2,170,"OUT OF ENERGY",RED)}
+    S.cam+=((S.i)-S.cam)*Math.min(1,dt*10)};
+  S.draw=function(c){var t=S.t,sk=skin();var g=c.createLinearGradient(0,0,0,H);var hue=Math.min(1,S.top/480);g.addColorStop(0,hue>0.6?"#0b0b24":"#1b2440");g.addColorStop(1,"#0f1220");c.fillStyle=g;c.fillRect(0,0,W,H);
+    // city skyline sinking as you climb
+    c.fillStyle="#141a2c";for(var b=0;b<14;b++){var bh=80+((b*53)%140);c.fillRect(b*62,H-bh+S.cam*3,54,bh+400)}
+    var me=S.steps[S.i],cx=W/2,cy=330;
+    function sp(i){var s=S.steps[i];var camX=S.steps[Math.max(0,Math.floor(S.cam))].x;return{x:cx+(s.x-camX)*SW,y:cy-(i-S.cam)*SH}}
+    for(var i=Math.max(0,S.i-8);i<Math.min(S.steps.length,S.i+14);i++){var p=sp(i),s=S.steps[i];var gold=s.k==="ladder";c.fillStyle=gold?"#c9971a":i%10===0?"#ff6a00":"#3a4260";rr(c,p.x-SW/2,p.y,SW,14,4);c.fill();c.fillStyle=gold?"#ffd23f":i%10===0?"#ff9a3c":"#56608a";c.fillRect(p.x-SW/2,p.y,SW,4);
+      if(s.k==="ladder")emo(c,"🪜",p.x,p.y-16,24);if(s.k==="peel")emo(c,"🍌",p.x,p.y-10,20);if(i%10===0&&i>0)label(c,i+"",p.x,p.y+26,11,"rgba(255,255,255,.5)")}
+    var pp=sp(S.i);c.save();if(S.fall){c.translate(pp.x,pp.y+S.fall*S.fall*900);c.rotate(S.fall*5*S.face)}else c.translate(pp.x,pp.y);if(S.face<0)c.scale(-1,1);varBody(c,0,0,0.62,S.fall?"stand":"run",S.i*0.5,S.fall?"o":S.energy<0.3?"angry":"happy");c.restore();
+    // energy + title
+    c.fillStyle="rgba(0,0,0,.5)";rr(c,W/2-150,14,300,14,7);c.fill();c.fillStyle=S.energy>0.4?GRN:S.energy>0.2?GOLD:RED;rr(c,W/2-150,14,300*S.energy,14,7);c.fill();
+    label(c,title(S.top).toUpperCase(),W/2,52,20,GOLD);
+    c.fillStyle="rgba(255,255,255,.05)";c.fillRect(0,0,W/2,H);label(c,"◀",40,H-30,22,"rgba(255,255,255,.25)");label(c,"▶",W-40,H-30,22,"rgba(255,255,255,.25)");
+    stepSparks(c,S.parts,1/60,200);stepText(c,S.txt,1/60)};
+  S.over=function(){return overObj("Fell off the ladder!",S.top+" floors","Vansh climbed to "+title(S.top)+". Not bad for a fresher.",S.top,S.coins)};
+  S.preview=HG.livePreview(S,function(s){if(Math.random()<0.25){var nx=s.steps[s.i+1];if(nx)step(nx.d)}});
+  return S;
+};
+
+/* ---------- 16. VB24 STORE — grab the shopping list before closing time ---------- */
+var VB24=[
+  {n:"VB Cola",t:"can",a:"#e0262f",b:"#fff"},{n:"VB Fizz",t:"can",a:"#ff8a00",b:"#fff"},{n:"VB Chips",t:"bag",a:"#ffd23f",b:"#c0392b"},{n:"Masala Chips",t:"bag",a:"#2bd46b",b:"#0b4d2b"},
+  {n:"VB Bread",t:"loaf",a:"#f4e3c0",b:"#c27c2c"},{n:"VB Choco",t:"bar",a:"#6b2fa0",b:"#ffd23f"},{n:"VB Cookies",t:"box",a:"#2d6cdf",b:"#fff"},{n:"VB Noodles",t:"cup",a:"#ff3d5e",b:"#ffd23f"},
+  {n:"VB Milk",t:"carton",a:"#ffffff",b:"#3da2ff"},{n:"VB Juice",t:"carton",a:"#ff9a3c",b:"#2bd46b"},{n:"VB Water",t:"bottle",a:"#9fe3ff",b:"#1d6fb8"},{n:"VB Biscuits",t:"box",a:"#c9a66b",b:"#7a1f00"}];
+function vbPack(c,p,x,y,s,t){c.save();c.translate(x,y);c.scale(s,s);var A=p.a,B=p.b;
+  if(p.t==="can"){c.fillStyle="#bfc4cc";rr(c,-16,-34,32,6,3);c.fill();c.fillStyle=A;rr(c,-18,-30,36,60,6);c.fill();c.fillStyle="rgba(255,255,255,.25)";c.fillRect(-13,-28,5,56)}
+  else if(p.t==="bag"){c.fillStyle=A;c.beginPath();c.moveTo(-24,-36);c.lineTo(24,-36);c.lineTo(28,30);c.lineTo(-28,30);c.closePath();c.fill();c.fillStyle="rgba(0,0,0,.15)";for(var z=-24;z<24;z+=6)c.fillRect(z,-38,3,5)}
+  else if(p.t==="loaf"){c.fillStyle="rgba(255,255,255,.55)";rr(c,-30,-26,60,52,16);c.fill();c.fillStyle=A;rr(c,-26,-22,52,44,14);c.fill();c.fillStyle=B;c.fillRect(-28,-4,56,8)}
+  else if(p.t==="bar"){c.fillStyle=A;rr(c,-34,-16,68,32,4);c.fill();c.fillStyle="#c0c4cc";c.fillRect(-34,-16,10,32);c.fillRect(24,-16,10,32)}
+  else if(p.t==="box"){c.fillStyle=A;rr(c,-24,-34,48,66,4);c.fill();c.fillStyle="rgba(0,0,0,.18)";c.fillRect(-24,-34,48,8)}
+  else if(p.t==="cup"){c.fillStyle=A;c.beginPath();c.moveTo(-24,-28);c.lineTo(24,-28);c.lineTo(18,30);c.lineTo(-18,30);c.closePath();c.fill();c.fillStyle="#eee";c.fillRect(-26,-32,52,6)}
+  else if(p.t==="carton"){c.fillStyle=A;c.fillRect(-20,-24,40,56);c.beginPath();c.moveTo(-20,-24);c.lineTo(0,-40);c.lineTo(20,-24);c.fill();c.fillStyle=B;c.fillRect(-20,14,40,8)}
+  else{c.fillStyle=A;rr(c,-13,-28,26,60,8);c.fill();c.fillStyle="#1d6fb8";c.fillRect(-6,-38,12,10);c.fillStyle=B;c.fillRect(-13,0,26,12)}
+  // VB branding + Vansh's face
+  var fy=p.t==="bar"?0:-6;if(p.t==="bar"){faceBadge(c,-8,0,10);c.fillStyle=B;c.font="800 13px 'Space Grotesk',Inter,sans-serif";c.textAlign="left";c.textBaseline="middle";c.fillText("VB",5,1)}
+  else{faceBadge(c,0,fy,p.t==="bottle"?9:12);c.fillStyle="#0b0b0b";rr(c,-14,fy+13,28,13,4);c.fill();c.fillStyle="#ff6a00";c.font="800 10px 'Space Grotesk',Inter,sans-serif";c.textAlign="center";c.textBaseline="middle";c.fillText("VB",0,fy+20)}
+  c.restore()}
+NEW.shop=function(){
+  var S={},COLS=4,ROWS=3,X0=290,Y0=88,CW=124,CH=128;
+  S.title="VB24 Store";S.keys="Tap the products on the shopping list · Keys <kbd>1</kbd>–<kbd>9</kbd>, <kbd>0</kbd>, <kbd>-</kbd>, <kbd>=</kbd>";
+  S.intro="Vansh's flatmates sent a shopping list and VB24 Store closes soon. Grab exactly what's on the list (soft drinks, chips, bread, chocolate, cookies, noodles and more) before the timer runs out. Wrong item? Put it back and lose time. Every customer brings a longer list.";
+  S.reset=function(){S.t=0;S.cust=0;S.score=0;S.coins=0;S.parts=[];S.txt=[];S.combo=0;nextList()};
+  function nextList(){S.cust++;var n=Math.min(8,2+S.cust),pool=VB24.map(function(_,i){return i}).sort(function(){return Math.random()-.5});S.need={};var types=pool.slice(0,Math.min(5,1+Math.ceil(S.cust/1.5)));
+    for(var k=0;k<n;k++){var it=types[k%types.length];S.need[it]=(S.need[it]||0)+1}S.order=Object.keys(S.need).map(Number);S.shelf=VB24.map(function(_,i){return i}).sort(function(){return Math.random()-.5});
+    S.time=Math.max(7,6+n*2.6-S.cust*0.5);S.timer=S.time;S.fly=[];S.pop=S.shelf.map(function(){return 0});S.phase="shop";S.pay=0}
+  function grab(slot){if(S.phase!=="shop"||slot<0||slot>=S.shelf.length)return;var id=S.shelf[slot],col=slot%COLS,row=(slot/COLS)|0,x=X0+col*CW+CW/2,y=Y0+row*CH+CH/2-6;S.pop[slot]=0.25;
+    if(S.need[id]>0){S.need[id]--;S.combo++;S.score+=10+Math.min(20,S.combo*2);snd("grab");S.fly.push({id:id,x:x,y:y,t:0});floatText(S.txt,x,y-50,"+"+(10+Math.min(20,S.combo*2)),GRN);
+      if(Object.keys(S.need).every(function(k){return S.need[k]<=0})){var bonus=Math.round(S.timer*8);S.score+=bonus;S.coins+=1+(S.timer>S.time*0.4?1:0);S.phase="pay";S.pay=0;snd("level");floatText(S.txt,W/2,200,"Paid! Bonus +"+bonus,GOLD)}}
+    else{S.combo=0;S.timer-=1.5;snd("hurt");buzz([40]);floatText(S.txt,x,y-50,"Not on the list −1.5s",RED)}}
+  S.tapXY=function(x,y){if(x<X0||y<Y0)return;var col=((x-X0)/CW)|0,row=((y-Y0)/CH)|0;if(col<COLS&&row<ROWS)grab(row*COLS+col)};S.action=function(){};
+  S.key=function(k){var i="1234567890-=".indexOf(k);if(i>=0){grab(i);return true}return false};
+  S.hud=function(){return["Customer <b>"+S.cust+"</b> · ⏱ <b>"+Math.max(0,S.timer).toFixed(1)+"s</b> · <b>"+S.score+"</b> pts · 🪙 <b>"+S.coins+"</b>","Best <b>"+best("shop",S.score)+"</b>"]};
+  S.update=function(dt){S.t+=dt;S.pop=S.pop.map(function(p){return Math.max(0,p-dt)});S.fly.forEach(function(f){f.t+=dt*2.2});S.fly=S.fly.filter(function(f){return f.t<1});
+    if(S.phase==="pay"){S.pay+=dt;if(S.pay>1.3)nextList();return}S.timer-=dt;if(S.timer<=0){S.timer=0;return "over"}};
+  S.draw=function(c){var t=S.t;c.fillStyle="#141418";c.fillRect(0,0,W,H);
+    // store sign
+    c.fillStyle="#0b0b0b";c.fillRect(0,0,W,52);c.fillStyle="#ff6a00";c.fillRect(0,50,W,4);c.fillStyle="#ff6a00";rr(c,14,10,58,34,8);c.fill();c.fillStyle="#0b0b0b";c.font="800 20px 'Space Grotesk',Inter,sans-serif";c.textAlign="center";c.textBaseline="middle";c.fillText("VB",43,28);
+    c.fillStyle="#fff";c.font="800 22px 'Space Grotesk',Inter,sans-serif";c.textAlign="left";c.fillText("VB24 Store",82,28);label(c,"OPEN 24 HOURS",250,28,11,GOLD);faceBadge(c,W-34,27,19);
+    // shelves
+    for(var r=0;r<ROWS;r++){c.fillStyle="#24242c";c.fillRect(X0-10,Y0+r*CH,COLS*CW+20,CH-4);c.fillStyle="#3a3a46";c.fillRect(X0-10,Y0+(r+1)*CH-18,COLS*CW+20,14);c.fillStyle="#ff6a00";c.fillRect(X0-10,Y0+(r+1)*CH-18,COLS*CW+20,3)}
+    S.shelf.forEach(function(id,i){var col=i%COLS,row=(i/COLS)|0,x=X0+col*CW+CW/2,y=Y0+row*CH+CH/2-14,p=VB24[id],sc=1.05+S.pop[i]*0.8;var wanted=S.need[id]>0;
+      if(wanted&&S.phase==="shop"){c.fillStyle="rgba(255,210,63,"+(0.06+0.05*Math.sin(t*6))+")";rr(c,x-CW/2+6,y-50,CW-12,96,10);c.fill()}
+      vbPack(c,p,x,y,sc,t);label(c,p.n,x,y+50,11,"rgba(255,255,255,.75)");label(c,"1234567890-="[i],x+CW/2-14,y-44,10,"rgba(255,255,255,.35)")});
+    // list paper
+    c.fillStyle="#fffdf4";rr(c,18,72,240,300,10);c.fill();c.fillStyle="#e0d9c0";for(var ly=110;ly<360;ly+=26)c.fillRect(28,ly,220,1);
+    c.fillStyle="#1b1b22";c.font="700 16px Inter,sans-serif";c.textAlign="left";c.textBaseline="middle";c.fillText("🛒 Shopping list #"+S.cust,30,92);
+    S.order.forEach(function(id,k){var y=122+k*26,left=S.need[id],done=left<=0;c.globalAlpha=done?0.4:1;vbPack(c,VB24[id],44,y,0.32,t);c.fillStyle=done?"#2b8a4b":"#1b1b22";c.font=(done?"500 ":"700 ")+"14px Inter,sans-serif";c.fillText((done?"✓ ":"")+VB24[id].n,64,y);if(!done){c.fillStyle="#ff6a00";c.textAlign="right";c.fillText("×"+left,244,y);c.textAlign="left"}c.globalAlpha=1});
+    // flying to basket + Vansh with basket
+    varBody(c,130,470,0.75,"stand",0,S.timer<3?"angry":"happy");c.fillStyle="#ff6a00";rr(c,150,410,50,30,6);c.fill();c.strokeStyle="#ff6a00";c.lineWidth=3;c.beginPath();c.arc(175,410,18,Math.PI,0);c.stroke();
+    S.fly.forEach(function(f){var e=f.t*f.t,x=f.x+(175-f.x)*e,y=f.y+(415-f.y)*e-Math.sin(f.t*Math.PI)*80;vbPack(c,VB24[f.id],x,y,0.6*(1-f.t*0.5),t)});
+    // timer
+    var fr=Math.max(0,S.timer/S.time);c.fillStyle="rgba(0,0,0,.5)";rr(c,290,474,COLS*CW,12,6);c.fill();c.fillStyle=fr>0.4?GRN:fr>0.2?GOLD:RED;rr(c,290,474,COLS*CW*fr,12,6);c.fill();
+    if(S.phase==="pay"){c.fillStyle="rgba(0,0,0,"+Math.min(.55,S.pay*.6)+")";c.fillRect(0,0,W,H);label(c,"🧾 Paid · next customer",W/2,H/2,28,GOLD)}
+    stepSparks(c,S.parts,1/60,200);stepText(c,S.txt,1/60)};
+  S.over=function(){return overObj("Store's closing! 🏪",S.score+"","Vansh served "+(S.cust-1)+" shopping list"+(S.cust===2?"":"s")+" at VB24 Store.",S.score,S.coins)};
+  S.preview=HG.livePreview(S,function(s){if(s.phase!=="shop"||Math.random()>0.07)return;var i=-1;s.shelf.forEach(function(id,k){if(s.need[id]>0&&i<0)i=k});grab(i)});
+  return S;
+};
+
 /* ---------- register ---------- */
 var INFO=[
   {k:"photon",name:"Photon Dash",tag:"Endless speed",desc:"Thread a light-ship through a neon void that keeps getting faster.",unit:"m",ach:[300,"Light Speed","Reach 300 m in Photon Dash"]},
@@ -796,7 +1001,11 @@ var OFFICE=[
   {k:"boss",name:"Boss Alert",tag:"Reflex · office",desc:"Slack off on your phone, but look busy before the boss peeks in.",unit:"chill",ach:[600,"Never Caught","Score 600 in Boss Alert"]},
   {k:"jam",name:"Jam Session",tag:"Traffic jam",desc:"Hop into the moving lane before the morning jam drives Vansh mad.",unit:"m",ach:[800,"Lane Hopper","Drive 800 m in Jam Session"]},
   {k:"wfh",name:"Home Office Hustle",tag:"Multitasking",desc:"Meeting, coffee, plant, cat, delivery. Keep all five alive.",unit:"pts",ach:[900,"WFH Pro","Score 900 in Home Office Hustle"]},
-  {k:"grind",name:"Rise & Grind",tag:"Treadmill tapper",desc:"Tap to keep up with the treadmill. Coffee helps.",unit:"m",ach:[400,"Morning Person","Run 400 m in Rise & Grind"]}
+  {k:"grind",name:"Rise & Grind",tag:"Treadmill tapper",desc:"Tap to keep up with the treadmill. Coffee helps.",unit:"m",ach:[400,"Morning Person","Run 400 m in Rise & Grind"]},
+  {k:"wake",name:"Wake Up Rush",tag:"Morning routine",desc:"Bed to office before 9:00. Grab the checklist items in order.",unit:"pts",ach:[400,"Early Bird","Score 400 in Wake Up Rush"]},
+  {k:"metro",name:"Metro Rush",tag:"Commute runner",desc:"Sprint down the platform and catch the metro before the doors close.",unit:"pts",ach:[600,"Door Dasher","Score 600 in Metro Rush"]},
+  {k:"stairs",name:"Career Ladder",tag:"Stair climber",desc:"Climb from Intern to CEO. Ladders up, banana peels down.",unit:"floors",ach:[120,"Senior Already","Reach floor 120 in Career Ladder"]},
+  {k:"shop",name:"VB24 Store",tag:"Grocery rush",desc:"Grab everything on the shopping list before the store closes.",unit:"pts",ach:[500,"Smart Shopper","Score 500 in VB24 Store"]}
 ];
 INFO.forEach(function(i){HG.GAMES[i.k]=NEW[i.k]});OFFICE.forEach(function(i){HG.GAMES[i.k]=NEW[i.k]});HG.OFFICE=OFFICE;HG.varHead=varHead;HG.varBody=varBody;
 HG.NEON=INFO;HG.SKINS=SKINS;HG.skin=skin;HG.skinId=skinId;HG.neonSfx=snd;

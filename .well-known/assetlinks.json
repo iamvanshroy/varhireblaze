@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.varhireblaze.twa",
+        "sha256_cert_fingerprints": ["47:D4:CF:11:CE:80:1E:D2:5E:B9:13:F7:B7:28:B8:F7:2A:F0:D3:05:9A:C0:16:FB:B9:06:68:04:3D:28:80:AB"]
+      }
+    }]

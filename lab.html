@@ -84,6 +84,11 @@ footer a:hover{color:#fff}
 @media(prefers-reduced-motion:reduce){.word,.tile{opacity:1;transform:none;filter:none;animation:none}}
 </style>
 <link rel="stylesheet" href="/lab/lab.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VarHireBlaze">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <nav><div class="wrap">
@@ -142,5 +147,6 @@ document.querySelectorAll(".tile").forEach(function(t){io.observe(t)});
 
 </script>
 <script src="/secrets.js"></script>
+<script src="/app.js" defer></script>
 </body>
 </html>

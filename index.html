@@ -358,10 +358,39 @@ a,button{-webkit-tap-highlight-color:transparent}
 @keyframes flowR{from{transform:translateX(calc(-50% - 9px))}to{transform:translateX(0)}}
 @media(max-width:700px){.flow-l .fcard{width:280px}.flow-r .fcard{width:240px}.flow-track{animation-duration:30s}.flow-r .flow-track{animation-duration:34s}}
 @media(prefers-reduced-motion:reduce){.flow-track{animation:none!important}.flow{overflow-x:auto}}
+.app3{padding:100px 0;position:relative;overflow:hidden}
+.app3::before{content:"";position:absolute;right:-10%;top:10%;width:700px;height:700px;background:radial-gradient(closest-side,rgba(255,106,0,.18),transparent);pointer-events:none}
+.app3-in{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.app3-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2bd46b;margin-right:8px;vertical-align:1px}
+.app3-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.app3-state{color:#2bd46b;font-size:13px;margin-top:10px;font-weight:600}
+.app3-steps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.app3-card{padding:16px 18px;border-radius:18px;background:#111116;border:1px solid rgba(255,255,255,.07);transition:border-color .4s,box-shadow .4s}
+.app3-card b{font-size:15px}.app3-card ol{margin:8px 0 0;padding-left:18px;color:var(--mut);font-size:14px;line-height:1.6}.app3-card ol b{color:#fff;font-size:inherit}
+.app3-card.flash{border-color:#ff6a00;box-shadow:0 0 0 4px rgba(255,106,0,.18)}
+.app3-note{color:var(--mut);font-size:13px;margin-top:14px}
+.app3-phone{display:grid;place-items:center}
+.ph{width:250px;aspect-ratio:9/19;border-radius:42px;padding:10px;background:linear-gradient(145deg,#2a2a33,#0b0b0f);box-shadow:0 50px 100px -40px rgba(255,106,0,.55),inset 0 0 0 2px #3a3a46;animation:phfloat 6s ease-in-out infinite}
+@keyframes phfloat{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+.ph-scr{height:100%;border-radius:34px;background:radial-gradient(120% 70% at 30% 0%,#3a1a06,#0b0b10 60%);padding:34px 18px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.ph-time{position:absolute;top:12px;left:24px;font:600 12px Inter,sans-serif;color:#fff}
+.ph-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 12px;margin-top:12px}
+.ph-grid i,.ph-dock i{display:block;aspect-ratio:1;border-radius:12px;background:rgba(255,255,255,.08)}
+.ph-app{display:flex;flex-direction:column;align-items:center;gap:4px;animation:phpop 3s cubic-bezier(.2,.8,.2,1) infinite}
+.ph-app img{width:100%;border-radius:12px;box-shadow:0 8px 22px -6px #ff6a00}.ph-app small{font-size:8px;color:#fff;white-space:nowrap}
+@keyframes phpop{0%,100%{transform:scale(1)}10%{transform:scale(1.18)}20%{transform:scale(1)}}
+.ph-dock{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:10px;border-radius:20px;background:rgba(255,255,255,.08)}
+@media(max-width:860px){.app3-in{grid-template-columns:1fr}.app3-phone{order:-1}.ph{width:190px}.app3-steps{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ph,.ph-app{animation:none}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <link rel="stylesheet" href="/lab/lab.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VarHireBlaze">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -369,6 +398,7 @@ a,button{-webkit-tap-highlight-color:transparent}
   <div class="wrap">
     <a href="#top" class="brandbox"><span class="brand">VarHire<span>Blaze</span></span><span class="byline">designed by <b>Vansh</b></span></a>
     <div class="links">
+      <a href="#app">Get the app</a>
       <a href="lab.html" class="nav-new">VB Lab</a>
       <a href="games.html">Games</a>
       <a href="#check">Resume tracker</a>
@@ -607,6 +637,7 @@ a,button{-webkit-tap-highlight-color:transparent}
   <div class="wrap">
     <div class="sec-top reveal"><span class="eyebrow">What's new</span><h2 class="h-md">Updates</h2></div>
     <ul class="log reveal">
+      <li><time datetime="2026-11">November 2026</time><h4>VarHireBlaze is now an app</h4><p>Install it on Android, iPhone, iPad or your laptop for full-screen play from your home screen. Games you've opened keep working on a weak connection.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>4 new Office Life games</h4><p>Wake Up Rush (bed to office before 9:00), Metro Rush (catch the train), Career Ladder (Intern to CEO) and VB24 Store, a grocery rush where every pack carries the VB brand and Vansh's face. That's 31 games.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>VB Lab: 15 new experiences</h4><p>Raise a digital pet, build an aquarium, make beats, draw pixel art, build and share your own game level, open trading card packs, take the Daily Brain Challenge, survive the daily arena, explore the Dead Internet Museum, hunt for secrets and chase VB World Records. Plus share buttons on every game.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>Office Life: 4 new games starring Vansh</h4><p>Boss Alert, Jam Session, Home Office Hustle and Rise &amp; Grind. That makes 31 free games. Plus a new Office life section on the blog.</p></li>
@@ -616,6 +647,34 @@ a,button{-webkit-tap-highlight-color:transparent}
       <li><time datetime="2026-11">November 2026</time><h4>Smoother on your device</h4><p>Game previews now use a fraction of the memory, so pages load fast and stay smooth on any phone, tablet or laptop.</p></li>
       <li><time datetime="2026-11">November 2026</time><h4>VarHireBlaze launches</h4><p>Free hire-themed games, a 90s arcade, the AI resume tracker and wallpapers. No login, ever.</p></li>
     </ul>
+  </div>
+</section>
+
+<section id="app" class="app3" aria-labelledby="appH">
+  <div class="wrap app3-in">
+    <div class="app3-txt reveal">
+      <span class="eyebrow"><i class="app3-dot"></i>New · VarHireBlaze app</span>
+      <h2 id="appH" class="h-lg">Your break.<br><span class="o">One tap away.</span></h2>
+      <p class="sub">Install VarHireBlaze on your phone or laptop. It opens full-screen like a real app, launches from your home screen, and games you've played keep working even on a weak connection. It's free, under 1 MB, and there's no app store or login.</p>
+      <div class="app3-btns"><button class="btn btn-o" data-install="android">⬇ Install for Android</button><button class="btn btn-g" data-install="ios">📱 Add to iPhone / iPad</button></div>
+      <p class="app3-state" data-app-state>Install now. It's free</p>
+      <div class="app3-steps">
+        <div id="appAndroid" class="app3-card"><b>🤖 Android</b><ol><li>Open varhireblaze.com in <b>Chrome</b>.</li><li>Tap <b>Install for Android</b> above, or open the <b>⋮</b> menu and tap <b>Install app</b>.</li><li>Tap <b>Install</b>. VarHireBlaze appears in your app drawer.</li></ol></div>
+        <div id="appIOS" class="app3-card"><b>📱 iPhone and iPad</b><ol><li>Open varhireblaze.com in <b>Safari</b>.</li><li>Tap the <b>Share</b> button (the square with an arrow).</li><li>Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol></div>
+      </div>
+      <p class="app3-note">On a computer, look for the install icon at the right of the address bar in Chrome or Edge.</p>
+    </div>
+    <div class="app3-phone reveal" aria-hidden="true">
+      <div class="ph"><div class="ph-scr">
+        <div class="ph-time">10:24</div>
+        <div class="ph-grid">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <span class="ph-app"><img src="/icons/icon-192.png" alt=""><small>VarHireBlaze</small></span>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="ph-dock"><i></i><i></i><i></i><i></i></div>
+      </div></div>
+    </div>
   </div>
 </section>
 
@@ -1247,5 +1306,6 @@ document.getElementById("aiBtn").onclick = async ()=>{
 <script src="/vb-share.js" defer></script>
 <script src="/lab/core.js" defer></script>
 <script src="/secrets.js" defer></script>
+<script src="/app.js" defer></script>
 </body>
 </html>

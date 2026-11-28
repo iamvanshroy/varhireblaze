@@ -1,0 +1,23 @@
+{
+  "name": "VarHireBlaze — games, VB Lab & resume tracker",
+  "short_name": "VarHireBlaze",
+  "description": "31 free games, 15 VB Lab experiences and a free AI resume tracker for job seekers. No login.",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "categories": ["games", "education", "productivity"],
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Play games", "url": "/games.html?source=app", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "VB Lab", "url": "/lab.html?source=app", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Check my resume", "url": "/?source=app#check", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]}
+  ]
+}

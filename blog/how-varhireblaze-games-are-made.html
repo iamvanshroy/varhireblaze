@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behind the Scenes: How VarHireBlaze Games Are Made — VarHireBlaze</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VarHireBlaze">
+<meta property="og:title" content="Behind the Scenes: How VarHireBlaze Games Are Made — VarHireBlaze">
+<meta property="og:description" content="How we design, draw, code and test the games on VarHireBlaze from scratch: canvas art, synthesised sound, fair difficulty and privacy-first leaderboards.">
+<meta property="og:url" content="https://varhireblaze.com/blog/how-varhireblaze-games-are-made.html">
+<meta property="og:image" content="https://varhireblaze.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Behind the Scenes: How VarHireBlaze Games Are Made — VarHireBlaze">
+<meta name="twitter:description" content="How we design, draw, code and test the games on VarHireBlaze from scratch: canvas art, synthesised sound, fair difficulty and privacy-first leaderboards.">
+<meta name="twitter:image" content="https://varhireblaze.com/og-image.png">
+<meta name="description" content="How we design, draw, code and test the games on VarHireBlaze from scratch: canvas art, synthesised sound, fair difficulty and privacy-first leaderboards.">
+<link rel="canonical" href="https://varhireblaze.com/blog/how-varhireblaze-games-are-made.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="google-adsense-account" content="ca-pub-2294548111828867">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2294548111828867" crossorigin="anonymous"></script>
+<style>:root{--bg:#07070a;--card:#14141b;--line:#23232e;--o:#ff6a00;--o2:#ff9a3c;--txt:#f4f4f6;--mut:#9a9aa8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:#e4e4ea;font:17px/1.75 Inter,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;color:#fff}
+a{color:var(--o)}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,7,10,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .in{max-width:980px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:23px;font-weight:700;text-decoration:none}.brand span{color:var(--o)}
+.nl{display:flex;gap:18px;font-size:14px}.nl a{color:var(--mut);text-decoration:none}.nl a:hover{color:#fff}
+.cta{background:linear-gradient(135deg,var(--o),var(--o2));color:#111!important;font-weight:600;border-radius:999px;padding:8px 16px;text-decoration:none;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:50px 20px 70px}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;margin-bottom:12px}
+h2{font-size:24px;margin:34px 0 10px}h3{font-size:19px;margin:24px 0 6px}
+p,ul,ol{margin:0 0 16px}ul,ol{padding-left:22px}li{margin-bottom:6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:26px 0}
+.box b{color:#fff}
+.end{background:linear-gradient(135deg,rgba(255,106,0,.14),rgba(255,154,60,.05));border:1px solid rgba(255,106,0,.35);border-radius:18px;padding:24px;margin-top:40px}
+.end a.cta{display:inline-block;margin-top:8px}
+.cards{display:grid;gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;text-decoration:none;color:#e4e4ea;transition:.2s}
+.card:hover{border-color:var(--o);transform:translateY(-2px)}
+.card h2{font-size:20px;margin:0 0 6px}.card p{color:var(--mut);margin:0;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+footer .in{max-width:980px;margin:0 auto;padding:30px 20px;display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:space-between}
+footer a{color:var(--mut)}footer a:hover{color:var(--o)}
+@media(max-width:640px){.nl .h{display:none}body{font-size:16px}}</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>.nl{align-items:center}.nl a{white-space:nowrap}@media(max-width:400px){.nl .cta{padding:8px 12px;font-size:13px}}</style>
+<style>main pre{background:#0d0d12;border:1px solid #26262f;border-radius:12px;padding:14px 16px;overflow-x:auto;margin:12px 0 18px;font-size:13.5px;line-height:1.5}main code{font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb066}main pre code{color:#e8e8ee}main ol{padding-left:22px}</style>
+</head><body>
+<nav><div class="in">
+<a href="../index.html" class="brand">VarHire<span>Blaze</span></a>
+<div class="nl"><a href="/lab.html" style="color:#ff9a3c;font-weight:600;white-space:nowrap">✨ VB Lab</a><a class="h" href="/games.html" style="color:#ff9a3c;font-weight:600">🎮 Games</a><a class="h" href="../blog/index.html">Blog</a><a class="h" href="../about.html">About</a><a class="h" href="../contact.html">Contact</a><a class="cta" href="/games.html">🎮 Play games</a></div>
+</div></nav>
+<main>
+<p class="meta"><a href="index.html">← All articles</a> · VarHireBlaze Blog · Web gaming · By Vansh Roy · November 2026</p>
+<h1>Behind the Scenes: How VarHireBlaze Games Are Made</h1>
+<p>Every game on VarHireBlaze is designed and built from scratch by Vansh Roy. There are no purchased game templates, no copied code and no downloaded art. Here's how a game goes from an idea to something you can play in a few seconds.</p>
+
+<h2>1. Start from a real feeling</h2>
+<p>Most of our games start with a real-life moment: the alarm that won't stop, the metro doors closing in your face, hiding your phone when the boss walks past. We turn that moment into one simple action you can learn in five seconds, then make it harder the longer you last.</p>
+
+<h2>2. Draw everything with code</h2>
+<p>There are no image files in most of our games. Characters like Vansh, the cars, the office and the neon worlds are drawn with shapes on an HTML5 canvas every frame. That keeps the games tiny and sharp on any screen size, and it means every visual is our own.</p>
+
+<h2>3. Make sound from scratch</h2>
+<p>Coins, jumps and crashes are synthesised live with the Web Audio API, the browser's built-in synthesizer. No audio files are downloaded, and every sound is original.</p>
+
+<h2>4. Test with bots</h2>
+<p>Before a game ships, we run automated "bot" players thousands of times to check the difficulty curve: a new player should last a little while, and a skilled player should be able to go much further. If a bot can win forever, the game is too easy. If it dies in two seconds, it's too hard.</p>
+
+<h2>5. Respect your device</h2>
+<ul>
+<li>Games pause when you switch tabs, so they don't drain your battery.</li>
+<li>Previews only animate when they're on screen.</li>
+<li>Everything works with touch, mouse and keyboard.</li>
+<li>Motion is reduced if your device asks for reduced motion.</li>
+</ul>
+
+<h2>6. Privacy-first leaderboards</h2>
+<p>There are no accounts. Your best scores, coins and achievements live in your own browser. If you choose to post a score, only the nickname you type and the score are stored, and nicknames are filtered and rate-limited to keep things fair.</p>
+
+<h2>7. Inspired by classics, made our own</h2>
+<p>Some games use well-loved genres (endless runners, brick-breakers, stair climbers), and we credit those inspirations openly on our <a href="../about.html">About page</a>. The code, art, sound, names and job-hunting twists are always our own.</p>
+
+<div class="box"><b>Want to build games too?</b> Start with <a href="make-your-first-html5-game.html">our beginner's HTML5 game guide</a>.</div>
+
+<div class="end"><h3 style="margin-top:0">Try it now</h3>
+<p style="margin:0">Now that you know how they're built, go and set a high score.</p>
+<a class="cta" href="/games.html">🎮 Play the games →</a></div>
+</main>
+<footer><div class="in">
+<div>© 2026 VarHireBlaze · Built by Vansh Roy</div>
+<div><a href="../index.html">Resume checker</a> · <a href="/games.html">Games</a> · <a href="../blog/index.html">Blog</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>
+</div></footer>
+<script src="/secrets.js" defer></script>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Make Your First HTML5 Game (A Student's Guide) — VarHireBlaze</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VarHireBlaze">
+<meta property="og:title" content="How to Make Your First HTML5 Game (A Student's Guide) — VarHireBlaze">
+<meta property="og:description" content="A beginner-friendly walkthrough of building a tiny browser game with just HTML, CSS and JavaScript, plus how to turn it into a portfolio project.">
+<meta property="og:url" content="https://varhireblaze.com/blog/make-your-first-html5-game.html">
+<meta property="og:image" content="https://varhireblaze.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Make Your First HTML5 Game (A Student's Guide) — VarHireBlaze">
+<meta name="twitter:description" content="A beginner-friendly walkthrough of building a tiny browser game with just HTML, CSS and JavaScript, plus how to turn it into a portfolio project.">
+<meta name="twitter:image" content="https://varhireblaze.com/og-image.png">
+<meta name="description" content="A beginner-friendly walkthrough of building a tiny browser game with just HTML, CSS and JavaScript, plus how to turn it into a portfolio project.">
+<link rel="canonical" href="https://varhireblaze.com/blog/make-your-first-html5-game.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="google-adsense-account" content="ca-pub-2294548111828867">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2294548111828867" crossorigin="anonymous"></script>
+<style>:root{--bg:#07070a;--card:#14141b;--line:#23232e;--o:#ff6a00;--o2:#ff9a3c;--txt:#f4f4f6;--mut:#9a9aa8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:#e4e4ea;font:17px/1.75 Inter,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;color:#fff}
+a{color:var(--o)}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,7,10,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .in{max-width:980px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:23px;font-weight:700;text-decoration:none}.brand span{color:var(--o)}
+.nl{display:flex;gap:18px;font-size:14px}.nl a{color:var(--mut);text-decoration:none}.nl a:hover{color:#fff}
+.cta{background:linear-gradient(135deg,var(--o),var(--o2));color:#111!important;font-weight:600;border-radius:999px;padding:8px 16px;text-decoration:none;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:50px 20px 70px}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;margin-bottom:12px}
+h2{font-size:24px;margin:34px 0 10px}h3{font-size:19px;margin:24px 0 6px}
+p,ul,ol{margin:0 0 16px}ul,ol{padding-left:22px}li{margin-bottom:6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:26px 0}
+.box b{color:#fff}
+.end{background:linear-gradient(135deg,rgba(255,106,0,.14),rgba(255,154,60,.05));border:1px solid rgba(255,106,0,.35);border-radius:18px;padding:24px;margin-top:40px}
+.end a.cta{display:inline-block;margin-top:8px}
+.cards{display:grid;gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;text-decoration:none;color:#e4e4ea;transition:.2s}
+.card:hover{border-color:var(--o);transform:translateY(-2px)}
+.card h2{font-size:20px;margin:0 0 6px}.card p{color:var(--mut);margin:0;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+footer .in{max-width:980px;margin:0 auto;padding:30px 20px;display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:space-between}
+footer a{color:var(--mut)}footer a:hover{color:var(--o)}
+@media(max-width:640px){.nl .h{display:none}body{font-size:16px}}</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>.nl{align-items:center}.nl a{white-space:nowrap}@media(max-width:400px){.nl .cta{padding:8px 12px;font-size:13px}}</style>
+<style>main pre{background:#0d0d12;border:1px solid #26262f;border-radius:12px;padding:14px 16px;overflow-x:auto;margin:12px 0 18px;font-size:13.5px;line-height:1.5}main code{font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb066}main pre code{color:#e8e8ee}main ol{padding-left:22px}</style>
+</head><body>
+<nav><div class="in">
+<a href="../index.html" class="brand">VarHire<span>Blaze</span></a>
+<div class="nl"><a href="/lab.html" style="color:#ff9a3c;font-weight:600;white-space:nowrap">✨ VB Lab</a><a class="h" href="/games.html" style="color:#ff9a3c;font-weight:600">🎮 Games</a><a class="h" href="../blog/index.html">Blog</a><a class="h" href="../about.html">About</a><a class="h" href="../contact.html">Contact</a><a class="cta" href="/games.html">🎮 Play games</a></div>
+</div></nav>
+<main>
+<p class="meta"><a href="index.html">← All articles</a> · VarHireBlaze Blog · Web gaming · By Vansh Roy · November 2026</p>
+<h1>How to Make Your First HTML5 Game (A Student's Guide)</h1>
+<p>Making a game is one of the best ways to learn programming. You get instant visual feedback, you practise logic and maths, and you end up with something your friends can actually play. You don't need a game engine to start: a text editor and a browser are enough.</p>
+
+<h2>Step 1: The page</h2>
+<p>Create a file called <code>index.html</code> with a canvas and a script tag:</p>
+<pre><code>&lt;canvas id="game" width="480" height="320"&gt;&lt;/canvas&gt;
+&lt;script src="game.js"&gt;&lt;/script&gt;</code></pre>
+
+<h2>Step 2: The game loop</h2>
+<p>In <code>game.js</code>, set up a loop that updates and draws every frame:</p>
+<pre><code>const c = document.getElementById("game").getContext("2d");
+let x = 40, y = 160, vy = 0, last = 0;
+
+function loop(t) {
+  const dt = (t - last) / 1000; last = t;
+  vy += 900 * dt;              // gravity
+  y = Math.min(280, y + vy * dt);
+  c.fillStyle = "#111"; c.fillRect(0, 0, 480, 320);
+  c.fillStyle = "#ff6a00"; c.fillRect(x, y, 30, 30);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);</code></pre>
+<p>Open the file in your browser and you'll see an orange square fall and land. That's physics in four lines.</p>
+
+<h2>Step 3: Input</h2>
+<pre><code>addEventListener("keydown", e =&gt; {
+  if (e.code === "Space" &amp;&amp; y &gt;= 280) vy = -450;  // jump
+});</code></pre>
+<p>Now you can jump. Add a touch listener (<code>pointerdown</code>) and it works on phones too.</p>
+
+<h2>Step 4: Make it a game</h2>
+<ul>
+<li>Add an obstacle that moves from right to left.</li>
+<li>Check for a collision: if the rectangles overlap, the game is over.</li>
+<li>Add a score that goes up every second you survive.</li>
+<li>Save the best score with <code>localStorage</code>.</li>
+</ul>
+<p>Congratulations: that's a complete endless runner, the same basic idea behind many hit mobile games.</p>
+
+<h2>Step 5: Polish</h2>
+<p>Polish is what makes a game feel good: a little screen shake on a hit, particles when you collect a coin, a sound effect from the Web Audio API, and difficulty that slowly ramps up. Small touches matter more than big features.</p>
+
+<h2>Turn it into a portfolio project</h2>
+<ul>
+<li><b>Publish it free</b> on GitHub Pages or Vercel so recruiters can play it with one click.</li>
+<li><b>Write a short README</b>: what you built, the hardest problem and how you solved it.</li>
+<li><b>Put it on your resume</b> with numbers: "Built a browser game with a custom physics loop at 60 FPS, played 500+ times". See <a href="resume-bullet-points.html">how to write strong bullet points</a>.</li>
+</ul>
+
+<div class="box"><b>Tip:</b> Join a game jam (a 48-hour game-making event). You'll learn fast, meet developers and finish a project, which is exactly what interviewers like to hear about.</div>
+
+<div class="end"><h3 style="margin-top:0">Try it now</h3>
+<p style="margin:0">Play a few VarHireBlaze games and notice the loop, the input and the score. Then build your own.</p>
+<a class="cta" href="/games.html">🎮 Get inspired →</a></div>
+</main>
+<footer><div class="in">
+<div>© 2026 VarHireBlaze · Built by Vansh Roy</div>
+<div><a href="../index.html">Resume checker</a> · <a href="/games.html">Games</a> · <a href="../blog/index.html">Blog</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>
+</div></footer>
+<script src="/secrets.js" defer></script>
+</body></html>

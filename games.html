@@ -247,6 +247,14 @@ footer a{color:var(--o)}
 .sheet-x{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;font-size:15px}
 @media(max-width:820px){.spot{min-height:0}.spot-s{grid-template-columns:1fr;padding:26px 22px 54px;gap:22px}.spot-art{order:-1}.spot-dots{left:22px;bottom:18px}.spot h2{font-size:44px}}
 @media(prefers-reduced-motion:reduce){.spot-txt>*,.spot-art{transition:none;opacity:1;transform:none}.spot-glow{animation:none}}
+.ginfo{margin:64px 0 10px;padding:34px;border-radius:28px;background:#0e0e13;border:1px solid rgba(255,255,255,.07);line-height:1.65}
+.ginfo h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:10px}.ginfo>p{color:#c9c9d1;max-width:820px}
+.ginfo-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.ginfo-g section{padding:18px;border-radius:18px;background:#15151c;border:1px solid rgba(255,255,255,.05)}
+.ginfo-g h3{font-size:17px;margin-bottom:6px}.ginfo-g p{color:var(--mut);font-size:14.5px}.ginfo a{color:#ff9a3c;text-decoration:underline;text-underline-offset:3px}
+.ginfo kbd{background:#1f1f28;border:1px solid #33333d;border-radius:6px;padding:0 6px;font-size:12px}.ginfo code{color:#ffb066;font-size:13px}
+.ginfo-h3{font-size:20px;margin:26px 0 10px}.ginfo-l{padding-left:20px;color:#c9c9d1}.ginfo-l li{margin:6px 0}
+.ginfo details{border-top:1px solid rgba(255,255,255,.08);padding:12px 0}.ginfo summary{cursor:pointer;font-weight:600}.ginfo details p{color:var(--mut);margin-top:6px}
+@media(max-width:860px){.ginfo-g{grid-template-columns:1fr 1fr}}@media(max-width:560px){.ginfo{padding:22px}.ginfo-g{grid-template-columns:1fr}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -283,13 +291,13 @@ footer a{color:var(--o)}
       <button class="chip" data-hub="ach">🏆 Achievements <b data-achn>0</b></button>
       <button class="chip" data-hub="boards">🌍 Leaderboards</button>
     </div>
-    <nav class="catshow" aria-label="Game categories">
+    <div class="catshow" role="navigation" aria-label="Game categories">
       <a href="#office" class="cs cs-new"><span class="cs-ic">✨</span><b>Office Life</b><small>8 games · 4 just launched</small><em>NEW</em></a>
       <a href="#neon" class="cs cs-neon"><span class="cs-ic">⚡</span><b>Neon Series</b><small>8 high-speed originals</small></a>
       <a href="#hire" class="cs cs-hire"><span class="cs-ic">💼</span><b>Hire Games</b><small>9 job-hunt games</small></a>
       <a href="#arcade" class="cs cs-arc"><span class="cs-ic">🕹️</span><b>90s Arcade</b><small>6 retro classics, our way</small></a>
       <a href="/lab.html" class="cs cs-lab"><span class="cs-ic">🧪</span><b>VB Lab</b><small>15 experiences</small></a>
-    </nav>
+    </div>
     <section class="neon office" id="office" aria-labelledby="officeH">
       <div class="sechead"><div><span class="kicker"><i class="newdot"></i>Just launched · Office Life</span><h2 id="officeH">Office life, <span>but playable.</span></h2></div>
         <p>Starring Vansh: wake up before 9:00, catch the metro, dodge the boss, beat the jam, survive WFH chaos, climb the career ladder and shop at the VB24 Store.</p></div>
@@ -499,6 +507,31 @@ footer a{color:var(--o)}
       <p>Get your free ATS score, missing skills and instant fixes in 10 seconds.</p>
       <a href="/#check" class="btn btn-o">Check my resume — free →</a>
     </div>
+    <article class="ginfo" aria-labelledby="giH">
+      <h2 id="giH">About VarHireBlaze games</h2>
+      <p>VarHireBlaze is a free browser-game site made for students and job seekers. Job hunting means a lot of waiting, refreshing your inbox and rewriting the same resume. Our games are designed for short, 2–5 minute breaks that reset your focus, and every one of them was designed and coded from scratch by Vansh Roy.</p>
+      <div class="ginfo-g">
+        <section><h3>🕹️ How to play</h3><p>Pick a game and press Play. Every game works with a mouse, keyboard or touch screen, and the controls are shown before you start. Press <kbd>P</kbd> or the pause button to take a break, and <kbd>R</kbd> to restart quickly.</p></section>
+        <section><h3>🏆 Coins, skins and leaderboards</h3><p>You earn coins for every run, unlock achievements and spend coins on skins and VB Lab extras. Best scores are saved on your device. To appear on a global top 10, type a nickname after a run. Only that nickname and your score are stored.</p></section>
+        <section><h3>🧠 Why games help job seekers</h3><p>A planned short break can lower stress and help you come back sharper for the next application. Set a timer, play a round or two, then return to your list. Read <a href="/blog/job-search-stress-breaks.html">why short breaks make you better at applying</a>.</p></section>
+        <section><h3>🛠️ How they're built</h3><p>The games use standard web technology: an HTML5 canvas for graphics, the Web Audio API for sound made live in your browser, and <code>requestAnimationFrame</code> for a smooth game loop. Nothing is downloaded or installed. Read <a href="/blog/how-varhireblaze-games-are-made.html">how VarHireBlaze games are made</a>.</p></section>
+        <section><h3>🔒 Safe and private</h3><p>No accounts, downloads or device permissions. Games pause when you switch tabs, and previews only run when they're on screen to save battery. See our <a href="/blog/are-browser-games-safe.html">browser game safety checklist</a> and <a href="/privacy.html">privacy policy</a>.</p></section>
+        <section><h3>🎨 Original, with credit</h3><p>Every game's code, art, sound and name is our own. Some follow classic genres, like endless runners and brick-breakers, and we credit those inspirations openly on the <a href="/about.html">About page</a>.</p></section>
+      </div>
+      <h3 class="ginfo-h3">Learn more about web gaming</h3>
+      <ul class="ginfo-l">
+        <li><a href="/blog/how-browser-games-work.html">How browser games work, without any download</a></li>
+        <li><a href="/blog/history-of-browser-games.html">A short history of browser games</a></li>
+        <li><a href="/blog/make-your-first-html5-game.html">How to make your first HTML5 game: a student's guide</a></li>
+        <li><a href="/blog/game-development-careers.html">Careers in game development: roles, skills and how freshers get in</a></li>
+      </ul>
+      <h3 class="ginfo-h3">Frequently asked questions</h3>
+      <details><summary>Are VarHireBlaze games really free?</summary><p>Yes. Every game is free to play with no sign-up. The site is supported by ads, which are kept separate from the games.</p></details>
+      <details><summary>Do I need to download anything?</summary><p>No. The games run in your browser on any modern phone, tablet or computer.</p></details>
+      <details><summary>Will I lose my progress?</summary><p>Progress is saved in your browser on this device. Clearing your browser data or switching devices starts you fresh. That's the trade-off for not needing an account.</p></details>
+      <details><summary>Can I play with a controller or keyboard only?</summary><p>All games support the keyboard, and every game shows its keys before you start. Touch controls are built in for phones.</p></details>
+      <details><summary>How do I report a bug or a rude nickname?</summary><p>Tell us on the <a href="/contact.html">contact page</a>. We fix bugs quickly and remove inappropriate nicknames.</p></details>
+    </article>
   </section>
 
   <!-- GAME -->

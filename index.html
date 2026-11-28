@@ -543,7 +543,7 @@ a,button{-webkit-tap-highlight-color:transparent}
     <div class="sec-top reveal">
       <span class="eyebrow">Wallpapers &amp; templates</span>
       <h2 class="h-lg">Keep going.<br><span class="o">Look good doing it.</span></h2>
-      <p class="sub" style="margin-top:18px">Every wallpaper is drawn live in your browser at full resolution, so the preview is the real download. Share VarHireBlaze once to unlock them all.</p>
+      <p class="sub" style="margin-top:18px">Every wallpaper is drawn live in your browser at full resolution, so the preview is the real download. All of them are free, with no sign-up.</p>
     </div>
   </div>
   <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
@@ -568,8 +568,8 @@ a,button{-webkit-tap-highlight-color:transparent}
     </div>
     <div class="howto reveal">
       <div><b>01</b><h4>Pick one</h4><p>Choose any wallpaper or template you like.</p></div>
-      <div><b>02</b><h4>Share once</h4><p>Send VarHireBlaze on WhatsApp, Instagram, X or SMS.</p></div>
-      <div><b>03</b><h4>Download</h4><p>It unlocks on your device right away. No payment, no login.</p></div>
+      <div><b>02</b><h4>Preview it</h4><p>What you see is the real file, rendered at full resolution.</p></div>
+      <div><b>03</b><h4>Download</h4><p>Tap Download and it saves straight to your device. No payment, no login.</p></div>
     </div>
   </div>
 </section>
@@ -595,6 +595,9 @@ a,button{-webkit-tap-highlight-color:transparent}
       <a class="post reveal" href="blog/what-is-an-ats.html"><small>ATS &amp; resume score</small><h3>What is an ATS? How resume filters actually work</h3><p>What applicant tracking systems do with your resume, what they can't read, and how to get past them.</p><span class="lnk">Read</span></a>
       <a class="post reveal" href="blog/gaming-skills-on-resume.html"><small>Games &amp; job hunting</small><h3>Gaming skills you can actually put on your resume</h3><p>Captained a team, ran a channel or built a mod? How to turn it into points recruiters take seriously.</p><span class="lnk">Read</span></a>
       <a class="post reveal" href="blog/job-search-stress-breaks.html"><small>Games &amp; job hunting</small><h3>Job search stress: why short breaks help you apply better</h3><p>A simple routine for applying with focus, and handling the silence and rejection without burning out.</p><span class="lnk">Read</span></a>
+      <a class="post reveal" href="blog/how-browser-games-work.html"><small>Web gaming</small><h3>How browser games work, without any download</h3><p>Canvas, the game loop, live-made sound and saving progress without an account, explained simply.</p><span class="lnk">Read</span></a>
+      <a class="post reveal" href="blog/make-your-first-html5-game.html"><small>Web gaming</small><h3>Make your first HTML5 game</h3><p>A student's guide to building a tiny browser game, and turning it into a portfolio project.</p><span class="lnk">Read</span></a>
+      <a class="post reveal" href="blog/game-development-careers.html"><small>Careers</small><h3>Careers in game development</h3><p>The main roles, the skills each needs, and a 90-day plan for freshers who want to break in.</p><span class="lnk">Read</span></a>
     </div>
     <p class="credit2">Designed &amp; built by Vansh Roy</p>
   </div>
@@ -625,7 +628,7 @@ a,button{-webkit-tap-highlight-color:transparent}
       <details><summary>How do the leaderboards work without an account?</summary><p>After a run you can type a nickname and post your score. Only the nickname and score are saved. Coins, skins and achievements stay on your own device.</p></details>
       <details><summary>Do you save my resume?</summary><p>No. The PDF is read inside your browser. If you click "AI feedback", only the text is sent to the AI for that one answer and is not stored.</p></details>
       <details><summary>What is an ATS score?</summary><p>Most companies filter resumes with software (an Applicant Tracking System) before a human reads them. The score shows how well your resume is structured and matched for that.</p></details>
-      <details><summary>How do I unlock templates and wallpapers?</summary><p>Tap Unlock, share VarHireBlaze once on WhatsApp, Instagram, X or SMS, and the download unlocks on your device right away.</p></details>
+      <details><summary>Are the templates and wallpapers really free?</summary><p>Yes. Tap Download and the file is created in your browser and saved to your device. There's nothing to unlock, no sign-up and no payment. If you like them, sharing VarHireBlaze with a friend is always appreciated but never required.</p></details>
     </div>
   </div>
 </section>
@@ -852,7 +855,7 @@ const TEMPLATES = [
 const DESK = [["drive","Night Drive",true],["orb","Orb",true],["garage","Showroom"],["computer","Retro Terminal"],["tape","Interview Mix"],["sunset","Synthwave"],["floppy","Save Progress"],["halo","Halo"],["blackhole","Event Horizon"],["shards","Shards"],["monolith","Monolith"]];
 const MOB  = [["grind","Stay Hungry",true],["drive","Night Drive"],["pocket","Pocket Player"],["tape","Interview Mix"],["computer","Retro Terminal"],["garage","Showroom"],["floppy","Save Progress"],["aurora","Aurora"],["blackhole","Event Horizon"],["topo","Contour"],["nebula","Nebula"],["sunset","Synthwave"],["shards","Shards"],["halo","Halo"]];
 
-const isOpen = (id,free)=> free || UNLOCKED.has(id);
+const isOpen = ()=> true; /* every template and wallpaper is free to download, no sharing required */
 function cardHTML({id,name,desc,inner,tall,free}){
   const open = isOpen(id,free);
   return `<div class="card tilt reveal" data-id="${id}">

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Browser Games Work (Without Any Download) — VarHireBlaze</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#07070a">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VarHireBlaze">
+<meta property="og:title" content="How Browser Games Work (Without Any Download) — VarHireBlaze">
+<meta property="og:description" content="A plain-English look at what happens when you press Play on a web game: HTML5 canvas, the game loop, input, sound and saving your progress.">
+<meta property="og:url" content="https://varhireblaze.com/blog/how-browser-games-work.html">
+<meta property="og:image" content="https://varhireblaze.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Browser Games Work (Without Any Download) — VarHireBlaze">
+<meta name="twitter:description" content="A plain-English look at what happens when you press Play on a web game: HTML5 canvas, the game loop, input, sound and saving your progress.">
+<meta name="twitter:image" content="https://varhireblaze.com/og-image.png">
+<meta name="description" content="A plain-English look at what happens when you press Play on a web game: HTML5 canvas, the game loop, input, sound and saving your progress.">
+<link rel="canonical" href="https://varhireblaze.com/blog/how-browser-games-work.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="google-adsense-account" content="ca-pub-2294548111828867">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2294548111828867" crossorigin="anonymous"></script>
+<style>:root{--bg:#07070a;--card:#14141b;--line:#23232e;--o:#ff6a00;--o2:#ff9a3c;--txt:#f4f4f6;--mut:#9a9aa8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:#e4e4ea;font:17px/1.75 Inter,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;color:#fff}
+a{color:var(--o)}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,7,10,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .in{max-width:980px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:23px;font-weight:700;text-decoration:none}.brand span{color:var(--o)}
+.nl{display:flex;gap:18px;font-size:14px}.nl a{color:var(--mut);text-decoration:none}.nl a:hover{color:#fff}
+.cta{background:linear-gradient(135deg,var(--o),var(--o2));color:#111!important;font-weight:600;border-radius:999px;padding:8px 16px;text-decoration:none;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:50px 20px 70px}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.15;margin-bottom:12px}
+h2{font-size:24px;margin:34px 0 10px}h3{font-size:19px;margin:24px 0 6px}
+p,ul,ol{margin:0 0 16px}ul,ol{padding-left:22px}li{margin-bottom:6px}
+.meta{color:var(--mut);font-size:14px;margin-bottom:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:26px 0}
+.box b{color:#fff}
+.end{background:linear-gradient(135deg,rgba(255,106,0,.14),rgba(255,154,60,.05));border:1px solid rgba(255,106,0,.35);border-radius:18px;padding:24px;margin-top:40px}
+.end a.cta{display:inline-block;margin-top:8px}
+.cards{display:grid;gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;text-decoration:none;color:#e4e4ea;transition:.2s}
+.card:hover{border-color:var(--o);transform:translateY(-2px)}
+.card h2{font-size:20px;margin:0 0 6px}.card p{color:var(--mut);margin:0;font-size:15px}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+footer .in{max-width:980px;margin:0 auto;padding:30px 20px;display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:space-between}
+footer a{color:var(--mut)}footer a:hover{color:var(--o)}
+@media(max-width:640px){.nl .h{display:none}body{font-size:16px}}</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>.nl{align-items:center}.nl a{white-space:nowrap}@media(max-width:400px){.nl .cta{padding:8px 12px;font-size:13px}}</style>
+<style>main pre{background:#0d0d12;border:1px solid #26262f;border-radius:12px;padding:14px 16px;overflow-x:auto;margin:12px 0 18px;font-size:13.5px;line-height:1.5}main code{font-family:ui-monospace,Menlo,Consolas,monospace;color:#ffb066}main pre code{color:#e8e8ee}main ol{padding-left:22px}</style>
+</head><body>
+<nav><div class="in">
+<a href="../index.html" class="brand">VarHire<span>Blaze</span></a>
+<div class="nl"><a href="/lab.html" style="color:#ff9a3c;font-weight:600;white-space:nowrap">✨ VB Lab</a><a class="h" href="/games.html" style="color:#ff9a3c;font-weight:600">🎮 Games</a><a class="h" href="../blog/index.html">Blog</a><a class="h" href="../about.html">About</a><a class="h" href="../contact.html">Contact</a><a class="cta" href="/games.html">🎮 Play games</a></div>
+</div></nav>
+<main>
+<p class="meta"><a href="index.html">← All articles</a> · VarHireBlaze Blog · Web gaming · By Vansh Roy · November 2026</p>
+<h1>How Browser Games Work (Without Any Download)</h1>
+<p>You tap Play and a game starts instantly. There's no app store, no installer and no 200 MB update. It feels like magic, but it's built on a handful of standard web technologies that every modern browser already has. Here's how they fit together.</p>
+
+<h2>1. The page is the console</h2>
+<p>A browser game is a normal web page. HTML gives it structure, CSS styles the menus and buttons, and JavaScript runs the game itself. Because the browser already knows how to run these, the game only needs to download a few small files, often less than a single photo.</p>
+
+<h2>2. Canvas: the screen you draw on</h2>
+<p>Most 2D web games draw onto an HTML5 <code>&lt;canvas&gt;</code> element. Think of it as a blank sheet of pixels. Every frame, the game clears it and redraws the world: the background, the player, the obstacles and the score. Games that need 3D graphics use <b>WebGL</b>, and newer ones can use <b>WebGPU</b>, which talk to your graphics card directly.</p>
+
+<h2>3. The game loop</h2>
+<p>At the heart of every game is a loop that runs many times a second:</p>
+<ol>
+<li><b>Read input:</b> which keys are pressed, where the finger is touching.</li>
+<li><b>Update:</b> move things, check collisions, add points.</li>
+<li><b>Draw:</b> paint the new frame.</li>
+</ol>
+<p>In the browser this loop uses <code>requestAnimationFrame</code>, which asks the browser to call the game just before the screen refreshes, usually 60 times a second. Good games also measure the time between frames, so they run at the same speed on a slow laptop and a fast phone.</p>
+
+<h2>4. Input: keyboard, mouse and touch</h2>
+<p>The browser reports every key press, click and touch as an <i>event</i>. The game listens for these and turns them into actions like "jump" or "move left". Touch support is what lets the same game work on a phone without a separate app.</p>
+
+<h2>5. Sound without audio files</h2>
+<p>The <b>Web Audio API</b> can play recorded sounds, but it can also <i>create</i> sound from scratch using oscillators, the same building blocks as an electronic synthesizer. That's how the beeps, coins and explosions on VarHireBlaze are made: generated live by code, with no audio files to download.</p>
+
+<h2>6. Saving progress without an account</h2>
+<p>Browsers include a small private storage area called <b>localStorage</b>. Games use it to remember your best score, coins or settings on your device. It never leaves your browser unless the game deliberately sends something, like a nickname and score for a global leaderboard.</p>
+
+<div class="box"><b>Did you know?</b> Because browser games run inside the browser's security sandbox, a web game can't read your files, contacts or photos. That's one reason they're a safe way to take a quick break.</div>
+
+<h2>Why it matters</h2>
+<p>These same tools power web apps you use every day. If you're a student, learning to build a small browser game is one of the most fun ways to practise JavaScript, maths and problem solving, and it makes a great portfolio project. Read <a href="make-your-first-html5-game.html">how to make your first HTML5 game</a>.</p>
+
+<div class="end"><h3 style="margin-top:0">Try it now</h3>
+<p style="margin:0">Every game on VarHireBlaze uses exactly the techniques in this article. Open one and watch it start instantly.</p>
+<a class="cta" href="/games.html">🎮 See it in action →</a></div>
+</main>
+<footer><div class="in">
+<div>© 2026 VarHireBlaze · Built by Vansh Roy</div>
+<div><a href="../index.html">Resume checker</a> · <a href="/games.html">Games</a> · <a href="../blog/index.html">Blog</a> · <a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></div>
+</div></footer>
+<script src="/secrets.js" defer></script>
+</body></html>

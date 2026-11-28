@@ -6,7 +6,7 @@
   var isAndroid = /Android/i.test(ua);
   var standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
   addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); deferred = e; paint(); });
-  addEventListener("appinstalled", function(){ deferred = null; standalone = true; paint(); toast("🎉 VarHireBlaze is installed. Find it on your home screen."); });
+  addEventListener("appinstalled", function(){ try{gtag("event","app_installed")}catch(e){}  deferred = null; standalone = true; paint(); toast("🎉 VarHireBlaze is installed. Find it on your home screen."); });
   function toast(m){ var t=document.createElement("div"); t.textContent=m; t.style.cssText="position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:9999;background:#15151d;color:#fff;border:1px solid rgba(255,106,0,.5);padding:11px 18px;border-radius:999px;font:500 14px Inter,system-ui,sans-serif;max-width:92vw;text-align:center"; document.body.appendChild(t); setTimeout(function(){t.remove()},3500); }
   function paint(){
     document.querySelectorAll("[data-app-state]").forEach(function(el){

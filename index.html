@@ -382,6 +382,7 @@ a,button{-webkit-tap-highlight-color:transparent}
 .ph-dock{margin-top:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:10px;border-radius:20px;background:rgba(255,255,255,.08)}
 @media(max-width:860px){.app3-in{grid-template-columns:1fr}.app3-phone{order:-1}.ph{width:190px}.app3-steps{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ph,.ph-app{animation:none}}
+.navr{display:flex;gap:8px;align-items:center}.appbtn{padding:8px 14px}@media(min-width:861px){.appbtn{display:none}}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -406,7 +407,7 @@ a,button{-webkit-tap-highlight-color:transparent}
       <a href="blog/index.html">Blog</a>
       <a href="#updates">What's new</a>
     </div>
-    <a href="games.html" class="btn btn-o">Play</a>
+    <div class="navr"><a href="#app" class="btn btn-g appbtn" aria-label="Get the app">📲 <span>App</span></a><a href="games.html" class="btn btn-o">Play</a></div>
   </div>
 </nav>
 
